@@ -1,0 +1,18 @@
+
+LAYOUT (TEXT="Customers", STYLE="main2")
+TABLE ( DOUBLECLICK=select )
+{
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+}
+END -- TABLE
+
+ATTRIBUTES
+f001 = FORMONLY.code, TITLE="Code";
+f002 = FORMONLY.name, TITLE="Name";
+
+INSTRUCTIONS
+SCREEN RECORD custs ( FORMONLY.code THRU FORMONLY.name)

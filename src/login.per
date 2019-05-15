@@ -1,0 +1,29 @@
+LAYOUT (TEXT="Login", STYLE="centered")
+GRID
+{
+[sp1:logo                       :sp2]
+[                                   ]
+[""]
+[titl                               ]
+[lun                                ]
+["  "][un                     ]["  "]
+[lpw                                ]
+["  "][pw                     ]["  "]
+              [blogin ]
+-------------------------------------
+           [forgot       ]
+}
+END -- GRID
+
+ATTRIBUTES
+IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
+IMAGE logo : logo, IMAGE="logo", STYLE="noborder center";
+IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
+
+LABEL titl : ltitle, TEXT="Login", STYLE="titl", JUSTIFY=CENTER;
+LABEL lun : lun, TEXT="Username", JUSTIFY=CENTER;
+un = FORMONLY.username, NOT NULL, REQUIRED, PLACEHOLDER="Username";
+LABEL lpw : lpw, TEXT="Password", JUSTIFY=CENTER;
+pw = FORMONLY.password, INVISIBLE, NOT NULL, REQUIRED, PLACEHOLDER="Password";
+BUTTON blogin : accept, TEXT="Login", IMAGE="", STYLE="loginbut";
+BUTTON forgot : forgot, TEXT="Forgot Password?", STYLE="em1 noborder link";

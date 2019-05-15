@@ -1,0 +1,31 @@
+
+LAYOUT (TEXT="Products", STYLE="main2")
+VBOX
+GRID
+{
+[search             ][advanced:refresh:sp1:add]
+}
+END -- GRID
+TABLE ( DOUBLECLICK=select )
+{
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+ [f001            |f002                                  ]
+}
+END -- TABLE
+END -- VBOX
+
+ATTRIBUTES
+f001 = FORMONLY.code, TITLE="Code";
+f002 = FORMONLY.descr, TITLE="Description";
+
+search = FORMONLY.search, PLACEHOLDER="Search";
+BUTTON advanced : advanced, STYLE="rounded";
+BUTTON refresh : refresh, STYLE="rounded";
+IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
+BUTTON add : add, STYLE="rounded green";
+
+INSTRUCTIONS
+SCREEN RECORD prods ( FORMONLY.code THRU FORMONLY.descr)

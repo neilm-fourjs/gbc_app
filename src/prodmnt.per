@@ -1,0 +1,109 @@
+
+LAYOUT (TEXT="Product", STYLE="main2")
+HBOX
+
+VBOX
+GRID
+{
+[l001      ][f001          ]
+[l002      ][f002                          ]
+[l003      ][f003]
+[l004      ][f004                          ]
+[l005      ][f005                          ]
+[l006      ][f006                          ]
+}
+END -- GRID
+GRID ( STYLE="actions" )
+{
+[clear][save][close]
+}
+END -- GRID
+END -- VBOX
+
+VBOX
+GROUP pg2 ( STYLE="collapsed", TEXT="Price / Costs" )
+GRID
+{
+[l007      ][f007                          ]
+[l008      ][f008                          ]
+[l009      ][f009                          ]
+[l010      ][f010                          ]
+
+}
+END -- GRID
+END -- GROUP
+GROUP pg3 ( STYLE="collapsed", TEXT="Stock Levels" )
+GRID
+{
+[l011      ][f011                          ]
+[l012      ][f012                          ]
+[l013      ][f013                          ]
+}
+END -- GRID
+END -- GROUP
+GROUP pg4 ( STYLE="collapsed", TEXT="Long Description" )
+GRID
+{
+[f014                                      ]
+[                                          ]
+[                                          ]
+[                                          ]
+}
+END -- GRID
+END -- GROUP
+GROUP pg5 ( STYLE="collapsed", TEXT="Image" )
+GRID
+{
+[l015      ][f015                          ]
+[f016                                      ]
+[                                          ]
+[                                          ]
+[                                          ]
+}
+END -- GRID
+END -- GROUP
+END -- VBOX
+END -- HBOX
+
+ATTRIBUTES
+
+BUTTON clear : clear, STYLE="rounded";
+BUTTON save : save, STYLE="rounded green";
+BUTTON close : close, STYLE="rounded red";
+
+LABEL l001 : lcode, TEXT="Code", JUSTIFY=RIGHT;
+f001 = FORMONLY.stock_code;
+LABEL l002 : lcat, TEXT="Category", JUSTIFY=RIGHT;
+f002 = FORMONLY.stock_cat;
+LABEL l003 : lpack, TEXT="Pack", JUSTIFY=RIGHT;
+CHECKBOX f003 = FORMONLY.pack_flag, VALUECHECKED="P",VALUEUNCHECKED=" ";
+LABEL l004 : lsupp, TEXT="Supplier", JUSTIFY=RIGHT;
+COMBOBOX f004 = FORMONLY.supp_code, INITIALIZER=cb_supp;
+LABEL l005 : lbc, TEXT="Bar Code", JUSTIFY=RIGHT;
+f005 = FORMONLY.barcode;
+LABEL l006 : ldesc, TEXT="Description", JUSTIFY=RIGHT;
+f006 = FORMONLY.description;
+
+LABEL l007 : lpric, TEXT="Price", JUSTIFY=RIGHT;
+f007 = FORMONLY.price;
+LABEL l008 : lcost, TEXT="Cost", JUSTIFY=RIGHT;
+f008 = FORMONLY.cost;
+LABEL l009 : ltax, TEXT="Tax Code", JUSTIFY=RIGHT;
+f009 = FORMONLY.tax_code;
+LABEL l010 : ldisc, TEXT="Discount Code", JUSTIFY=RIGHT;
+f010 = FORMONLY.disc_code;
+
+LABEL l011 : lphys, TEXT="Physical", JUSTIFY=RIGHT;
+f011 = FORMONLY.physical_stock;
+LABEL l012 : lallo, TEXT="Allocated", JUSTIFY=RIGHT;
+f012 = FORMONLY.allocated_stock;
+LABEL l013 : lfree, TEXT="Free", JUSTIFY=RIGHT;
+f013 = FORMONLY.free_stock;
+
+TEXTEDIT f014 = FORMONLY.long_desc,STRETCH=X;
+
+LABEL l015 : lurl, TEXT="Image Url", JUSTIFY=RIGHT;
+f015 = FORMONLY.img_url;
+IMAGE f016 = FORMONLY.img, SIZEPOLICY=FIXED, STYLE="noborder";
+
+

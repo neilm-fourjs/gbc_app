@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ANSI_X3.4-1968"?>
+<StyleList>
+	<Style name="Group.collapsed" >
+		<StyleAttribute name="collapsible" value="yes" />
+		<StyleAttribute name="initiallyCollapsed" value="yes" />
+	</Style>
+	<Style name="Group.uncollapsed" >
+		<StyleAttribute name="collapsible" value="yes" />
+		<StyleAttribute name="initiallyCollapsed" value="no" />
+	</Style>
+  <Style name="Folder.accordion">
+		<StyleAttribute name="position"  value="accordion" />
+  </Style>
+  <Style name=".center">
+     <StyleAttribute name="position" value="center" />
+  </Style>
+  <Style name=".noborder">
+     <StyleAttribute name="border" value="none" />
+  </Style>
+  <Style name=".loginbut">
+     <StyleAttribute name="backgroundColor" value="#f7931e" />
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name=".green">
+     <StyleAttribute name="backgroundColor" value="#5cb85c" />
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name=".red">
+     <StyleAttribute name="backgroundColor" value="red" />
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name=".titl">
+     <StyleAttribute name="fontSize" value="36pt" />
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name="Label">
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name=".em2">
+     <StyleAttribute name="fontSize" value="2em" />
+  </Style>
+  <Style name=".em3">
+     <StyleAttribute name="fontSize" value="3em" />
+  </Style>
+
+	<Style name="Window.centered">
+		<StyleAttribute name="windowType" value="normal" />
+		<StyleAttribute name="toolBarPosition" value="top" />
+		<StyleAttribute name="actionPanelPosition" value="none" />
+		<StyleAttribute name="ringMenuPosition" value="none" />
+		<StyleAttribute name="sizable" value="no" />
+		<StyleAttribute name="position" value="center" />
+	</Style>
+
+  <Style name="Window.login">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="sizable" value="no" />
+     <StyleAttribute name="position" value="center" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+     <StyleAttribute name="errorMessagePosition" value="popup" />
+  </Style>
+
+  <Style name="Window">
+     <StyleAttribute name="windowType" value="normal" />
+  </Style>
+  <Style name="Window.main">
+     <StyleAttribute name="windowType" value="normal" />
+     <StyleAttribute name="startMenuPosition" value="tree" />
+     <StyleAttribute name="ringMenuPosition" value="left" />
+     <StyleAttribute name="tabbedContainer" value="yes" />
+  </Style>
+  <Style name="Window.main2">
+     <StyleAttribute name="windowType" value="normal" />
+     <StyleAttribute name="actionPanelPosition" value="right" />
+     <StyleAttribute name="ringMenuPosition" value="right" />
+  </Style>
+  <Style name="Window.dialog">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="sizable" value="no" />
+     <StyleAttribute name="position" value="center" />
+     <StyleAttribute name="actionPanelPosition" value="bottom" />
+     <StyleAttribute name="ringMenuPosition" value="bottom" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+     <StyleAttribute name="errorMessagePosition" value="popup" />
+  </Style>
+  <Style name="Window.dialog2">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="sizable" value="no" />
+     <StyleAttribute name="position" value="center" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+     <StyleAttribute name="errorMessagePosition" value="popup" />
+  </Style>
+  <Style name="Window.dialog3">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="sizable" value="yes" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+     <StyleAttribute name="errorMessagePosition" value="popup" />
+  </Style>
+  <Style name="Window.dialog4">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="sizable" value="yes" />
+     <StyleAttribute name="actionPanelPosition" value="bottom" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+     <StyleAttribute name="errorMessagePosition" value="popup" />
+  </Style>
+  <Style name="Window.naked">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="border" value="tool" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+  </Style>
+  <Style name="Window.viewer">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="windowSystemMenu" value="yes" />
+     <StyleAttribute name="windowOptionMinimize" value="no" />
+     <StyleAttribute name="windowOptionMaximize" value="no" />
+     <StyleAttribute name="sizable" value="yes" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+  </Style>
+</StyleList>

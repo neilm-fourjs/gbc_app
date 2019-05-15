@@ -1,0 +1,43 @@
+{
+  "themes": [{
+      "name": "default",
+      "title": "Default Light",
+      "uses": ["platform/desktop"]
+    },
+    {
+      "name": "highcontrast",
+      "title": "High contrast",
+      "uses": ["platform/browser", "platform/desktop", "colors/highcontrast", "common"]
+    },
+    {
+      "name": "default_mobile",
+      "title": "Default",
+      "uses": ["platform/browser", "platform/mobile", "common"]
+    },
+    {
+      "name": "highcontrast_mobile",
+      "title": "High contrast",
+      "uses": ["platform/browser", "platform/mobile", "colors/highcontrast", "common"]
+    },
+    {
+      "name": "ur_default",
+      "title": "Default",
+      "uses": ["platform/ur", "platform/desktop", "common"]
+    },
+    {
+      "name": "ur_highcontrast",
+      "title": "High contrast",
+      "uses": ["platform/ur", "platform/desktop", "colors/highcontrast", "common"]
+    },
+    {
+      "name": "ur_default_mobile",
+      "title": "Default",
+      "uses": ["platform/ur", "platform/mobile", "common"]
+    },
+    {
+      "name": "ur_highcontrast_mobile",
+      "title": "High contrast",
+      "uses": ["platform/ur", "platform/mobile", "colors/highcontrast", "common"]
+    }
+  ]
+}

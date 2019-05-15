@@ -1,0 +1,33 @@
+
+LAYOUT (TEXT="Customer", STYLE="main2")
+HBOX
+GRID
+{
+[l001      ][f001          ]
+[l002      ][f002                          ]
+}
+END -- GRID
+VBOX
+GROUP pg2 ( STYLE="collapsed", TEXT="More 1" )
+GRID
+{
+Some more details
+}
+END -- GRID
+END -- GROUP
+GROUP pg3 ( STYLE="collapsed", TEXT="More 2" )
+GRID
+{
+Some more details
+}
+END -- GRID
+END -- GROUP
+END -- VBOX
+END -- HBOX
+
+ATTRIBUTES
+LABEL l001 : lcode, TEXT="Code:", JUSTIFY=RIGHT;
+LABEL l002 : lname, TEXT="Name:", JUSTIFY=RIGHT;
+
+f001 = FORMONLY.code, TITLE="Code";
+f002 = FORMONLY.name, TITLE="Name";
