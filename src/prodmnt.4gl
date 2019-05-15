@@ -24,7 +24,7 @@ MAIN
 		END IF
 	END IF
 	CALL showDets( l_stk.* )
-
+	CALL g2_lib.g2_exitProgram(0,"Finished")
 END MAIN
 ----------------------------------------------------------------------------------------------------
 FUNCTION showDets( l_stk RECORD LIKE stock.* )

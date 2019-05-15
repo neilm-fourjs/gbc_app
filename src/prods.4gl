@@ -17,6 +17,7 @@ MAIN
   DEFINE l_db g2_db.dbInfo
 	DEFINE l_stk RECORD LIKE stock.*
 	DEFINE l_search STRING
+	DEFINE l_where STRING
 
 	CALL g2_lib.g2_init(ARG_VAL(1), NULL )
   CALL l_db.g2_connect(NULL)
@@ -24,30 +25,44 @@ MAIN
 	OPEN FORM prodlist FROM "prodlist"
 	DISPLAY FORM prodlist
 
-	CALL getData()
+	CALL getData(NULL)
 
 	DIALOG ATTRIBUTES(UNBUFFERED)
 		INPUT l_search FROM search
+			ON ACTION search
+				IF l_search IS NOT NULL THEN
+					LET l_where = g2_db.g2_chkSearch("stock","description",l_search)
+					IF l_where IS NOT NULL THEN
+						CALL getData(l_where)
+					END IF
+				END IF
+				NEXT FIELD stock_code
 		END INPUT
 		DISPLAY ARRAY m_scrArr TO prods.*
 			ON ACTION SELECT
 				RUN "fglrun prodmnt.42r C "||m_arr[ arr_curr() ].stock_code WITHOUT WAITING
 		END DISPLAY
 		ON ACTION refresh
-			CALL getData()
+			CALL getData(NULL)
 		ON ACTION advanced
 			MESSAGE "Not yet!"
-		ON ACTION CLOSE EXIT DIALOG
-		ON ACTION ADD
+		ON ACTION close EXIT DIALOG
+		ON ACTION add
 			LET l_stk.stock_code = "new"
 			RUN "fglrun prodmnt.42r C "||l_stk.stock_code WITHOUT WAITING
 	END DIALOG
+	CALL g2_lib.g2_exitProgram(0,"Finished")
 END MAIN
 ----------------------------------------------------------------------------------------------------
-FUNCTION getData()
+FUNCTION getData(l_where STRING)
+	DEFINE l_stmt STRING
 	CALL m_scrArr.clear()
 	CALL m_arr.clear()
-	DECLARE l_cur CURSOR FOR SELECT * FROM stock
+	IF l_where IS NULL THEN LET l_where = "1=1" END IF
+	LET l_stmt = "SELECT * FROM stock WHERE "||l_where
+	DISPLAY l_stmt
+	PREPARE l_pre FROM l_stmt
+	DECLARE l_cur CURSOR FOR l_pre 
 	FOREACH l_cur INTO m_arr[ m_arr.getLength() + 1 ].*
 		LET m_scrArr[ m_arr.getLength() ].stock_code =  m_arr[ m_arr.getLength() ].stock_code
 		LET m_scrArr[ m_arr.getLength() ].stock_cat =  m_arr[ m_arr.getLength() ].stock_cat

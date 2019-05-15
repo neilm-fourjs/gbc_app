@@ -40,4 +40,5 @@
   <ActionDefault name="add" text="Add New" contextMenu="no"/>
   <ActionDefault name="save" text="Save" contextMenu="no"/>
   <ActionDefault name="clear" text="Clear changes" contextMenu="no"/>
+  <ActionDefault name="search" image="fa-search" contextMenu="no" acceleratorName="return"/>
 </ActionDefaultList>

@@ -287,7 +287,66 @@ FUNCTION (this dbInfo) g2_showInfo(stat INTEGER) RETURNS ()
   END MENU
 
   CLOSE WINDOW info
-
+END FUNCTION
+--------------------------------------------------------------------------------
+#+ Process the status after an SQL Statement.
+#+
+#+ @code CALL g2_db_sqlStatus( __LINE__, "gl_db", l_sql_stmt )
+#+
+#+ @param l_tab Table name
+#+ @param l_defcol Default column
+#+ @param l_search Search string
+#+ @return a String containing a where clause
+FUNCTION g2_chkSearch(l_tab STRING, l_defcol STRING, l_search STRING) RETURNS STRING
+	DEFINE l_where, l_stmt, l_cond STRING
+	DEFINE l_cnt INTEGER
+	IF l_search IS NULL OR l_tab IS NULL THEN RETURN "1=1" END IF
+	LET l_search = l_search.trim()
+	IF l_search.getIndexOf(";",1) > 0 THEN LET l_search = l_search.subString(1,l_cnt) END IF
+	LET l_cond = "MATCHES"
+	LET l_where = SFMT("lower(%1) %2 '*%3*'",l_defcol, l_cond,l_search.toLowerCase())
+	DISPLAY "Search:",l_search
+	DISPLAY "       12345678901234567890"
+	CALL g2_findCondition( l_search ) RETURNING l_cnt, l_cond
+	IF l_cnt = 1 THEN
+		LET l_search = l_search.subString(l_cond.getLength()+1, l_search.getLength())
+		LET l_where = SFMT("lower(%1) %2 '%3'",l_defcol.trim(), l_cond,l_search.toLowerCase())
+	END IF
+	IF l_cnt > 1 THEN
+		LET l_defcol = l_search.subString(1,l_cnt-1)
+		LET l_search = l_search.subString(l_cnt+l_cond.getLength(), l_search.getLength())
+		LET l_where = SFMT("%1 %2 '%3'",l_defcol.trim(), l_cond, l_search.trim())
+	END IF
+	DISPLAY "X:",l_cnt," Col:",l_defcol, " Condition:",l_cond," Search:",l_search
+	LET l_stmt = "SELECT COUNT(*) FROM "||l_tab||" WHERE "||l_where
+	DISPLAY l_stmt
+	TRY
+		PREPARE pre_chk FROM l_stmt
+		EXECUTE pre_chk INTO l_cnt
+	CATCH
+		CALL g2_lib.g2_winMessage("SQL Error",SFMT("%1 %2",STATUS, SQLERRMESSAGE),"exclamation")
+		LET l_where = NULL
+	END TRY
+	IF l_cnt = 0 THEN
+		ERROR SFMT("No rows found for search '%1'",l_search)
+		LET l_where = NULL
+	END IF
+	RETURN l_where
+END FUNCTION
+--------------------------------------------------------------------------------
+FUNCTION g2_findCondition(l_search STRING) RETURNS (INT,STRING)
+	DEFINE x INTEGER
+	LET x = l_search.getIndexOf(">",1)
+	IF x > 0 THEN RETURN x,">" END IF
+	LET x = l_search.getIndexOf("<",1)
+	IF x > 0 THEN RETURN x,"<" END IF
+	LET x = l_search.getIndexOf("!=",1)
+	IF x > 0 THEN RETURN x,"!=" END IF
+	LET x = l_search.getIndexOf("<>",1)
+	IF x > 0 THEN RETURN x,"<>" END IF
+	LET x = l_search.getIndexOf("=",1)
+	IF x > 0 THEN RETURN x,"=" END IF
+	RETURN 0, NULL
 END FUNCTION
 --------------------------------------------------------------------------------
 #+ Process the status after an SQL Statement.
@@ -298,9 +357,8 @@ END FUNCTION
 #+ @param l_mod Module name - should be __FILE__
 #+ @param l_stmt = String: The SQL Statement / Message, Can be NULL.
 #+ @return TRUE/FALSE.  Success / Failed
-FUNCTION g2_sqlStatus(l_line, l_mod, l_stmt) RETURNS BOOLEAN
-  DEFINE l_mod, l_stmt STRING
-  DEFINE l_line, l_stat INTEGER
+FUNCTION g2_sqlStatus(l_line INT, l_mod STRING, l_stmt STRING) RETURNS BOOLEAN
+  DEFINE l_stat INTEGER
 
   LET l_stat = STATUS
   LET l_mod = l_mod || " Line:", (l_line USING "<<<<<<<")
