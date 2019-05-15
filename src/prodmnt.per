@@ -5,60 +5,50 @@ HBOX
 VBOX
 GRID
 {
-[l001      ][f001          ]
-[l002      ][f002                          ]
-[l003      ][f003]
-[l004      ][f004                          ]
-[l005      ][f005                          ]
-[l006      ][f006                          ]
+<G ""                                        >
+ [l001      ][f001          ]
+ [l002      ][f002                          ]
+ [l003      ][f003]
+ [l004      ][f004                          ]
+ [l005      ][f005                          ]
+ [l006      ][f006                          ]
+<                                            >
 }
 END -- GRID
 GRID ( STYLE="actions" )
 {
-[clear][save][close]
+ [clear][save][close]
 }
 END -- GRID
 END -- VBOX
 
 VBOX
-GROUP pg2 ( STYLE="collapsed", TEXT="Price / Costs" )
 GRID
 {
-[l007      ][f007                          ]
-[l008      ][f008                          ]
-[l009      ][f009                          ]
-[l010      ][f010                          ]
+<G pg2                                       >
+ [l007      ][f007                          ]
+ [l008      ][f008                          ]
+ [l009      ][f009                          ]
+ [l010      ][f010                          ]
+<                                            >
+<G pg3                                       >
+ [l011      ][f011                          ]
+ [l012      ][f012                          ]
+ [l013      ][f013                          ]
+<                                            >
+<G pg4                                       >
+ [f014                                      ]
+ [                                          ]
+ [                                          ]
+ [                                          ]
+<                                            >
 
-}
-END -- GRID
-END -- GROUP
-GROUP pg3 ( STYLE="collapsed", TEXT="Stock Levels" )
-GRID
-{
-[l011      ][f011                          ]
-[l012      ][f012                          ]
-[l013      ][f013                          ]
-}
-END -- GRID
-END -- GROUP
-GROUP pg4 ( STYLE="collapsed", TEXT="Long Description" )
-GRID
-{
-[f014                                      ]
-[                                          ]
-[                                          ]
-[                                          ]
-}
-END -- GRID
-END -- GROUP
-GROUP pg5 ( STYLE="collapsed", TEXT="Image" )
-GRID
-{
-[l015      ][f015                          ]
-[f016                                      ]
-[                                          ]
-[                                          ]
-[                                          ]
+ [l015      ][f015                          ]
+ [f016                                      ]
+ [                                          ]
+ [                                          ]
+ [                                          ]
+
 }
 END -- GRID
 END -- GROUP
@@ -70,6 +60,11 @@ ATTRIBUTES
 BUTTON clear : clear, STYLE="rounded";
 BUTTON save : save, STYLE="rounded green";
 BUTTON close : close, STYLE="rounded red";
+
+GROUP pg2 : pg2, STYLE="collapsed", TEXT="Price / Costs", GRIDCHILDRENINPARENT;
+GROUP pg3 : pg3, STYLE="collapsed", TEXT="Stock Levels", GRIDCHILDRENINPARENT;
+GROUP pg4 : pg4, STYLE="collapsed", TEXT="Long Description", GRIDCHILDRENINPARENT;
+--GROUP pg5 : pg5, TEXT="Image", GRIDCHILDRENINPARENT;
 
 LABEL l001 : lcode, TEXT="Code", JUSTIFY=RIGHT;
 f001 = FORMONLY.stock_code;
@@ -100,7 +95,7 @@ f012 = FORMONLY.allocated_stock;
 LABEL l013 : lfree, TEXT="Free", JUSTIFY=RIGHT;
 f013 = FORMONLY.free_stock;
 
-TEXTEDIT f014 = FORMONLY.long_desc,STRETCH=X;
+TEXTEDIT f014 = FORMONLY.long_desc;
 
 LABEL l015 : lurl, TEXT="Image Url", JUSTIFY=RIGHT;
 f015 = FORMONLY.img_url;
