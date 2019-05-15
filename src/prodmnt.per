@@ -69,7 +69,7 @@ GROUP pg4 : pg4, STYLE="collapsed", TEXT="Long Description", GRIDCHILDRENINPAREN
 LABEL l001 : lcode, TEXT="Code", JUSTIFY=RIGHT;
 f001 = FORMONLY.stock_code;
 LABEL l002 : lcat, TEXT="Category", JUSTIFY=RIGHT;
-f002 = FORMONLY.stock_cat;
+COMBOBOX f002 = FORMONLY.stock_cat, INITIALIZER=cb_cat;
 LABEL l003 : lpack, TEXT="Pack", JUSTIFY=RIGHT;
 CHECKBOX f003 = FORMONLY.pack_flag, VALUECHECKED="P",VALUEUNCHECKED=" ";
 LABEL l004 : lsupp, TEXT="Supplier", JUSTIFY=RIGHT;

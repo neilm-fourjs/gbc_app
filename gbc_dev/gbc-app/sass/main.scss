@@ -20,11 +20,6 @@ BODY {
 	border-radius: 4px;
 }
 
-.gbc_ButtonWidget {
-	background-color: $mt-button-primary-background-color;
-	color: $mt-button-primary-color;
-}
-
 .mt-button {
 	box-shadow: none;
 	background-color: inherit;
@@ -117,10 +112,30 @@ BODY {
 
 .mt-button:not(.disabled):hover, .mt-button[interruptable][interruptable-active]:hover {
 	background-color: inherit;
+	background: rgba(0,0,0,0.5);
 }
 
 .gbc_MenuWidgetScrollContainer {
 	color: $theme-primary-color;
 	fill: $theme-primary-color;
 	background-color: $theme-primary-emphasis-background-color;
+}
+
+.gbc_MenuWidget > .gbc_MenuWidgetScrollContainer .containerElement > * {
+	margin: 2px;
+	padding: 12px 15px;
+	border-bottom: 2px solid $mt-button-primary-background-color;
+}
+￼
+.gbc_ButtonWidget {
+	background-color: inherit;
+	color: white;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+
+/* Combobox Caret */
+[__ComboBoxWidget].toggle {
+	font-size: 1.5em;
 }

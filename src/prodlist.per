@@ -8,18 +8,17 @@ GRID
 END -- GRID
 TABLE ( DOUBLECLICK=select )
 {
- [f001            |f002                                  ]
- [f001            |f002                                  ]
- [f001            |f002                                  ]
- [f001            |f002                                  ]
- [f001            |f002                                  ]
+ [f001            |f002      |f003                                 |f004       |f005     ]
 }
 END -- TABLE
 END -- VBOX
 
 ATTRIBUTES
 f001 = FORMONLY.code, TITLE="Code";
-f002 = FORMONLY.descr, TITLE="Description";
+f002 = FORMONLY.cat, TITLE="Category";
+f003 = FORMONLY.descr, TITLE="Description";
+f004 = FORMONLY.price, FORMAT="£<<<<&.&&", TITLE="Price";
+f005 = FORMONLY.free_stock, TITLE="Free Stock";
 
 search = FORMONLY.search, PLACEHOLDER="Search";
 BUTTON advanced : advanced, STYLE="rounded";
@@ -28,4 +27,4 @@ IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
 BUTTON add : add, STYLE="rounded green";
 
 INSTRUCTIONS
-SCREEN RECORD prods ( FORMONLY.code THRU FORMONLY.descr)
+SCREEN RECORD prods ( FORMONLY.code THRU FORMONLY.free_stock)

@@ -13,8 +13,8 @@ MAIN
 	CALL ui.Interface.loadStartMenu("gbc_app")
 
 	MENU
-		ON ACTION prod RUN "fglrun prods C" WITHOUT WAITING
 		ON ACTION cust RUN "fglrun custs C" WITHOUT WAITING
+		ON ACTION prod RUN "fglrun prods C" WITHOUT WAITING
 		ON ACTION quote RUN "fglrun quotes C" WITHOUT WAITING
 		ON ACTION CLOSE EXIT MENU
 		ON ACTION QUIT EXIT MENU

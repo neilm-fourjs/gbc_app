@@ -42,6 +42,9 @@
   <Style name=".em3">
      <StyleAttribute name="fontSize" value="3em" />
   </Style>
+  <Style name="Table">
+     <StyleAttribute name="headerAlignment" value="auto" />
+  </Style>
 
 	<Style name="Window.centered">
 		<StyleAttribute name="windowType" value="normal" />

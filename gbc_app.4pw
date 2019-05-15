@@ -82,7 +82,7 @@
       <File filePath="src/gbc_app.per"/>
       <File filePath="src/login.per"/>
     </Application>
-    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
+    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="gbc_app"/>
       <DynamicProperty name="packageLabel" value="gbc_app"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
@@ -108,6 +108,9 @@
       <File filePath="src/lib/g2_lib.4gl"/>
       <File filePath="src/lib/g2_logging.4gl"/>
     </Library>
+    <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000" id="-1155118210" label="prodmnt">
+      <File filePath="src/prodmnt.4gl"/>
+    </Application>
     <Application binaryName="prods" dependencies="1986,14000" id="-131770706" label="prods">
       <File filePath="src/prodlist.per"/>
       <File filePath="src/prodmnt.per"/>
