@@ -94,12 +94,11 @@
     <Package binaryName="gbc_app320_gbc" id="-1397376768" label="gbc_app320_gbc" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="myapp"/>
       <DynamicProperty name="packageLabel" value="MyApp"/>
-      <Directory excludedFiles="Test.42r" includedFiles="*.42?" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
-      <Directory includedFiles="fglprofile" label="Config" sourceDirectory="$(ProjectDir)/config"/>
+      <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
+      <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory destinationDirectory="$(RootDir)/gbc" label="gbc" sourceDirectory="$(ProjectDir)/gbc"/>
-      <Directory includedFiles="*.png\,*.jpg\,*.ttf\,image2font.txt" label="Images" sourceDirectory="$(ProjectDir)/images"/>
-      <Directory includedFiles="*.42?" label="libgst" sourceDirectory="$(GSTLIBRARYDIR)/bin"/>
-      <Directory includedFiles="*.4ad\,*.4st\,*.xcf\,*.4tm\,*.4tb\,*.4sm\,*.42s\,*.iem" label="Resources" sourceDirectory="$(ProjectDir)/resources"/>
+      <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
+      <Directory includedFiles="*.4st,*.4ad,*.4sm" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
     <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
