@@ -20,6 +20,10 @@ BODY {
 	border-radius: 4px;
 }
 
+.mt-toolbar {
+	box-shadow: none;
+}
+
 .mt-button {
 	box-shadow: none;
 	background-color: inherit;
@@ -78,7 +82,7 @@ BODY {
 	font-size: 16px;
 	padding: 0 30px;
 	line-height: 55px;
-	background-color: #f7931e;
+	background-color: #f7931e !important;
 }
 .gbc_style_loginbut:not(.disabled):hover {
 	background-color: #e7830e;
@@ -116,21 +120,9 @@ BODY {
 	box-shadow: inset 0 1px 2.4px rgba(0, 0, 0, 0.24);
 }
 
-.gbc_MenuWidgetScrollContainer {
-	color: $theme-primary-color;
-	fill: $theme-primary-color;
-	background-color: $theme-primary-emphasis-background-color;
-}
-
-.gbc_MenuWidget > .gbc_MenuWidgetScrollContainer .containerElement > * {
-	margin: 2px;
-	padding: 12px 15px;
-	border-bottom: 2px solid $mt-button-primary-background-color;
-}
-￼
 .gbc_ButtonWidget {
 	background-color: inherit;
-	color: white;
+	color: inherit;
 	font-size: 14px;
 	font-weight: 700;
 }
@@ -144,4 +136,37 @@ BODY {
 .gbc_TableColumnItemWidget {
 	border-bottom: 1px solid $theme-header-color;
 	height: 30px !important;
+}
+
+.gbc_TableWidget .gbc_TableScrollArea, .gbc_TableWidget .gbc_TableRightScrollArea, .gbc_TableWidget .gbc_TableLeftScrollArea {
+	overflow-x: auto;
+}
+
+.gbc_WindowWidget .gbc_WindowMenuContainerRight, .gbc_WindowWidget .gbc_WindowMenuContainerLeft {
+	margin-top: 0px;
+}
+
+.gbc_style_statcol {
+	border-radius: 10px;
+}
+
+.gbc_WindowMainContainer > .gbc_WindowMenuContainerMiddle > .gbc_WindowContent {
+	padding: 0px;
+}
+
+.gbc_FolderWidget {
+	padding: 0px;
+}
+.gbc_WindowWidget .gbc_WindowMenuContainerMiddle {
+	box-shadow: none;
+}
+.mt-tab-items[__FolderWidget] {
+	padding: 0px;
+}
+.gbc_UserInterfaceWidget .gbc_chromeBarContainer:not(:empty) {
+	border-bottom: none;
+}
+
+.mt-tab-titles {
+	border-bottom: 1px solid $theme-primary-emphasis-background-color;
 }

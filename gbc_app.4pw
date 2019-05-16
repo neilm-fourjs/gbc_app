@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Project defaultApplication="-131770706" gstVersion="31403" version="3.3">
+<Project defaultApplication="-2046411878" gstVersion="31403" version="3.3">
   <Settings>
     <DynamicProperties version="2">
       <DynamicProperty description="Accent color (Android 5.0 and later)" initialValue="#9575CD" isDefaultInherited="false" isHidden="false" label="Accent color" name="gma-accent-color" readOnly="false" type="COLOR"/>
@@ -102,6 +102,7 @@
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
     <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
+      <File filePath="src/lib/combos.4gl"/>
       <File filePath="src/lib/g2_db.4gl"/>
       <File filePath="src/lib/g2_debug.4gl"/>
       <File filePath="src/lib/g2_debug.inc"/>
@@ -120,7 +121,7 @@
       <File filePath="src/quotemnt.4gl"/>
       <File filePath="src/quotemnt.per"/>
     </Application>
-    <Application binaryName="quotes" dependencies="1986,14000,-231492752" id="-2046411878" label="quotes">
+    <Application binaryName="quotes" commandLineArguments="S" dependencies="1986,14000,-231492752" id="-2046411878" label="quotes">
       <File filePath="src/quotelist.per"/>
       <File filePath="../../../../../opt/fourjs/all/my_github/gbc_app/src/quotes.4gl"/>
     </Application>

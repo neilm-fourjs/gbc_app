@@ -1,8 +1,10 @@
 
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+IMPORT FGL combos
 
 SCHEMA njm_demo310
+
 MAIN
   DEFINE l_db g2_db.dbInfo
 	DEFINE l_arr DYNAMIC ARRAY OF RECORD LIKE customer.*
@@ -10,9 +12,13 @@ MAIN
 		customer_code LIKE customer.customer_code,
 		customer_name LIKE customer.customer_name
 	END RECORD
+	DEFINE l_mdi CHAR(1)
 
-	CALL g2_lib.g2_init(ARG_VAL(1), NULL )
+	LET l_mdi = ARG_VAL(1)
+	IF l_mdi IS NULL THEN LET l_mdi = "S" END IF
+	CALL g2_lib.g2_init(l_mdi, NULL )
   CALL l_db.g2_connect(NULL)
+	CALL combos.dummy()
 
 	OPEN FORM prodlist FROM "custlist"
 	DISPLAY FORM prodlist

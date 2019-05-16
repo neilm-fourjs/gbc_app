@@ -1,6 +1,7 @@
 
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+IMPORT FGL combos
 
 SCHEMA njm_demo310
 
@@ -10,6 +11,7 @@ MAIN
 
 	CALL g2_lib.g2_init(ARG_VAL(1), NULL )
   CALL l_db.g2_connect(NULL)
+	CALL combos.dummy()
 
 	OPEN FORM quotemnt FROM "quotemnt"
 	DISPLAY FORM quotemnt
@@ -40,11 +42,3 @@ FUNCTION showDets( l_rec RECORD LIKE quotes.* )
 
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
-FUNCTION cb_custs(l_cb ui.ComboBox)
-	DEFINE l_code LIKE customer.customer_code
-	DEFINE l_name LIKE customer.customer_name
-	DECLARE l_custcur CURSOR FOR SELECT customer_code, customer_name FROM customer
-	FOREACH l_custcur INTO l_code, l_name
-		CALL l_cb.addItem(l_code CLIPPED, l_name CLIPPED)
-	END FOREACH
-END FUNCTION

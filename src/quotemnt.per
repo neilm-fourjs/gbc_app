@@ -14,11 +14,6 @@ GRID
  [l006      ][f006                          ]
  [l007      ][f007                          ]
  [l008      ][f008                          ]
- [l009      ][f009                          ]
- [l010      ][f010                          ]
- [l011      ][f011                          ]
- [l012      ][f012                          ]
- [l013      ][f013                          ]
  [l014      ][f014                          ]
  [l015      ][f015                          ]
  [l016      ][f016                          ]
@@ -37,10 +32,15 @@ VBOX
 GRID
 {
 <G pg2                                       >
- xxx
+ [l009      ][f009                          ]
+ [l010      ][f010                          ]
+ [l011      ][f011                          ]
+ [l012      ][f012                          ]
 <                                            >
 <G pg3                                       >
- xxx
+ [l013      ][f013                          ]
+             [                              ]
+             [                              ]
 <                                            >
 ["                                          "]
 }
@@ -65,25 +65,25 @@ f002 = FORMONLY.quote_ref;
 LABEL l003 : l_rev, TEXT="Revision", JUSTIFY=RIGHT;
 f003 = FORMONLY.revision;
 LABEL l004 : l_rev, TEXT="Status", JUSTIFY=RIGHT;
-f004 = FORMONLY.status;
-LABEL l005 : l_rev, TEXT="Status", JUSTIFY=RIGHT;
-f005 = FORMONLY.account_manager;
-LABEL l006 : l_rev, TEXT="Status", JUSTIFY=RIGHT;
-f006 = FORMONLY.raised_by;
+COMBOBOX f004 = FORMONLY.status, INITIALIZER=cb_status;
+LABEL l005 : l_rev, TEXT="Account Manager", JUSTIFY=RIGHT;
+COMBOBOX f005 = FORMONLY.account_manager, INITIALIZER=cb_users;
+LABEL l006 : l_rev, TEXT="Raised By", JUSTIFY=RIGHT;
+COMBOBOX f006 = FORMONLY.raised_by, INITIALIZER=cb_users;
 LABEL l007 : l_rev, TEXT="Customer", JUSTIFY=RIGHT;
 f007 = FORMONLY.customer_code;
 LABEL l008 : l_rev, TEXT="Divsion", JUSTIFY=RIGHT;
 f008 = FORMONLY.division;
 LABEL l009 : l_rev, TEXT="Quote Date", JUSTIFY=RIGHT;
-f009 = FORMONLY.quote_date;
+DATEEDIT f009 = FORMONLY.quote_date;
 LABEL l010 : l_rev, TEXT="Expiration Date", JUSTIFY=RIGHT;
-f010 = FORMONLY.expiration_date;
+DATEEDIT f010 = FORMONLY.expiration_date;
 LABEL l011 : l_rev, TEXT="Projected Date", JUSTIFY=RIGHT;
-f011 = FORMONLY.projected_date;
+DATEEDIT f011 = FORMONLY.projected_date;
 LABEL l012 : l_rev, TEXT="Ordered Date", JUSTIFY=RIGHT;
-f012 = FORMONLY.ordered_date;
+DATEEDIT f012 = FORMONLY.ordered_date;
 LABEL l013 : l_rev, TEXT="Description", JUSTIFY=RIGHT;
-f013 = FORMONLY.description;
+TEXTEDIT f013 = FORMONLY.description;
 LABEL l014 : l_rev, TEXT="End User", JUSTIFY=RIGHT;
 f014 = FORMONLY.end_user;
 LABEL l015 : l_rev, TEXT="Project", JUSTIFY=RIGHT;

@@ -1,26 +1,31 @@
 
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+IMPORT FGL combos
 
 SCHEMA njm_demo310
 
-	DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE stock.*
-	DEFINE m_scrArr  DYNAMIC ARRAY OF RECORD
-		stock_code LIKE stock.stock_code,
-		stock_cat LIKE stock.stock_cat,
-		description LIKE stock.description,
-		price LIKE stock.price,
-		free_stock LIKE stock.free_stock
-	END RECORD
+DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE stock.*
+DEFINE m_scrArr  DYNAMIC ARRAY OF RECORD
+	stock_code LIKE stock.stock_code,
+	stock_cat LIKE stock.stock_cat,
+	description LIKE stock.description,
+	price LIKE stock.price,
+	free_stock LIKE stock.free_stock
+END RECORD
 
 MAIN
   DEFINE l_db g2_db.dbInfo
 	DEFINE l_rec RECORD LIKE stock.*
 	DEFINE l_search STRING
 	DEFINE l_where STRING
+	DEFINE l_mdi CHAR(1)
 
-	CALL g2_lib.g2_init(ARG_VAL(1), NULL )
+	LET l_mdi = ARG_VAL(1)
+	IF l_mdi IS NULL THEN LET l_mdi = "S" END IF
+	CALL g2_lib.g2_init(l_mdi, NULL )
   CALL l_db.g2_connect(NULL)
+	CALL combos.dummy()
 
 	OPEN FORM list FROM "prodlist"
 	DISPLAY FORM list
@@ -40,7 +45,7 @@ MAIN
 		END INPUT
 		DISPLAY ARRAY m_scrArr TO list.*
 			ON ACTION SELECT
-				RUN "fglrun prodmnt.42r C "||m_arr[ arr_curr() ].stock_code WITHOUT WAITING
+				RUN "fglrun prodmnt.42r "||l_mdi||" "||m_arr[ arr_curr() ].stock_code WITHOUT WAITING
 		END DISPLAY
 		ON ACTION refresh
 			CALL getData(NULL)
@@ -49,7 +54,7 @@ MAIN
 		ON ACTION close EXIT DIALOG
 		ON ACTION add
 			LET l_rec.stock_code = "new"
-			RUN "fglrun prodmnt.42r C "||l_rec.stock_code WITHOUT WAITING
+			RUN "fglrun prodmnt.42r "||l_mdi||" "||l_rec.stock_code WITHOUT WAITING
 	END DIALOG
 	CALL g2_lib.g2_exitProgram(0,"Finished")
 END MAIN

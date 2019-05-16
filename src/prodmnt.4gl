@@ -1,6 +1,7 @@
 
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+IMPORT FGL combos
 
 SCHEMA njm_demo310
 
@@ -10,6 +11,7 @@ MAIN
 
 	CALL g2_lib.g2_init(ARG_VAL(1), NULL )
   CALL l_db.g2_connect(NULL)
+	CALL combos.dummy()
 
 	OPEN FORM prodmnt FROM "prodmnt"
 	DISPLAY FORM prodmnt
@@ -40,20 +42,3 @@ FUNCTION showDets( l_rec RECORD LIKE stock.* )
 
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
-FUNCTION cb_cat(l_cb ui.ComboBox)
-	DEFINE l_code LIKE stock_cat.catid
-	DEFINE l_name LIKE stock_cat.cat_name
-	DECLARE l_catcur CURSOR FOR SELECT catid, cat_name FROM stock_cat
-	FOREACH l_catcur INTO l_code, l_name
-		CALL l_cb.addItem(l_code CLIPPED, l_name CLIPPED)
-	END FOREACH
-END FUNCTION
-----------------------------------------------------------------------------------------------------
-FUNCTION cb_supp(l_cb ui.ComboBox)
-	DEFINE l_code LIKE supplier.supp_code
-	DEFINE l_name LIKE supplier.supp_name
-	DECLARE l_supcur CURSOR FOR SELECT supp_code, supp_name FROM supplier
-	FOREACH l_supcur INTO l_code, l_name
-		CALL l_cb.addItem(l_code CLIPPED, l_name CLIPPED)
-	END FOREACH
-END FUNCTION

@@ -44,6 +44,10 @@
   </Style>
   <Style name="Table">
      <StyleAttribute name="headerAlignment" value="auto" />
+		<StyleAttribute name="highlightCurrentRow" value="no" />
+  </Style>
+  <Style name="Table:even">
+     <StyleAttribute name="backgroundColor" value="whitesmoke" />
   </Style>
 
 	<Style name="Window.centered">

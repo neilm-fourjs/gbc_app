@@ -1,0 +1,20 @@
+
+.gbc_MenuWidgetScrollContainer {
+	color: $theme-primary-color;
+	fill: $theme-primary-color;
+	background-color: $theme-primary-emphasis-background-color;
+}
+
+.gbc_MenuWidget > * {
+	margin: 0px !important;
+}
+
+.gbc_MenuWidget > .gbc_MenuWidgetScrollContainer .containerElement > * {
+	padding: 12px 15px;
+	border-bottom: 2px solid $mt-button-primary-background-color;
+}
+
+.gbc_MenuWidget > .gbc_MenuWidgetTitle {
+	margin-top: 0px !important;
+}
+
