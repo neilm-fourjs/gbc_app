@@ -1,0 +1,27 @@
+
+LAYOUT (TEXT="Quotes", STYLE="main2")
+VBOX
+GRID
+{
+[search             ][advanced:refresh:sp1:add]
+}
+END -- GRID
+TABLE ( DOUBLECLICK=select )
+{
+ [f001|f002      ]
+}
+END -- TABLE
+END -- VBOX
+
+ATTRIBUTES
+f001 = FORMONLY.quote_number, TITLE="Number";
+f002 = FORMONLY.quote_ref, TITLE="Reference";
+
+BUTTONEDIT search = FORMONLY.search, PLACEHOLDER="Search", ACTION=search, SCROLL;
+BUTTON advanced : advanced, STYLE="rounded";
+BUTTON refresh : refresh, STYLE="rounded";
+IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
+BUTTON add : add, STYLE="rounded green";
+
+INSTRUCTIONS
+SCREEN RECORD list ( FORMONLY.quote_number THRU FORMONLY.quote_ref)

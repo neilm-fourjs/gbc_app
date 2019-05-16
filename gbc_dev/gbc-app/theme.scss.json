@@ -1,5 +1,7 @@
 {
+	"theme-font-family": "\"Lato, Helvetica, Arial, sans-serif\"",
 	"theme-font-size-ratio": "1",
+	"theme-margin-ratio": "1",
 	"palette-primary": "$mt-blue-grey",
 	"palette-secondary": "$mt-grey",
 	"palette-text-secondary": "$mt-black",
@@ -7,6 +9,9 @@
 	"theme-primary-emphasis-background-color": "$palette-primary-500",
 	"theme-primary-faded-background-color": "$palette-primary-100",
 	"theme-secondary-color": "$palette-text-secondary-100",
+
+	"theme-currentrow-background-color": "$theme-header-color",
+	"theme-currentrow-color": "$palette-text-secondary",
 
 	"theme-combobox-padding": "0px",
 	"theme-sidebar-always-visible-min-width" : "102400px"

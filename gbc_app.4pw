@@ -82,7 +82,7 @@
       <File filePath="src/gbc_app.per"/>
       <File filePath="src/login.per"/>
     </Application>
-    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
+    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="gbc_app"/>
       <DynamicProperty name="packageLabel" value="gbc_app"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
@@ -110,13 +110,20 @@
     </Library>
     <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000" id="-1155118210" label="prodmnt">
       <File filePath="src/prodmnt.4gl"/>
+      <File filePath="src/prodmnt.per"/>
     </Application>
     <Application binaryName="prods" dependencies="1986,14000" id="-131770706" label="prods">
       <File filePath="src/prodlist.per"/>
-      <File filePath="src/prodmnt.per"/>
       <File filePath="src/prods.4gl"/>
     </Application>
-    <Application binaryName="quotes" dependencies="1986,14000" id="-2046411878" label="quotes"/>
+    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752" id="1135886830" label="quotemnt">
+      <File filePath="src/quotemnt.4gl"/>
+      <File filePath="src/quotemnt.per"/>
+    </Application>
+    <Application binaryName="quotes" dependencies="1986,14000,-231492752" id="-2046411878" label="quotes">
+      <File filePath="src/quotelist.per"/>
+      <File filePath="../../../../../opt/fourjs/all/my_github/gbc_app/src/quotes.4gl"/>
+    </Application>
     <Library binaryName="resources" id="-231492752" label="resources">
       <File filePath="etc/default.4ad"/>
       <File filePath="etc/default.4st"/>
