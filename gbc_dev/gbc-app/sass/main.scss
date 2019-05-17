@@ -18,6 +18,28 @@ BODY {
 
 .mt-field {
 	border-radius: 4px;
+	box-shadow: none !important;
+	border: 1px solid $theme-primary-emphasis-background-color;
+}
+
+.mt-field.gbc_Focus {
+	border-radius: 4px;
+	box-shadow: none;
+	border: 1px solid $theme-primary-background-color !important;
+	border-bottom: 2px solid $theme-primary-background-color !important;
+	box-shadow: 0px 0px 2px 2px #0bf !important;
+}
+
+.gbc_ButtonEditWidget > .gbc_ButtonWidget, .gbc_DummyButtonEditWidget > .gbc_ButtonWidget {
+	padding: 0;
+	border-radius: 0px 4px 4px 0px;
+	border-width: 1px 1px 1px 0px;
+	border-style: solid;
+}
+.gbc_ButtonEditWidget.gbc_Focus > .gbc_EditWidget, .gbc_DummyButtonEditWidget.gbc_Focus > .gbc_EditWidget {
+	border-radius: 4px 0px 0px 4px;
+	border-width: 1px 0px 1px 1px;
+	border-style: solid;
 }
 
 .mt-toolbar {
