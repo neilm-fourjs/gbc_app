@@ -8,13 +8,12 @@ GRID
 END -- GRID
 TABLE ( DOUBLECLICK=select )
 {
- [f002    |f003      |f004    |f005    |f006      |f007     |f008    |f009      |f010      |f016    |f017        ]
+ [f002    |f003      |f004    |f005       |f006         |f007          |f008    |f009      |f010      |f016    |f017        ]
 }
 END -- TABLE
 END -- VBOX
 
 ATTRIBUTES
-PHANTOM FORMONLY.quote_number;
 f002 = FORMONLY.quote_ref, TITLE="Reference";
 f003 = FORMONLY.revision, TITLE="Revision";
 COMBOBOX f004 = FORMONLY.status, TITLE="Status", INITIALIZER=cb_status, STYLE="statcol";
@@ -24,11 +23,6 @@ f007 = FORMONLY.customer_code, TITLE="Customer";
 f008 = FORMONLY.division, TITLE="Division";
 f009 = FORMONLY.quote_date, TITLE="Quote Date";
 f010 = FORMONLY.expiration_date, TITLE="Expiration Date";
-PHANTOM FORMONLY.projected_date;
-PHANTOM FORMONLY.ordered_date;
-PHANTOM FORMONLY.description;
-PHANTOM FORMONLY.end_user;
-PHANTOM FORMONLY.project;
 f016 = FORMONLY.registered_project, TITLE="Registered Project";
 f017 = FORMONLY.quote_total, FORMAT="£<<<<&.&&", TITLE="Quote Total";
 
@@ -39,4 +33,4 @@ IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
 BUTTON add : add, STYLE="rounded green";
 
 INSTRUCTIONS
-SCREEN RECORD list ( FORMONLY.quote_number THRU FORMONLY.quote_total)
+SCREEN RECORD list ( FORMONLY.quote_ref THRU FORMONLY.quote_total)
