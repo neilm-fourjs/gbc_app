@@ -56,3 +56,10 @@ FUNCTION cb_colours(l_cb ui.ComboBox)
 	END FOREACH
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
+FUNCTION cb_division(l_cb ui.ComboBox)
+	DEFINE l_code LIKE colours.colour_key
+	DEFINE l_name LIKE colours.colour_name
+	CALL l_cb.addItem(0,"Reseller")
+	CALL l_cb.addItem(1,"Key Accounts")
+END FUNCTION
+----------------------------------------------------------------------------------------------------

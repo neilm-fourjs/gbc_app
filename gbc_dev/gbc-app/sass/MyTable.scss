@@ -2,8 +2,8 @@
 .gbc_TableColumnItemWidget {
 	border-bottom: 1px solid $theme-header-color;
 	height: 30px !important;
-	margin: 3px;
-	border-radius: 15px;
+	margin: 8px;
+	border-radius: .5em;
 }
 .gbc_TableColumnItemWidget:not(.disabled) .currentRow {
 	font-weight: 900;

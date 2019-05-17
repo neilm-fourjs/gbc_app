@@ -13,7 +13,7 @@ DEFINE m_scrArr DYNAMIC ARRAY OF RECORD
 		status							CHAR(1),
 		account_manager			STRING,
 		raised_by						STRING,
-		customer_code				STRING,
+		customer						STRING,
 		division						STRING,
 		quote_date					DATE,
 		expiration_date 		DATE,
@@ -110,8 +110,11 @@ FUNCTION getData(l_where STRING)
 		FETCH cstcur INTO l_cust
 		IF STATUS = NOTFOUND THEN LET l_cust = SFMT("Customer '%1' Not Found!", m_arr[ l_row ].customer_code) END IF
 		CLOSE cstcur
-		LET m_scrArr[ l_row ].customer_code = l_cust
+		LET m_scrArr[ l_row ].customer = (m_arr[ l_row ].customer_code CLIPPED)||" "||l_cust
 
+		IF m_arr[ l_row ].division IS NULL THEN 
+			LET m_arr[ l_row ].division = ( m_arr[ l_row ].customer_code[2,5] MOD 2 )
+		END IF
 		LET m_scrArr[ l_row ].division = m_arr[ l_row ].division
 		LET m_scrArr[ l_row ].quote_date = m_arr[ l_row ].quote_date
 		LET m_scrArr[ l_row ].expiration_date = m_arr[ l_row ].expiration_date
