@@ -27,9 +27,9 @@
 		<!--WEB_COMPONENT_DIRECTORY>$(res.path.njm_demo)/pics/webcomponents:$(res.fgldir)/webcomponents</WEB_COMPONENT_DIRECTORY-->
 		<WEB_COMPONENT_DIRECTORY>$(res.path.njm_demo)/pics/webcomponents</WEB_COMPONENT_DIRECTORY>
 	</EXECUTION>
-	<!--UA_OUTPUT>
+	<UA_OUTPUT>
 		<PROXY>$(res.uaproxy.cmd)</PROXY>
 		<PUBLIC_IMAGEPATH>$(res.public.resources)</PUBLIC_IMAGEPATH>
-		<GBC>gbc-app-current</GBC>
-	</UA_OUTPUT-->
+		<GBC>gbc-app</GBC>
+	</UA_OUTPUT>
 </APPLICATION>

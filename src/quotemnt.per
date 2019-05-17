@@ -14,6 +14,10 @@ GRID
  [l006      ][f006                          ]
  [l007      ][f007                          ]
  [l008      ][f008                          ]
+ [l009      ][f009                          ]
+ [l010      ][f010                          ]
+ [l011      ][f011                          ]
+ [l012      ][f012                          ]
  [l014      ][f014                          ]
  [l015      ][f015                          ]
  [l016      ][f016                          ]
@@ -31,18 +35,21 @@ END -- VBOX
 VBOX
 GRID
 {
-<G pg2                                       >
- [l009      ][f009                          ]
- [l010      ][f010                          ]
- [l011      ][f011                          ]
- [l012      ][f012                          ]
-<                                            >
-<G pg3                                       >
- [l013      ][f013                          ]
-             [                              ]
-             [                              ]
-<                                            >
-["                                          "]
+<G pg2                                                >
+ <T tab                                              >
+  [a1|a2            |a3        |a4   |a5    |a6     ]
+  [a1|a2            |a3        |a4   |a5    |a6     ]
+  [a1|a2            |a3        |a4   |a5    |a6     ]
+  [a1|a2            |a3        |a4   |a5    |a6     ]
+  [a1|a2            |a3        |a4   |a5    |a6     ]
+ <                                                   >
+<                                                     >
+<G pg3                                                >
+ [l013      ][f013                                   ]
+             [                                       ]
+             [                                       ]
+<                                                     >
+[sp1]
 }
 END -- GRID
 END -- GROUP
@@ -50,7 +57,7 @@ END -- VBOX
 END -- HBOX
 
 ATTRIBUTES
-
+IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=Y, AUTOSCALE, SIZEPOLICY=FIXED, HEIGHT=1000 PIXELS, STYLE="noborder";
 BUTTON clear : clear, STYLE="rounded";
 BUTTON save : save, STYLE="rounded green";
 BUTTON close : close, STYLE="rounded red";
@@ -93,3 +100,13 @@ f016 = FORMONLY.registered_project;
 LABEL l017 : l_rev, TEXT="Quote Total", JUSTIFY=RIGHT;
 f017 = FORMONLY.quote_total;
 
+TABLE tab : tab, WANTFIXEDPAGESIZE;
+a1 = FORMONLY.item_num, TITLE="Item\nNum";
+a2 = FORMONLY.product, TITLE="\nProduct";
+COMBOBOX a3 = FORMONLY.colour, TITLE="\nColour", JUSTIFY=LEFT, INITIALIZER=cb_colours;
+a4 = FORMONLY.colour_surcharge, TITLE="Colour\nSurcharge";
+a5 = FORMONLY.quantity, TITLE="\nQuantity";
+a6 = FORMONLY.unit_rrp, TITLE="\nUnit RRP";
+
+INSTRUCTIONS
+SCREEN RECORD qdets ( FORMONLY.item_num THRU FORMONLY.unit_rrp)

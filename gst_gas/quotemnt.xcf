@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<APPLICATION Parent="defaultgwc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.4js.com/ns/gas/3.20/cfextwa.xsd">
+	<UA_OUTPUT>
+		<PROXY>$(res.uaproxy.cmd)</PROXY>
+		<PUBLIC_IMAGEPATH>$(res.public.resources)</PUBLIC_IMAGEPATH>
+		<GBC>gbc-app</GBC>
+	</UA_OUTPUT>
+</APPLICATION>

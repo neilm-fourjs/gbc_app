@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Project defaultApplication="-2046411878" gstVersion="31403" version="3.3">
+<Project defaultApplication="18736" gstVersion="31403" version="3.3">
   <Settings>
     <DynamicProperties version="2">
       <DynamicProperty description="Accent color (Android 5.0 and later)" initialValue="#9575CD" isDefaultInherited="false" isHidden="false" label="Accent color" name="gma-accent-color" readOnly="false" type="COLOR"/>
@@ -76,7 +76,7 @@
     <Library binaryName="gas" id="601137216" label="gas">
       <File filePath="gas/gbc_app.xcf"/>
     </Library>
-    <Application binaryName="gbc_app" dependencies="14000,1986" id="18736" label="gbc_app">
+    <Application binaryName="gbc_app" dependencies="14000,1986,779586860" id="18736" label="gbc_app">
       <File filePath="src/gbc_app.4gl"/>
       <File filePath="etc/gbc_app.4sm"/>
       <File filePath="src/gbc_app.per"/>
@@ -101,6 +101,9 @@
       <Directory includedFiles="*.4st,*.4ad,*.4sm" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
+    <Library binaryName="gst_gas" id="779586860" label="gst_gas">
+      <File filePath="gst_gas/quotemnt.xcf"/>
+    </Library>
     <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
       <File filePath="src/lib/combos.4gl"/>
       <File filePath="src/lib/g2_db.4gl"/>
@@ -117,7 +120,7 @@
       <File filePath="src/prodlist.per"/>
       <File filePath="src/prods.4gl"/>
     </Application>
-    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752" id="1135886830" label="quotemnt">
+    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752,779586860" id="1135886830" label="quotemnt">
       <File filePath="src/quotemnt.4gl"/>
       <File filePath="src/quotemnt.per"/>
     </Application>
