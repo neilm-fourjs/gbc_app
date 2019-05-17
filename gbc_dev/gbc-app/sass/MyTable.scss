@@ -1,0 +1,18 @@
+
+.gbc_TableColumnItemWidget {
+	border-bottom: 1px solid $theme-header-color;
+	height: 30px !important;
+	margin: 3px;
+	border-radius: 15px;
+}
+.gbc_TableColumnItemWidget:not(.disabled) .currentRow {
+	font-weight: 900;
+}
+
+.gbc_TableWidget .gbc_TableScrollArea, .gbc_TableWidget .gbc_TableRightScrollArea, .gbc_TableWidget .gbc_TableLeftScrollArea {
+	overflow-x: auto;
+}
+
+.gbc_TableWidget:not(.multiRowSelection):not(.gbc_Focus):not(.disabled) .highlight .gbc_TableColumnItemWidget .currentRow {
+	background-color: inherit;
+}

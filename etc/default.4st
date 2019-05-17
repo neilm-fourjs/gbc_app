@@ -46,9 +46,13 @@
      <StyleAttribute name="headerAlignment" value="auto" />
 		<StyleAttribute name="highlightCurrentRow" value="no" />
   </Style>
-  <Style name="Table:even">
+  <!--Style name="Table:even">
      <StyleAttribute name="backgroundColor" value="whitesmoke" />
-  </Style>
+  </Style-->
+
+  <Style name=".currrow">
+     <StyleAttribute name="fontSize" value="20pt" />
+	</Style>
 
 	<Style name="Window.centered">
 		<StyleAttribute name="windowType" value="normal" />

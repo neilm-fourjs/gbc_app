@@ -1,0 +1,70 @@
+
+/* This are styles that can used by the Genero Application */
+
+.gbc_style_statcol {
+	color: $theme-primary-color !important;
+}
+
+.gbc_style_currrow .currentRow {
+	background-color: #5cb85c !important;
+}
+
+.gbc_style_link {
+	background-color: inherit !important;
+	color: $mt-button-primary-background-color !important;
+}
+
+.gbc_style_loginbut {
+	border-radius: 27px;
+	border-style: none;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 16px;
+	padding: 0 30px;
+	line-height: 55px;
+	background-color: #f7931e !important;
+}
+.gbc_style_loginbut:not(.disabled):hover {
+	background-color: #e7830e;
+}
+
+.gbc_style_green {
+	background-color: #5cb85c !important;
+	color: $theme-primary-color !important;
+}
+
+.gbc_style_red {
+	background-color: red !important;
+	color: $theme-primary-color !important;
+}
+
+.gbc_style_rounded {
+	border: 1px solid $mt-button-primary-background-color;
+	border-radius: 4px;
+  font-weight: 700;
+	padding: 3px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	color: $mt-button-primary-background-color;
+	fill: $mt-button-primary-background-color !important;
+	background-color: inherit;
+}
+
+
+// allow a window to center in the browser
+.gbc_style_center {
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	background-position: center !important;
+}
+
+// add a border to the form
+.gbc_style_formborder {
+	margin: 10px;
+	box-shadow: 4px 4px 6px $theme-primary-emphasis-background-color;
+	border-radius: 2.4px;
+}
+

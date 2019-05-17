@@ -7,6 +7,7 @@ SCHEMA njm_demo310
 
 DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE quotes.*
 DEFINE m_scrArr DYNAMIC ARRAY OF RECORD
+		currrow							STRING,
 		quote_ref						STRING,
 		revision						SMALLINT,
 		status							CHAR(1),
@@ -63,6 +64,10 @@ MAIN
 				NEXT FIELD quote_number
 		END INPUT
 		DISPLAY ARRAY m_scrArr TO list.*
+			BEFORE ROW
+				LET m_scrArr[ arr_curr() ].currrow = "fa-chevron-circle-right"
+			AFTER ROW
+				LET m_scrArr[ arr_curr() ].currrow = ""
 			ON ACTION SELECT
 				DISPLAY "Run:"||l_mdi||" "||m_arr[ arr_curr() ].quote_number
 				RUN "fglrun quotemnt.42r "||l_mdi||" "||m_arr[ arr_curr() ].quote_number WITHOUT WAITING
@@ -114,8 +119,10 @@ FUNCTION getData(l_where STRING)
 		LET m_scrArr[ l_row ].quote_total = m_arr[ l_row ].quote_total
 
 		CASE m_arr[ l_row ].status
-			WHEN "R" LET m_arrCol[ l_row ].col03 = "reverse gray"
-			WHEN "W" LET m_arrCol[ l_row ].col03 = "reverse green"
+			WHEN "R" LET m_arrCol[ l_row ].col04 = "white reverse gray"
+			WHEN "W" LET m_arrCol[ l_row ].col04 = "white reverse green"
+			OTHERWISE
+				LET m_arrCol[ l_row ].col04 = "white reverse #337ab7"
 		END CASE
 	END FOREACH
 	CALL m_arr.deleteElement( l_row )

@@ -8,12 +8,13 @@ GRID
 END -- GRID
 TABLE ( DOUBLECLICK=select )
 {
- [f002    |f003      |f004    |f005       |f006         |f007          |f008    |f009      |f010      |f016    |f017        ]
+ [c|f002    |f003      |f004    |f005       |f006         |f007          |f008    |f009      |f010      |f016    |f017        ]
 }
 END -- TABLE
 END -- VBOX
 
 ATTRIBUTES
+IMAGE c = FORMONLY.currrow, AUTOSCALE, WIDTH=64 PIXELS, STYLE="currrow";
 f002 = FORMONLY.quote_ref, TITLE="Reference";
 f003 = FORMONLY.revision, TITLE="Revision";
 COMBOBOX f004 = FORMONLY.status, TITLE="Status", INITIALIZER=cb_status, STYLE="statcol";
@@ -33,4 +34,4 @@ IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
 BUTTON add : add, STYLE="rounded green";
 
 INSTRUCTIONS
-SCREEN RECORD list ( FORMONLY.quote_ref THRU FORMONLY.quote_total)
+SCREEN RECORD list ( FORMONLY.currrow THRU FORMONLY.quote_total)

@@ -41,79 +41,10 @@ BODY {
 	outline-offset: -2px;
 }
 
-// allow a window to center in the browser
-.gbc_style_center {
-	width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	background-position: center !important;
-}
-
-// add a border to the form
-.gbc_style_formborder {
-	margin: 10px;
-	box-shadow: 4px 4px 6px $theme-primary-emphasis-background-color;
-	border-radius: 2.4px;
-}
-
-// get the toolbar to center in the browser tab with a min width
-.gbc_WindowWidget .gbc_WindowToolbarContainer {
-	margin-left: auto;
-	margin-right: auto;
-	min-width: 1024px;
-}
-
-// set a min width for forms to line up with the toolbar
-.gbc_WindowWidget_position_center .gbc_FormWidget.notOverflownX > .containerElement > *, .gbc_WindowWidget_position_center2 .gbc_FormWidget.notOverflownX > .containerElement > * {
-	min-width: 1024px;
-}
-
-.gbc_style_link {
-	background-color: inherit !important;
-	color: $mt-button-primary-background-color !important;
-}
-
-.gbc_style_loginbut {
-	border-radius: 27px;
-	border-style: none;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 16px;
-	padding: 0 30px;
-	line-height: 55px;
-	background-color: #f7931e !important;
-}
-.gbc_style_loginbut:not(.disabled):hover {
-	background-color: #e7830e;
-}
-
-.gbc_style_green {
-	background-color: #5cb85c !important;
-	color: white !important;
-}
-
-.gbc_style_red {
-	background-color: red !important;
-	color: white !important;
-}
-
 [__ButtonWidget].mt-button .textimage > .gbc_imageContainer > .gbc_ImageWidget {
 	fill: inherit;
 }
 
-.gbc_style_rounded {
-	border: 1px solid $mt-button-primary-background-color;
-	border-radius: 4px;
-  font-weight: 700;
-	padding: 3px;
-	margin-bottom: 0;
-	font-size: 14px;
-	font-weight: 400;
-	color: $mt-button-primary-background-color;
-	fill: $mt-button-primary-background-color !important;
-	background-color: inherit;
-}
 
 .mt-button:not(.disabled):hover, .mt-button[interruptable][interruptable-active]:hover {
 	background-color: inherit;
@@ -133,32 +64,8 @@ BODY {
 	font-size: 1.5em;
 }
 
-.gbc_TableColumnItemWidget {
-	border-bottom: 1px solid $theme-header-color;
-	height: 30px !important;
-}
-
-.gbc_TableWidget .gbc_TableScrollArea, .gbc_TableWidget .gbc_TableRightScrollArea, .gbc_TableWidget .gbc_TableLeftScrollArea {
-	overflow-x: auto;
-}
-
-.gbc_WindowWidget .gbc_WindowMenuContainerRight, .gbc_WindowWidget .gbc_WindowMenuContainerLeft {
-	margin-top: 0px;
-}
-
-.gbc_style_statcol {
-	border-radius: 10px;
-}
-
-.gbc_WindowMainContainer > .gbc_WindowMenuContainerMiddle > .gbc_WindowContent {
-	padding: 0px;
-}
-
 .gbc_FolderWidget {
 	padding: 0px;
-}
-.gbc_WindowWidget .gbc_WindowMenuContainerMiddle {
-	box-shadow: none;
 }
 .mt-tab-items[__FolderWidget] {
 	padding: 0px;
@@ -170,3 +77,4 @@ BODY {
 .mt-tab-titles {
 	border-bottom: 1px solid $theme-primary-emphasis-background-color;
 }
+

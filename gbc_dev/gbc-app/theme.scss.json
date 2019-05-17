@@ -8,11 +8,14 @@
 	"theme-primary-background-color": "$palette-primary-700",
 	"theme-primary-emphasis-background-color": "$palette-primary-500",
 	"theme-primary-faded-background-color": "$palette-primary-100",
+	"theme-primary-color": "$mt-white",
 	"theme-secondary-color": "$palette-text-secondary-100",
 
+	"gbc-TableWidget-unfocused-currentRow-background-color": "$theme-header-color",
 	"theme-currentrow-background-color": "$theme-header-color",
 	"theme-currentrow-color": "$palette-text-secondary",
 
 	"theme-combobox-padding": "0px",
 	"theme-sidebar-always-visible-min-width" : "102400px"
+
 }
