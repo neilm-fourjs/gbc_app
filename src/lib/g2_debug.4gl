@@ -1,4 +1,3 @@
-
 IMPORT os
 &define G2_DEBUG
 &include "g2_debug.inc"

@@ -22,18 +22,18 @@ CONSTANT DEF_DBSPACE = "dbs1"
 CONSTANT DEF_DBDIR = "../db"
 
 PUBLIC TYPE dbInfo RECORD
-	name STRING,
-	type STRING,
-	desc STRING,
-	source STRING,
-	driver STRING,
-	dir STRING,
-	dbspace STRING,
-	connection STRING,
-	create_db BOOLEAN
+  name STRING,
+  type STRING,
+  desc STRING,
+  source STRING,
+  driver STRING,
+  dir STRING,
+  dbspace STRING,
+  connection STRING,
+  create_db BOOLEAN
 END RECORD
 
-PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS ()
+PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS()
   DEFINE l_msg STRING
   DEFINE l_lockMode, l_fglprofile BOOLEAN
 
@@ -55,7 +55,7 @@ PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS ()
   IF this.dbspace IS NULL THEN
     LET this.dbspace = fgl_getenv("DBSPACE")
   END IF
-  IF  this.dbspace IS NULL OR this.dbspace = " " THEN
+  IF this.dbspace IS NULL OR this.dbspace = " " THEN
     LET this.dbspace = DEF_DBSPACE
   END IF
 
@@ -80,7 +80,7 @@ PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS ()
     LET this.driver = l_msg
     GL_DBGMSG(0, SFMT("Database Driver: %1 from fglprofile:%2", this.driver, fgl_getEnv("FGLPROFILE")))
   ELSE
-    GL_DBGMSG(0, "Database Driver:"||this.driver)
+    GL_DBGMSG(0, "Database Driver:" || this.driver)
   END IF
 
   LET this.type = this.driver.subString(4, 6)
@@ -96,9 +96,9 @@ PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS ()
         LET this.desc = "Informix " || this.driver.subString(7, 9)
         LET this.source = fgl_getEnv("INFORMIXSERVER")
         LET this.connection = this.name
-				DISPLAY "INFORMIXDIR:",fgl_getEnv("INFORMIXDIR")
-				DISPLAY "INFORMIXSERVER:",fgl_getEnv("INFORMIXSERVER")
-				DISPLAY "INFORMIXSQLHOSTS:",fgl_getEnv("INFORMIXSQLHOSTS")
+        DISPLAY "INFORMIXDIR:", fgl_getEnv("INFORMIXDIR")
+        DISPLAY "INFORMIXSERVER:", fgl_getEnv("INFORMIXSERVER")
+        DISPLAY "INFORMIXSQLHOSTS:", fgl_getEnv("INFORMIXSQLHOSTS")
       WHEN "mdb"
         LET l_lockMode = FALSE
       WHEN "sqt"
@@ -127,9 +127,18 @@ PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS ()
   END IF
 
   TRY
-    DISPLAY CURRENT, ":Connecting to " || this.connection || " Using:", this.driver, " Source:", this.source, " ..."
+    DISPLAY CURRENT,
+        ":Connecting to " || this.connection || " Using:",
+        this.driver,
+        " Source:",
+        this.source,
+        " ..."
     DATABASE this.connection
-    DISPLAY CURRENT, ":Connected to " || this.connection || " Using:", this.driver, " Source:", this.source
+    DISPLAY CURRENT,
+        ":Connected to " || this.connection || " Using:",
+        this.driver,
+        " Source:",
+        this.source
   CATCH
     LET l_msg =
         "Connection to database failed\nDB:",
@@ -161,7 +170,7 @@ PUBLIC FUNCTION (this dbInfo) g2_connect(l_dbName STRING) RETURNS ()
     END IF
     IF l_msg IS NOT NULL THEN
       CALL g2_lib.g2_errPopup(SFMT(% "Fatal Error %1", l_msg))
-			CALL g2_lib.g2_exitProgram(1, l_msg)
+      CALL g2_lib.g2_exitProgram(1, l_msg)
     END IF
   END TRY
 
@@ -186,7 +195,7 @@ FUNCTION (this dbInfo) g2_getType() RETURNS STRING
 END FUNCTION
 --------------------------------------------------------------------------------
 -- create file and folder for the empty sqlite db and then call the db_connect again
-FUNCTION (this dbInfo) g2_sqt_createdb(l_dir STRING, l_file STRING) RETURNS ()
+FUNCTION (this dbInfo) g2_sqt_createdb(l_dir STRING, l_file STRING) RETURNS()
   DEFINE c base.Channel
   LET c = base.Channel.create()
   IF NOT os.path.exists(l_dir) THEN
@@ -201,7 +210,7 @@ FUNCTION (this dbInfo) g2_sqt_createdb(l_dir STRING, l_file STRING) RETURNS ()
 END FUNCTION
 --------------------------------------------------------------------------------
 -- create file and folder for the empty sqlite db and then call the db_connect again
-FUNCTION (this dbInfo) g2_mdb_createdb() RETURNS ()
+FUNCTION (this dbInfo) g2_mdb_createdb() RETURNS()
   DEFINE l_sql_stmt STRING
   LET l_sql_stmt =
       "CREATE DATABASE " || this.name || " default character set utf8mb4 collate utf8mb4_unicode_ci"
@@ -216,7 +225,7 @@ FUNCTION (this dbInfo) g2_mdb_createdb() RETURNS ()
 END FUNCTION
 --------------------------------------------------------------------------------
 -- create a new informix database and then call the db_connect again
-FUNCTION (this dbInfo) g2_ifx_createdb() RETURNS ()
+FUNCTION (this dbInfo) g2_ifx_createdb() RETURNS()
   DEFINE l_sql_stmt STRING
   LET l_sql_stmt = "CREATE DATABASE " || this.name || " IN " || this.dbspace
   TRY
@@ -235,7 +244,7 @@ END FUNCTION
 #+
 #+ @param stat Status
 #+ @param dbname Database Name
-FUNCTION (this dbInfo) g2_showInfo(stat INTEGER) RETURNS ()
+FUNCTION (this dbInfo) g2_showInfo(stat INTEGER) RETURNS()
 
   OPEN WINDOW info WITH FORM "g2_dbinfo"
 
@@ -298,55 +307,69 @@ END FUNCTION
 #+ @param l_search Search string
 #+ @return a String containing a where clause
 FUNCTION g2_chkSearch(l_tab STRING, l_defcol STRING, l_search STRING) RETURNS STRING
-	DEFINE l_where, l_stmt, l_cond STRING
-	DEFINE l_cnt INTEGER
-	IF l_search IS NULL OR l_tab IS NULL THEN RETURN "1=1" END IF
-	LET l_search = l_search.trim()
-	IF l_search.getIndexOf(";",1) > 0 THEN LET l_search = l_search.subString(1,l_cnt) END IF
-	LET l_cond = "MATCHES"
-	LET l_where = SFMT("lower(%1) %2 '*%3*'",l_defcol, l_cond,l_search.toLowerCase())
-	DISPLAY "Search:",l_search
-	DISPLAY "       12345678901234567890"
-	CALL g2_findCondition( l_search ) RETURNING l_cnt, l_cond
-	IF l_cnt = 1 THEN
-		LET l_search = l_search.subString(l_cond.getLength()+1, l_search.getLength())
-		LET l_where = SFMT("lower(%1) %2 '%3'",l_defcol.trim(), l_cond,l_search.toLowerCase())
-	END IF
-	IF l_cnt > 1 THEN
-		LET l_defcol = l_search.subString(1,l_cnt-1)
-		LET l_search = l_search.subString(l_cnt+l_cond.getLength(), l_search.getLength())
-		LET l_where = SFMT("%1 %2 '%3'",l_defcol.trim(), l_cond, l_search.trim())
-	END IF
-	DISPLAY "X:",l_cnt," Col:",l_defcol, " Condition:",l_cond," Search:",l_search
-	LET l_stmt = "SELECT COUNT(*) FROM "||l_tab||" WHERE "||l_where
-	DISPLAY l_stmt
-	TRY
-		PREPARE pre_chk FROM l_stmt
-		EXECUTE pre_chk INTO l_cnt
-	CATCH
-		CALL g2_lib.g2_winMessage("SQL Error",SFMT("%1 %2",STATUS, SQLERRMESSAGE),"exclamation")
-		LET l_where = NULL
-	END TRY
-	IF l_cnt = 0 THEN
-		ERROR SFMT("No rows found for search '%1'",l_search)
-		LET l_where = NULL
-	END IF
-	RETURN l_where
+  DEFINE l_where, l_stmt, l_cond STRING
+  DEFINE l_cnt INTEGER
+  IF l_search IS NULL OR l_tab IS NULL THEN
+    RETURN "1=1"
+  END IF
+  LET l_search = l_search.trim()
+  IF l_search.getIndexOf(";", 1) > 0 THEN
+    LET l_search = l_search.subString(1, l_cnt)
+  END IF
+  LET l_cond = "MATCHES"
+  LET l_where = SFMT("lower(%1) %2 '*%3*'", l_defcol, l_cond, l_search.toLowerCase())
+  DISPLAY "Search:", l_search
+  DISPLAY "       12345678901234567890"
+  CALL g2_findCondition(l_search) RETURNING l_cnt, l_cond
+  IF l_cnt = 1 THEN
+    LET l_search = l_search.subString(l_cond.getLength() + 1, l_search.getLength())
+    LET l_where = SFMT("lower(%1) %2 '%3'", l_defcol.trim(), l_cond, l_search.toLowerCase())
+  END IF
+  IF l_cnt > 1 THEN
+    LET l_defcol = l_search.subString(1, l_cnt - 1)
+    LET l_search = l_search.subString(l_cnt + l_cond.getLength(), l_search.getLength())
+    LET l_where = SFMT("%1 %2 '%3'", l_defcol.trim(), l_cond, l_search.trim())
+  END IF
+  DISPLAY "X:", l_cnt, " Col:", l_defcol, " Condition:", l_cond, " Search:", l_search
+  LET l_stmt = "SELECT COUNT(*) FROM " || l_tab || " WHERE " || l_where
+  DISPLAY l_stmt
+  TRY
+    PREPARE pre_chk FROM l_stmt
+    EXECUTE pre_chk INTO l_cnt
+  CATCH
+    CALL g2_lib.g2_winMessage("SQL Error", SFMT("%1 %2", STATUS, SQLERRMESSAGE), "exclamation")
+    LET l_where = NULL
+  END TRY
+  IF l_cnt = 0 THEN
+    ERROR SFMT("No rows found for search '%1'", l_search)
+    LET l_where = NULL
+  END IF
+  RETURN l_where
 END FUNCTION
 --------------------------------------------------------------------------------
-FUNCTION g2_findCondition(l_search STRING) RETURNS (INT,STRING)
-	DEFINE x INTEGER
-	LET x = l_search.getIndexOf(">",1)
-	IF x > 0 THEN RETURN x,">" END IF
-	LET x = l_search.getIndexOf("<",1)
-	IF x > 0 THEN RETURN x,"<" END IF
-	LET x = l_search.getIndexOf("!=",1)
-	IF x > 0 THEN RETURN x,"!=" END IF
-	LET x = l_search.getIndexOf("<>",1)
-	IF x > 0 THEN RETURN x,"<>" END IF
-	LET x = l_search.getIndexOf("=",1)
-	IF x > 0 THEN RETURN x,"=" END IF
-	RETURN 0, NULL
+FUNCTION g2_findCondition(l_search STRING) RETURNS(INT, STRING)
+  DEFINE x INTEGER
+  LET x = l_search.getIndexOf(">", 1)
+  IF x > 0 THEN
+    RETURN x, ">"
+  END IF
+  LET x = l_search.getIndexOf("<", 1)
+  IF x > 0 THEN
+    RETURN x, "<"
+  END IF
+  LET x = l_search.getIndexOf("!=", 1)
+  IF x > 0 THEN
+    RETURN x, "!="
+  END IF
+  LET x = l_search.getIndexOf("<>", 1)
+  IF x > 0 THEN
+    RETURN x, "<>"
+  END IF
+  LET x = l_search.getIndexOf("=", 1)
+  IF x > 0 THEN
+    RETURN x, "="
+  END IF
+  RETURN 0, NULL
 END FUNCTION
 --------------------------------------------------------------------------------
 #+ Process the status after an SQL Statement.

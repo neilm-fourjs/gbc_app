@@ -12,7 +12,6 @@
 IMPORT os
 IMPORT util
 IMPORT FGL g2_logging
-
 &include "g2_debug.inc"
 
 PUBLIC DEFINE g2_log g2_logging.logger
@@ -22,18 +21,22 @@ PUBLIC DEFINE m_isUniversal BOOLEAN
 PUBLIC DEFINE m_isGDC BOOLEAN
 
 FUNCTION g2_init(l_mdi CHAR(1), l_styles STRING)
-	CALL g2_log.init(NULL, NULL, "log", "TRUE")
-	CALL g2_err.init(NULL, NULL, "err", "TRUE")
-	DISPLAY "StartLog ", g2_err.fullLogPath
+  CALL g2_log.init(NULL, NULL, "log", "TRUE")
+  CALL g2_err.init(NULL, NULL, "err", "TRUE")
+  DISPLAY "StartLog ", g2_err.fullLogPath
   CALL STARTLOG(g2_err.fullLogPath)
   WHENEVER ANY ERROR CALL g2_error
 
-	LET gl_dbgLev = 2
+  LET gl_dbgLev = 2
 
-	LET m_isGDC = FALSE
-	LET m_isUniversal = FALSE
-	IF ui.Interface.getFrontEndName() = "GDC" THEN LET m_isGDC = TRUE END IF
-	IF ui.Interface.getUniversalClientName() = "GBC" THEN LET m_isUniversal = TRUE END IF
+  LET m_isGDC = FALSE
+  LET m_isUniversal = FALSE
+  IF ui.Interface.getFrontEndName() = "GDC" THEN
+    LET m_isGDC = TRUE
+  END IF
+  IF ui.Interface.getUniversalClientName() = "GBC" THEN
+    LET m_isUniversal = TRUE
+  END IF
 
   CALL g2_loadStyles(l_styles)
   CALL g2_mdisdi(l_mdi)
@@ -45,11 +48,11 @@ END FUNCTION
 #+ S = Not MDI
 #+ @param l_mdi_sdi S/C/M = default is 'S'
 FUNCTION g2_mdisdi(l_mdi_sdi CHAR(1))
-	DEFINE l_container, l_desc STRING
+  DEFINE l_container, l_desc STRING
   IF l_mdi_sdi IS NULL OR l_mdi_sdi = " " THEN
     LET l_mdi_sdi = "S"
   END IF
-	LET m_mdi = l_mdi_sdi
+  LET m_mdi = l_mdi_sdi
 
   LET l_container = fgl_getEnv("FJS_MDICONT")
   IF l_container IS NULL OR l_container = " " THEN
@@ -69,8 +72,8 @@ FUNCTION g2_mdisdi(l_mdi_sdi CHAR(1))
       CALL ui.Interface.setText(l_desc)
       CALL ui.Interface.setType("container")
       CALL ui.Interface.setName(l_container)
-		OTHERWISE
-			GL_DBGMSG(2, "gl_init: Not MDI")
+    OTHERWISE
+      GL_DBGMSG(2, "gl_init: Not MDI")
   END CASE
 END FUNCTION
 --------------------------------------------------------------------------------
@@ -78,15 +81,21 @@ END FUNCTION
 FUNCTION g2_loadStyles(l_sty STRING) RETURNS()
   DEFINE l_fe STRING
 
-	IF l_sty IS NULL THEN LET l_sty = "default" END IF
-  IF m_isGDC THEN LET l_fe = "GDC" END IF
-  IF m_isUniversal THEN LET l_fe = "GBC" END IF
+  IF l_sty IS NULL THEN
+    LET l_sty = "default"
+  END IF
+  IF m_isGDC THEN
+    LET l_fe = "GDC"
+  END IF
+  IF m_isUniversal THEN
+    LET l_fe = "GBC"
+  END IF
 
-	TRY
- 		CALL ui.interface.loadStyles(l_sty || "_" || l_fe)
-	CATCH
- 		CALL ui.interface.loadStyles(l_sty)
-	END TRY
+  TRY
+    CALL ui.interface.loadStyles(l_sty || "_" || l_fe)
+  CATCH
+    CALL ui.interface.loadStyles(l_sty)
+  END TRY
 END FUNCTION
 --------------------------------------------------------------------------------
 #+ Generic Windows message Dialog.  NOTE: This handles messages when there is
@@ -105,11 +114,11 @@ FUNCTION g2_winMessage(l_title STRING, l_message STRING, l_icon STRING) RETURNS(
     LET l_message = "Message was NULL!!\n" || base.Application.getStackTrace()
   END IF
 
-  GL_DBGMSG(2, "gl_winMessage: "||l_message)
-	IF fgl_getEnv("FGLGUI") = "0" THEN
-		DISPLAY l_message
-		RETURN
-	END IF
+  GL_DBGMSG(2, "gl_winMessage: " || l_message)
+  IF fgl_getEnv("FGLGUI") = "0" THEN
+    DISPLAY l_message
+    RETURN
+  END IF
 
   LET l_win = ui.window.getcurrent()
   IF l_win IS NULL THEN -- Needs a current window or dialog doesn't work!!
@@ -276,9 +285,11 @@ FUNCTION g2_chkClientVer(l_ver STRING, l_feature STRING) RETURNS BOOLEAN
   DEFINE l_ck_minor SMALLINT
 
   -- if client doesn't match just return true
-  IF NOT m_isGDC THEN RETURN TRUE END IF
+  IF NOT m_isGDC THEN
+    RETURN TRUE
+  END IF
 
-  CALL g2_getVer( ui.Interface.getFrontEndVersion() ) RETURNING l_fe_major, l_fe_minor
+  CALL g2_getVer(ui.Interface.getFrontEndVersion()) RETURNING l_fe_major, l_fe_minor
   CALL g2_getVer(l_ver) RETURNING l_ck_major, l_ck_minor
 
   IF l_fe_major < l_ck_major OR (l_fe_major = l_ck_major AND l_fe_minor < l_ck_minor) THEN

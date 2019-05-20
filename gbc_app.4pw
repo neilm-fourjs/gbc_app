@@ -126,7 +126,7 @@
     </Application>
     <Application binaryName="quotes" commandLineArguments="S" dependencies="1986,14000,-231492752,779586860" id="-2046411878" label="quotes">
       <File filePath="src/quotelist.per"/>
-      <File filePath="../../../../../opt/fourjs/all/my_github/gbc_app/src/quotes.4gl"/>
+      <File filePath="src/quotes.4gl"/>
     </Application>
     <Library binaryName="resources" id="-231492752" label="resources">
       <File filePath="etc/default.4ad"/>
