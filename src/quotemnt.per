@@ -35,21 +35,21 @@ END -- VBOX
 VBOX
 GRID
 {
-<G pg2                                                >
- <T tab                                              >
-  [a1|a2            |a3        |a4   |a5    |a6     ]
-  [a1|a2            |a3        |a4   |a5    |a6     ]
-  [a1|a2            |a3        |a4   |a5    |a6     ]
-  [a1|a2            |a3        |a4   |a5    |a6     ]
-  [a1|a2            |a3        |a4   |a5    |a6     ]
- <                                                   >
-<                                                     >
-<G pg3                                                >
- [l013      ][f013                                   ]
-             [                                       ]
-             [                                       ]
-<                                                     >
-[sp1]
+<G pg2                                                     >
+ <T tab                                                   >
+  [a1|a2              |a3         |a4    |a5     |a6     ]
+  [a1|a2              |a3         |a4    |a5     |a6     ]
+  [a1|a2              |a3         |a4    |a5     |a6     ]
+  [a1|a2              |a3         |a4    |a5     |a6     ]
+  [a1|a2              |a3         |a4    |a5     |a6     ]
+ <                                                        >
+<                                                          >
+<G pg3                                                     >
+ [f013                                                    ]
+ [                                                        ]
+ [                                                        ]
+<                                                          >
+ [sp2                                                     ]
 }
 END -- GRID
 END -- GROUP
@@ -57,13 +57,14 @@ END -- VBOX
 END -- HBOX
 
 ATTRIBUTES
-IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=Y, AUTOSCALE, SIZEPOLICY=FIXED, HEIGHT=1000 PIXELS, STYLE="noborder";
+--IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, AUTOSCALE, STYLE="noborder";
+IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=Y, AUTOSCALE, SIZEPOLICY=FIXED, HEIGHT=1000 PIXELS, STYLE="noborder";
 BUTTON clear : clear, STYLE="rounded";
 BUTTON save : save, STYLE="rounded green";
 BUTTON close : close, STYLE="rounded red";
 
-GROUP pg2 : pg2, STYLE="collapsed", TEXT="Details", GRIDCHILDRENINPARENT;
-GROUP pg3 : pg3, STYLE="collapsed", TEXT="Description", GRIDCHILDRENINPARENT;
+GROUP pg2 : pg2, STYLE="collapsed", TEXT="Details";
+GROUP pg3 : pg3, STYLE="collapsed", TEXT="Description";
 
 LABEL l001 : lcode, TEXT="Quote Number", JUSTIFY=RIGHT;
 f001 = FORMONLY.quote_number;
@@ -89,8 +90,7 @@ LABEL l011 : l_rev, TEXT="Projected Date", JUSTIFY=RIGHT;
 DATEEDIT f011 = FORMONLY.projected_date;
 LABEL l012 : l_rev, TEXT="Ordered Date", JUSTIFY=RIGHT;
 DATEEDIT f012 = FORMONLY.ordered_date;
-LABEL l013 : l_rev, TEXT="Description", JUSTIFY=RIGHT;
-TEXTEDIT f013 = FORMONLY.description;
+TEXTEDIT f013 = FORMONLY.description, STRETCH=X;
 LABEL l014 : l_rev, TEXT="End User", JUSTIFY=RIGHT;
 f014 = FORMONLY.end_user;
 LABEL l015 : l_rev, TEXT="Project", JUSTIFY=RIGHT;

@@ -1,6 +1,11 @@
 
+&ifdef GEN310
+IMPORT FGL gl_lib
+&else
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+&endif
+
 IMPORT FGL combos
 
 SCHEMA njm_demo310
@@ -34,16 +39,25 @@ DEFINE m_arrCol DYNAMIC ARRAY OF RECORD
 		col11 STRING
 	END RECORD
 MAIN
-  DEFINE l_db g2_db.dbInfo
 	DEFINE l_rec RECORD LIKE quotes.*
 	DEFINE l_search STRING
 	DEFINE l_where STRING
 	DEFINE l_mdi CHAR(1)
+&ifdef GEN310
+&else
+	DEFINE l_db g2_db.dbInfo
+  CALL l_db.g2_connect(NULL)
+&endif
 
 	LET l_mdi = ARG_VAL(1)
 	IF l_mdi IS NULL THEN LET l_mdi = "S" END IF
+&ifdef GEN310
+	CALL gl_lib.gl_init(l_mdi, NULL )
+	CONNECT TO "njm_demo310"
+&else
 	CALL g2_lib.g2_init(l_mdi, NULL )
   CALL l_db.g2_connect(NULL)
+&endif
 
 	CALL combos.dummy()
 
@@ -56,7 +70,11 @@ MAIN
 		INPUT l_search FROM search
 			ON ACTION search
 				IF l_search IS NOT NULL THEN
+&ifdef GEN310
+					LET l_where = gl_lib.gl_chkSearch("quotes","quote_ref",l_search)
+&else
 					LET l_where = g2_db.g2_chkSearch("quotes","quote_ref",l_search)
+&endif
 					IF l_where IS NOT NULL THEN
 						CALL getData(l_where)
 					END IF
@@ -83,7 +101,10 @@ MAIN
 			LET l_rec.quote_number = 0
 			RUN "fglrun quotemnt.42r "||l_mdi||" "||l_rec.quote_number WITHOUT WAITING
 	END DIALOG
+&ifdef GEN310
+&else
 	CALL g2_lib.g2_exitProgram(0,"Finished")
+&endif
 END MAIN
 ----------------------------------------------------------------------------------------------------
 FUNCTION getData(l_where STRING)

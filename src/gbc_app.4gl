@@ -1,9 +1,18 @@
 
+&ifdef GEN310
+IMPORT FGL gl_lib
+&else
 IMPORT FGL g2_lib
+IMPORT FGL g2_db
+&endif
 
 MAIN
 
+&ifdef GEN310
+	CALL gl_lib.gl_init("M", NULL)
+&else
 	CALL g2_lib.g2_init("M", NULL)
+&endif
 
 	OPEN FORM gbc_app FROM "gbc_app"
 	DISPLAY FORM gbc_app

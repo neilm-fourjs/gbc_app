@@ -1,16 +1,28 @@
 
+&ifdef GEN310
+IMPORT FGL gl_lib
+&else
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+&endif
 IMPORT FGL combos
 
 SCHEMA njm_demo310
 
 MAIN
+&ifdef GEN310
+&else
   DEFINE l_db g2_db.dbInfo
+&endif
 	DEFINE l_rec RECORD LIKE quotes.*
 
+&ifdef GEN310
+	CALL gl_lib.gl_init(ARG_VAL(1), NULL )
+	CONNECT TO "njm_demo310"
+&else
 	CALL g2_lib.g2_init(ARG_VAL(1), NULL )
   CALL l_db.g2_connect(NULL)
+&endif
 	CALL combos.dummy()
 
 	OPEN FORM quotemnt FROM "quotemnt"
@@ -20,12 +32,19 @@ MAIN
 	IF l_rec.quote_number != 0 THEN
 		SELECT * INTO l_rec.* FROM quotes WHERE quote_number = l_rec.quote_number
 		IF STATUS = NOTFOUND THEN
+&ifdef GEN310
+			CALL fgl_winMessage("Error",SFMT("quotes item '%1' not found!",l_rec.quote_number),"exclamation")
+&else
 			CALL g2_lib.g2_winMessage("Error",SFMT("quotes item '%1' not found!",l_rec.quote_number),"exclamation")
+&endif
 			EXIT PROGRAM
 		END IF
 	END IF
 	CALL showDets( l_rec.* )
+&ifdef GEN310
+&else
 	CALL g2_lib.g2_exitProgram(0,"Finished")
+&endif
 END MAIN
 ----------------------------------------------------------------------------------------------------
 FUNCTION showDets( l_rec RECORD LIKE quotes.* )
