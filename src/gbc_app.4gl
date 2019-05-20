@@ -19,7 +19,7 @@ MAIN
 
   CALL ui.Interface.loadStartMenu("gbc_app")
 
-  MENU
+  MENU "Applications"
     ON ACTION cust
       RUN "fglrun custs C" WITHOUT WAITING
     ON ACTION quote

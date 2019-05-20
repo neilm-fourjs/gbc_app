@@ -100,3 +100,26 @@ BODY {
 	border-bottom: 1px solid $theme-primary-emphasis-background-color;
 }
 
+.mt-tab-titles-bar {
+	background-color: $theme-primary-emphasis-background-color;
+	color: white;
+}
+
+.mt-tab-titles-container[__FolderWidget=top] .mt-tab-title.mt-tab-current {
+	background-color: $theme-primary-faded-background-color;
+	color: black;
+	border-bottom: solid 2px $theme-primary-faded-background-color;
+}
+
+.gbc_ButtonWidget.gbc_Focus > .mt-button
+{
+	background-color: inherit;
+}
+.mt-tab-titles-container[__FolderWidget=top] .mt-tab-title {
+	border-radius: 8px 8px 0px 0px;
+	border: solid 1px $theme-primary-faded-background-color;
+}
+
+.gbc_GroupTitleWidget {
+	background-color: $theme-primary-faded-background-color;
+}
