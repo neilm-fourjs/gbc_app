@@ -7,6 +7,10 @@
 	width: 2px;
 }
 
+.company-logo {
+	background-color: $theme-primary-emphasis-background-color;
+}
+
 .mt-sidebar-title {
 	background-color: $theme-primary-emphasis-background-color;
 	color: $theme-primary-emphasis-background-color;
@@ -14,6 +18,7 @@
 
 .mt-sidebar-content {
 	box-shadow: none;
+	top: 90px;
 }
 
 .mt-sidebar-content > .mt-content > .containerElement > .mt-actions > .mt-action {
