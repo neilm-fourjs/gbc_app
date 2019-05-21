@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Project defaultApplication="-2046411878" gstVersion="31403" version="3.3">
+<Project defaultApplication="-131770706" gstVersion="31403" version="3.3">
   <Settings>
     <DynamicProperties version="2">
       <DynamicProperty description="Accent color (Android 5.0 and later)" initialValue="#9575CD" isDefaultInherited="false" isHidden="false" label="Accent color" name="gma-accent-color" readOnly="false" type="COLOR"/>
@@ -88,7 +88,7 @@
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
-      <Directory includedFiles="*.4st,*.4sm,*.4ad" label="Resources" recursive="false" sourceDirectory="$(ProjectDir)/etc"/>
+      <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4sm,*.4ad,*.4rp" label="Resources" recursive="false" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
     <Package binaryName="gbc_app320_gbc" id="-1397376768" label="gbc_app320_gbc" platform="Genero Application Server">
@@ -121,9 +121,10 @@
       <File filePath="src/prodmnt.4gl"/>
       <File filePath="src/prodmnt.per"/>
     </Application>
-    <Application binaryName="prods" dependencies="1986,14000" id="-131770706" label="prods">
+    <Application binaryName="prods" commandLineArguments="S" dependencies="1986,14000" externalDependencies="libgre.42x" id="-131770706" label="prods">
       <File filePath="src/prodlist.per"/>
-      <File filePath="src/prods.4gl"/>
+      <File filePath="etc/prodlist1.4rp"/>
+      <File compilerOptions="--build-rdd" filePath="src/prods.4gl"/>
     </Application>
     <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752,779586860" id="1135886830" label="quotemnt">
       <File filePath="src/quotemnt.4gl"/>

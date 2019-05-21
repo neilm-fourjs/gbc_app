@@ -3,7 +3,7 @@ LAYOUT (TEXT="Products", STYLE="main2", IMAGE="fa-industry")
 VBOX
 GRID
 {
-[search                                         ][advanced:refresh:sp1:add]
+[search                                         ][advanced:refresh:rpt:sp1:add]
 }
 END -- GRID
 TABLE ( DOUBLECLICK=select )
@@ -24,6 +24,7 @@ BUTTONEDIT search = FORMONLY.search, PLACEHOLDER="Search", ACTION=search, SCROLL
 BUTTON advanced : advanced, STYLE="rounded";
 BUTTON refresh : refresh, STYLE="rounded";
 IMAGE sp1 : spacer, IMAGE="fa-fw", STRETCH=X, STYLE="noborder";
+BUTTON rpt : rpt, STYLE="rounded";
 BUTTON add : add, STYLE="rounded green";
 
 INSTRUCTIONS

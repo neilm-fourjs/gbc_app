@@ -31,6 +31,7 @@
   <ActionDefault name="prevtab" text="Previous Folder Tab" acceleratorName="Control-Shift-Tab" contextMenu="no"/>
   <ActionDefault name="dialogtouched" validate="no" defaultView="no"  contextMenu="no"/>
 
+  <ActionDefault name="rpt" text="Report" image="fa-print" contextMenu="no"/>
   <ActionDefault name="prod" text="Products" image="fa-industry" contextMenu="no"/>
   <ActionDefault name="cust" text="Customers" image="fa-cog" contextMenu="no"/>
   <ActionDefault name="quote" text="Quotes" image="fa-bookmark" contextMenu="no"/>

@@ -5,13 +5,14 @@ IMPORT FGL combos
 SCHEMA njm_demo310
 
 DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE stock.*
-DEFINE m_scrArr DYNAMIC ARRAY OF RECORD
+TYPE t_scrRec  RECORD
   stock_code LIKE stock.stock_code,
   stock_cat LIKE stock.stock_cat,
   description LIKE stock.description,
   price LIKE stock.price,
   free_stock LIKE stock.free_stock
 END RECORD
+DEFINE m_scrArr DYNAMIC ARRAY OF t_scrRec
 
 MAIN
   DEFINE l_db g2_db.dbInfo
@@ -57,6 +58,8 @@ MAIN
     ON ACTION add
       LET l_rec.stock_code = "new"
       RUN "fglrun prodmnt.42r " || l_mdi || " " || l_rec.stock_code WITHOUT WAITING
+		ON ACTION rpt
+			CALL listProds()
   END DIALOG
   CALL g2_lib.g2_exitProgram(0, "Finished")
 END MAIN
@@ -82,3 +85,27 @@ FUNCTION getData(l_where STRING)
   CALL m_arr.deleteElement(m_arr.getLength())
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
+FUNCTION listProds()
+	DEFINE l_sax om.SaxDocumentHandler
+	DEFINE x SMALLINT
+
+	IF NOT fgl_report_loadCurrentSettings("../etc/prodlist1.4rp") THEN
+		CALL fgl_winMessage("Error","fgl_report_loadCurrentSettings failed!","exclamation")
+		RETURN
+	END IF
+	CALL fgl_report_selectDevice("XLS")
+	CALL fgl_report_selectPreview(TRUE)
+	LET l_sax = fgl_report_commitCurrentSettings()
+
+	START REPORT rpt1 TO XML HANDLER l_sax
+	FOR x = 1 TO m_scrArr.getLength()
+		OUTPUT TO REPORT rpt1( m_scrArr[x].* )
+	END FOR
+	FINISH REPORT rpt1
+END FUNCTION
+----------------------------------------------------------------------------------------------------
+REPORT rpt1( l_rec t_scrRec )
+	FORMAT
+		ON EVERY ROW
+			PRINT l_rec.*
+END REPORT
