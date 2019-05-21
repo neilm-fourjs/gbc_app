@@ -64,7 +64,7 @@
   </Settings>
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
-  <Group environment="value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Group" language="Genero">
+  <Group environment="value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Group" language="Genero">
     <Application binaryName="custs" dependencies="1986,14000" id="1227693160" label="custs">
       <File filePath="src/custlist.per"/>
       <File filePath="src/custmnt.per"/>

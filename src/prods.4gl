@@ -1,3 +1,4 @@
+IMPORT os
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL combos
@@ -89,7 +90,7 @@ FUNCTION listProds()
 	DEFINE l_sax om.SaxDocumentHandler
 	DEFINE x SMALLINT
 
-	IF NOT fgl_report_loadCurrentSettings("../etc/prodlist1.4rp") THEN
+	IF NOT fgl_report_loadCurrentSettings( os.path.join(fgl_getEnv("REPORTDIR"),"prodlist1.4rp") ) THEN
 		CALL fgl_winMessage("Error","fgl_report_loadCurrentSettings failed!","exclamation")
 		RETURN
 	END IF
