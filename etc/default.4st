@@ -80,7 +80,7 @@
   <Style name="Window.main">
      <StyleAttribute name="windowType" value="normal" />
      <StyleAttribute name="startMenuPosition" value="tree" />
-     <StyleAttribute name="ringMenuPosition" value="left" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
      <StyleAttribute name="tabbedContainer" value="yes" />
   </Style>
   <Style name="Window.main2">

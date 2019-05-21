@@ -1,9 +1,19 @@
 
 // Hide the sidebar content until the startMenu is loaded.
 
+.mt-sidebar > .resizer {
+	min-width: 2px;
+	max-width: 2px;
+	width: 2px;
+}
+
 .mt-sidebar-title {
 	background-color: $theme-primary-emphasis-background-color;
 	color: $theme-primary-emphasis-background-color;
+}
+
+.mt-sidebar-content {
+	box-shadow: none;
 }
 
 .mt-sidebar-content > .mt-content > .containerElement > .mt-actions > .mt-action {
@@ -32,4 +42,6 @@
 
 .gbc_StartMenuCommandWidget {
 	border-bottom: 1px solid $theme-primary-faded-background-color;
+	font-weight: 700;
+	font-size: 14px;
 }
