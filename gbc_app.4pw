@@ -101,6 +101,11 @@
       <Directory includedFiles="*.4st,*.4ad,*.4sm" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
+    <Group id="-1052244224" label="GBC_DEV">
+      <Library binaryName="gbc-app" id="1218790164" label="gbc-app">
+        <File filePath="gbc_dev/gbc-app/theme.scss.json"/>
+      </Library>
+    </Group>
     <Library binaryName="gst_gas" id="779586860" label="gst_gas">
       <File filePath="gst_gas/quotes.xcf"/>
     </Library>

@@ -16,6 +16,6 @@
 	"theme-currentrow-color": "$palette-text-secondary",
 
 	"theme-combobox-padding": "0px",
-	"theme-sidebar-always-visible-min-width" : "102400px"
+	"theme-sidebar-always-visible-min-width" : "1024px"
 
 }

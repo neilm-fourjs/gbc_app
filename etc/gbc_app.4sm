@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ANSI_X3.4-1968"?>
-<StartMenu text="Template">
-  <StartMenuGroup text="Main Menu">
-    <StartMenuCommand text="Products" exec="fglrun prods C"/>
-    <StartMenuCommand text="Customers" exec="fglrun custs C"/>
-    <StartMenuCommand text="Quotes" exec="fglrun quotes C"/>
+<StartMenu text="Bisley Demo">
+  <StartMenuGroup image="fa-bomb" text="Main Menu">
+    <StartMenuCommand image="fa-industry" text="Products" exec="fglrun prods C"/>
+    <StartMenuCommand image="fa-cog" text="Customers" exec="fglrun custs C"/>
+    <StartMenuCommand image="fa-bookmark" text="Quotes" exec="fglrun quotes C"/>
   </StartMenuGroup>
 </StartMenu>

@@ -1,11 +1,4 @@
 
-// get the toolbar to center in the browser tab with a min width
-.gbc_WindowWidget .gbc_WindowToolbarContainer {
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 1024px;
-}
-
 // set a min width for forms to line up with the toolbar
 .gbc_WindowWidget_position_center .gbc_FormWidget.notOverflownX > .containerElement > *, .gbc_WindowWidget_position_center2 .gbc_FormWidget.notOverflownX > .containerElement > * {
   min-width: 1024px;
