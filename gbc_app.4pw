@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Project defaultApplication="-131770706" gstVersion="31403" version="3.3">
+<Project defaultApplication="18736" gstVersion="31403" version="3.3">
   <Settings>
     <DynamicProperties version="2">
       <DynamicProperty description="Accent color (Android 5.0 and later)" initialValue="#9575CD" isDefaultInherited="false" isHidden="false" label="Accent color" name="gma-accent-color" readOnly="false" type="COLOR"/>
@@ -64,24 +64,50 @@
   </Settings>
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
-  <Group environment="value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Group" language="Genero">
-    <Application binaryName="custs" dependencies="1986,14000" id="1227693160" label="custs">
-      <File filePath="src/custlist.per"/>
-      <File filePath="src/custmnt.per"/>
-      <File filePath="src/custs.4gl"/>
-    </Application>
-    <Library binaryName="Databases" id="1986" label="Databases">
-      <File filePath="etc/njm_demo310.4db"/>
-    </Library>
+  <Group id="-223917468" label="Configuration" language="Genero">
     <Library binaryName="gas" id="601137216" label="gas">
       <File filePath="gas/gbc_app.xcf"/>
     </Library>
-    <Application binaryName="gbc_app" dependencies="14000,1986,779586860" id="18736" label="gbc_app">
-      <File filePath="src/gbc_app.4gl"/>
-      <File filePath="etc/gbc_app.4sm"/>
-      <File filePath="src/gbc_app.per"/>
-      <File filePath="src/login.per"/>
-    </Application>
+    <Library binaryName="gst_gas" id="779586860" label="gst_gas">
+      <File filePath="gst_gas/quotes.xcf"/>
+    </Library>
+    <Library binaryName="resources" id="-231492752" label="resources">
+      <File filePath="etc/default.4ad"/>
+      <File filePath="etc/default.4st"/>
+    </Library>
+  </Group>
+  <Group id="-1052244224" label="GBC_DEV">
+    <Library binaryName="gbc-app" excludeFromBuild="true" id="1218790164" label="gbc-app">
+      <VirtualFolder label="js" language="Genero">
+        <File filePath="gbc_dev/gbc-app/js/ApplicationHostSidebarWidget.tpl.html"/>
+        <File filePath="gbc_dev/gbc-app/js/StartMenuGroupWidget.js"/>
+      </VirtualFolder>
+      <VirtualFolder label="sass" language="Genero">
+        <File filePath="gbc_dev/gbc-app/sass/customization.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/gbc_style.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/main.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/MyMenu.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/MySideBar.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/MyTable.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/MyWindow.scss"/>
+      </VirtualFolder>
+      <File filePath="gbc_dev/gbc-app/theme.scss.json"/>
+    </Library>
+  </Group>
+  <Group id="254662168" label="Libraries" language="Genero">
+    <Library binaryName="Databases" id="1986" label="Databases">
+      <File filePath="etc/njm_demo310.4db"/>
+    </Library>
+    <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
+      <File filePath="src/lib/combos.4gl"/>
+      <File filePath="src/lib/g2_db.4gl"/>
+      <File filePath="src/lib/g2_debug.4gl"/>
+      <File filePath="src/lib/g2_debug.inc"/>
+      <File filePath="src/lib/g2_lib.4gl"/>
+      <File filePath="src/lib/g2_logging.4gl"/>
+    </Library>
+  </Group>
+  <Group id="963122402" label="Packages" language="Genero">
     <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="gbc_app"/>
       <DynamicProperty name="packageLabel" value="gbc_app"/>
@@ -101,22 +127,19 @@
       <Directory includedFiles="*.4st,*.4ad,*.4sm" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
-    <Group id="-1052244224" label="GBC_DEV">
-      <Library binaryName="gbc-app" id="1218790164" label="gbc-app">
-        <File filePath="gbc_dev/gbc-app/theme.scss.json"/>
-      </Library>
-    </Group>
-    <Library binaryName="gst_gas" id="779586860" label="gst_gas">
-      <File filePath="gst_gas/quotes.xcf"/>
-    </Library>
-    <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
-      <File filePath="src/lib/combos.4gl"/>
-      <File filePath="src/lib/g2_db.4gl"/>
-      <File filePath="src/lib/g2_debug.4gl"/>
-      <File filePath="src/lib/g2_debug.inc"/>
-      <File filePath="src/lib/g2_lib.4gl"/>
-      <File filePath="src/lib/g2_logging.4gl"/>
-    </Library>
+  </Group>
+  <Group environment="value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">
+    <Application binaryName="custs" dependencies="1986,14000" id="1227693160" label="custs">
+      <File filePath="src/custlist.per"/>
+      <File filePath="src/custmnt.per"/>
+      <File filePath="src/custs.4gl"/>
+    </Application>
+    <Application binaryName="gbc_app" dependencies="14000,1986,779586860" id="18736" label="gbc_app">
+      <File filePath="src/gbc_app.4gl"/>
+      <File filePath="etc/gbc_app.4sm"/>
+      <File filePath="src/gbc_app.per"/>
+      <File filePath="src/login.per"/>
+    </Application>
     <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000" id="-1155118210" label="prodmnt">
       <File filePath="src/prodmnt.4gl"/>
       <File filePath="src/prodmnt.per"/>
@@ -134,9 +157,5 @@
       <File filePath="src/quotelist.per"/>
       <File filePath="src/quotes.4gl"/>
     </Application>
-    <Library binaryName="resources" id="-231492752" label="resources">
-      <File filePath="etc/default.4ad"/>
-      <File filePath="etc/default.4st"/>
-    </Library>
   </Group>
 </Project>

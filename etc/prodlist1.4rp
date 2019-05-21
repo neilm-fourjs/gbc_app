@@ -21,9 +21,9 @@
                         <MINIPAGE name="Table Header" class="grwTableHeader" width="min" length="max" layoutDirection="leftToRight">
                             <WORDBOX name="Spacer" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
                             <WORDBOX name="l_rec.stock_code Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Stock Code&quot;.translate()}&quot;),width(&quot;M&quot;)*8)}" floatingBehavior="enclosed" text="Stock Code" localizeText="true"/>
-                            <WORDBOX name="l_rec.stock_cat Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Stock Cat&quot;.translate()}&quot;),width(&quot;M&quot;)*10)}" floatingBehavior="enclosed" text="Stock Cat" localizeText="true"/>
+                            <WORDBOX name="l_rec.stock_cat Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Stock Cat&quot;.translate()}&quot;),width(&quot;M&quot;)*10)}" floatingBehavior="enclosed" text="Catagory" localizeText="true"/>
                             <WORDBOX name="l_rec.description Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Description&quot;.translate()}&quot;),width(&quot;M&quot;)*30)}" floatingBehavior="enclosed" text="Description" localizeText="true"/>
-                            <WORDBOX name="l_rec.price Title" class="grwTableNumericColumnTitle" width="{max(width(&quot;{&quot;Price&quot;.translate()}&quot;),width(&quot;-000,000,000,000.00&quot;))}" floatingBehavior="enclosed" textAlignment="right" text="Price" localizeText="true"/>
+                            <WORDBOX name="l_rec.price Title" class="grwTableNumericColumnTitle" width="{max(width(&quot;{&quot;Price&quot;.translate()}&quot;),width(&quot;-000,000,000,000.00&quot;))}" floatingBehavior="enclosed" textAlignment="right" text="RR Price" localizeText="true"/>
                         </MINIPAGE>
                         <MINIPAGE name="Separator" width="1" length="max" bgColor="#000000" layoutDirection="leftToRight"/>
                     </LAYOUTNODE>

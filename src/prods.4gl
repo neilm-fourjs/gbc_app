@@ -94,7 +94,7 @@ FUNCTION listProds()
 		CALL fgl_winMessage("Error","fgl_report_loadCurrentSettings failed!","exclamation")
 		RETURN
 	END IF
-	CALL fgl_report_selectDevice("XLS")
+	CALL fgl_report_selectDevice("PDF")
 	CALL fgl_report_selectPreview(TRUE)
 	LET l_sax = fgl_report_commitCurrentSettings()
 
