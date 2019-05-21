@@ -16,6 +16,12 @@
 	"theme-currentrow-color": "$palette-text-secondary",
 
 	"theme-combobox-padding": "0px",
+
+	"gbc-StartMenuWidget-background-color": "$theme-primary-emphasis-background-color",
+	"gbc-StartMenuWidget-color": "$theme-primary-faded-background-color",
+	"gbc-StartMenuGroupWidget-hover-color": "$theme-primary-emphasis-background-color",
+	"gbc-StartMenuCommandWidget-hover-color": "$theme-primary-background-color",
+
 	"theme-sidebar-always-visible-min-width" : "1024px"
 
 }

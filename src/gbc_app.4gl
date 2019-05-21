@@ -6,7 +6,7 @@ IMPORT FGL g2_db
 &endif
 
 MAIN
-	CALL ui.Interface.setImage("njm")
+--	CALL ui.Interface.setImage("njm")
 
 	CALL g2_lib.g2_init("M", NULL)
 
@@ -17,13 +17,10 @@ MAIN
 
   CALL ui.Interface.loadStartMenu("gbc_app")
 
-  MENU "Applications"
-    ON ACTION cust
-      RUN "fglrun custs C" WITHOUT WAITING
-    ON ACTION quote
-      RUN "fglrun quotes C" WITHOUT WAITING
-    ON ACTION prod
-      RUN "fglrun prods C" WITHOUT WAITING
+  MENU "Applications:"
+    ON ACTION prod RUN "fglrun prods C" WITHOUT WAITING
+    ON ACTION quote RUN "fglrun quotes C" WITHOUT WAITING
+    ON ACTION cust RUN "fglrun custs C" WITHOUT WAITING
     ON ACTION CLOSE
       EXIT MENU
     ON ACTION QUIT

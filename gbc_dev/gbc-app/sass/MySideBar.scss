@@ -1,0 +1,35 @@
+
+// Hide the sidebar content until the startMenu is loaded.
+
+.mt-sidebar-title {
+	background-color: $theme-primary-emphasis-background-color;
+	color: $theme-primary-emphasis-background-color;
+}
+
+.mt-sidebar-content > .mt-content > .containerElement > .mt-actions > .mt-action {
+	background-color: $theme-primary-emphasis-background-color;
+	color: $theme-primary-emphasis-background-color;
+}
+
+.gbc_SessionSidebarWindowItemWidget > a {
+	background-color: $theme-primary-emphasis-background-color;
+	color: $theme-primary-emphasis-background-color;
+}
+
+.gbc_SessionSidebarWindowItemWidget .windowIcon .gbc_ImageWidget {
+	fill: $theme-primary-emphasis-background-color;
+}
+
+.mt-sidebar-content {
+	background-color: $theme-primary-emphasis-background-color;
+	color: $theme-primary-emphasis-background-color;
+}
+
+.gbc_StartMenuWidget {
+	color: $theme-primary-faded-background-color;
+	fill: $theme-primary-faded-background-color;
+}
+
+.gbc_StartMenuCommandWidget {
+	border-bottom: 1px solid $theme-primary-faded-background-color;
+}

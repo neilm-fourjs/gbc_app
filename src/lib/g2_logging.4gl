@@ -13,7 +13,7 @@
 
 IMPORT os
 
-CONSTANT C_DEFAULT_LOGDIR = "../logs/" -- Default logdir if nothing set
+CONSTANT C_DEFAULT_LOGDIR = "../logs" -- Default logdir if nothing set
 
 PUBLIC TYPE logger RECORD
   dirName STRING,
@@ -78,7 +78,7 @@ FUNCTION (this logger) setLogDir(l_dir STRING) RETURNS()
   LET this.dirName = NVL(l_dir, fgl_getEnv("LOGDIR"))
 
   IF this.dirName.getLength() < 1 THEN
-    LET this.dirName = "../logs" -- C_DEFAULT_LOGDIR
+    LET this.dirName = C_DEFAULT_LOGDIR
   END IF
 
   IF NOT os.path.exists(this.dirName) THEN
