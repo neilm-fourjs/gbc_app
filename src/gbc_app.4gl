@@ -1,9 +1,6 @@
-&ifdef GEN310
-IMPORT FGL gl_lib
-&else
+
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
-&endif
 
 MAIN
 --	CALL ui.Interface.setImage("njm")

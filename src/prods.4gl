@@ -20,13 +20,8 @@ MAIN
   DEFINE l_rec RECORD LIKE stock.*
   DEFINE l_search STRING
   DEFINE l_where STRING
-  DEFINE l_mdi CHAR(1)
 
-  LET l_mdi = ARG_VAL(1)
-  IF l_mdi IS NULL THEN
-    LET l_mdi = "S"
-  END IF
-  CALL g2_lib.g2_init(l_mdi, NULL)
+  CALL g2_lib.g2_init(ARG_VAL(1), NULL)
   CALL l_db.g2_connect(NULL)
   CALL combos.dummy()
 
@@ -48,7 +43,7 @@ MAIN
     END INPUT
     DISPLAY ARRAY m_scrArr TO list.*
       ON ACTION SELECT
-        RUN "fglrun prodmnt.42r " || l_mdi || " " || m_arr[arr_curr()].stock_code WITHOUT WAITING
+        RUN "fglrun prodmnt.42r " || g2_lib.m_mdi || " " || m_arr[arr_curr()].stock_code WITHOUT WAITING
     END DISPLAY
     ON ACTION refresh
       CALL getData(NULL)
@@ -58,9 +53,9 @@ MAIN
       EXIT DIALOG
     ON ACTION add
       LET l_rec.stock_code = "new"
-      RUN "fglrun prodmnt.42r " || l_mdi || " " || l_rec.stock_code WITHOUT WAITING
+      RUN "fglrun prodmnt.42r " || g2_lib.m_mdi || " " || l_rec.stock_code WITHOUT WAITING
 		ON ACTION rpt
-			CALL listProds()
+			CALL rpt_func1()
   END DIALOG
   CALL g2_lib.g2_exitProgram(0, "Finished")
 END MAIN
@@ -86,7 +81,7 @@ FUNCTION getData(l_where STRING)
   CALL m_arr.deleteElement(m_arr.getLength())
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
-FUNCTION listProds()
+FUNCTION rpt_func1()
 	DEFINE l_sax om.SaxDocumentHandler
 	DEFINE x SMALLINT
 

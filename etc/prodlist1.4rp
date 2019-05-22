@@ -12,7 +12,7 @@
     <rtl:stylesheet>
         <PXML>
             <rtl:match name="Report" nameConstraint="Report" minOccurs="1" maxOccurs="1">
-                <MINIPAGE name="Page Root" width="max" length="max">
+                <MINIPAGE name="Page Root" width="max" length="max" fontName="Century Gothic" fontSize="10">
                     <LAYOUTNODE name="Page Header" width="max" length="min" port="anyPageHeader">
                         <MINIPAGE name="StripeLayouter3" width="min" length="max" layoutDirection="leftToRight">
                             <WORDBOX name="Report Title" x="0" y="max/2" anchorX="0" anchorY="0.5" alignment="baseline" fontSize="25" baselineType="leftleft" floatingBehavior="enclosed" text="Products"/>

@@ -76,7 +76,7 @@
       <File filePath="etc/default.4st"/>
     </Library>
   </Group>
-  <Group id="-1052244224" label="GBC_DEV">
+  <Group id="-1052244224" label="GBC_DEV" language="Genero">
     <Library binaryName="gbc-app" excludeFromBuild="true" id="1218790164" label="gbc-app">
       <VirtualFolder label="js" language="Genero">
         <File filePath="gbc_dev/gbc-app/js/ApplicationHostSidebarWidget.tpl.html"/>
@@ -106,6 +106,7 @@
       <File filePath="src/lib/g2_lib.4gl"/>
       <File filePath="src/lib/g2_logging.4gl"/>
     </Library>
+    <Library binaryName="Library_Reporting" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting"/>
   </Group>
   <Group id="963122402" label="Packages" language="Genero">
     <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
@@ -129,10 +130,14 @@
     </Package>
   </Group>
   <Group environment="value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">
-    <Application binaryName="custs" dependencies="1986,14000" id="1227693160" label="custs">
-      <File filePath="src/custlist.per"/>
+    <Application binaryName="custmnt" commandLineArguments="S C0039" dependencies="14000,1986" id="263428051" label="custmnt">
+      <File filePath="src/custmnt.4gl"/>
       <File filePath="src/custmnt.per"/>
-      <File filePath="src/custs.4gl"/>
+    </Application>
+    <Application binaryName="custs" dependencies="1986,14000,105677186" id="1227693160" label="custs">
+      <File filePath="src/custlist.per"/>
+      <File filePath="etc/custlist1.4rp"/>
+      <File compilerOptions="--build-rdd" filePath="src/custs.4gl"/>
     </Application>
     <Application binaryName="gbc_app" dependencies="14000,1986,779586860" id="18736" label="gbc_app">
       <File filePath="src/gbc_app.4gl"/>
@@ -144,7 +149,7 @@
       <File filePath="src/prodmnt.4gl"/>
       <File filePath="src/prodmnt.per"/>
     </Application>
-    <Application binaryName="prods" commandLineArguments="S" dependencies="1986,14000" externalDependencies="libgre.42x" id="-131770706" label="prods">
+    <Application binaryName="prods" commandLineArguments="S" dependencies="1986,14000,105677186" id="-131770706" label="prods">
       <File filePath="src/prodlist.per"/>
       <File filePath="etc/prodlist1.4rp"/>
       <File compilerOptions="--build-rdd" filePath="src/prods.4gl"/>

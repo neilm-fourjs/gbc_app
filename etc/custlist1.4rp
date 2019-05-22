@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report:Report xmlns:rtl="http://www.4js.com/2004/RTL" xmlns:report="http://www.4js.com/2007/REPORT" xmlns="http://www.4js.com/2004/PXML" gstVersion="31403" version="6.00">
+    <report:Settings RWPageWidth="letterlength" RWPageLength="letterwidth" RWLeftMargin="0.5inch" RWTopMargin="0.5inch" RWRightMargin="0.5inch" RWBottomMargin="0.5inch">
+        <report:FormatList>
+            <report:Format-SVG/>
+            <report:Format-PDF/>
+            <report:Format-image/>
+        </report:FormatList>
+    </report:Settings>
+    <report:Data RWDataLocation="../src/custs.rdd" RWFglReportName="rpt1"/>
+    <report:Conflicts/>
+    <rtl:stylesheet>
+        <PXML>
+            <rtl:match name="Report" nameConstraint="Report" minOccurs="1" maxOccurs="1">
+                <MINIPAGE name="Page Root" width="max" length="max" alignment="near" fontName="Century Gothic" fontSize="10">
+                    <LAYOUTNODE name="Page Header" width="max" length="min" port="anyPageHeader">
+                        <MINIPAGE name="StripeLayouter3" width="min" length="max" layoutDirection="leftToRight">
+                            <WORDBOX name="Report Title" x="0" y="max/2" anchorX="0" anchorY="0.5" alignment="baseline" fontSize="25" baselineType="leftleft" floatingBehavior="enclosed" text="Customers"/>
+                            <PAGENOBOX name="PageNoBox" x="1.23857" y="max" anchorX="0" anchorY="1" alignment="baseline" baselineType="leftleft" floatingBehavior="enclosed" textAlignment="right"/>
+                        </MINIPAGE>
+                        <MINIPAGE name="Table Header" class="grwTableHeader" width="min" length="max" layoutDirection="leftToRight">
+                            <WORDBOX name="Spacer" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
+                            <WORDBOX name="l_rec.customer_code Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Code&quot;.translate()}&quot;),width(&quot;M&quot;)*5)}" floatingBehavior="enclosed" text="Code" localizeText="true"/>
+                            <WORDBOX name="l_rec.customer_name Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Name&quot;.translate()}&quot;),width(&quot;M&quot;)*25)}" floatingBehavior="enclosed" text="Name" localizeText="true"/>
+                            <WORDBOX name="l_rec.email Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Email&quot;.translate()}&quot;),width(&quot;M&quot;)*20)}" floatingBehavior="enclosed" text="Email" localizeText="true"/>
+                            <WORDBOX name="l_rec.total_invoices Title" class="grwTableNumericColumnTitle" width="{max(width(&quot;{&quot;Total Invoices&quot;.translate()}&quot;),width(&quot;-000,000.00&quot;))}" floatingBehavior="enclosed" textAlignment="right" text="Total Invoices" localizeText="true"/>
+                        </MINIPAGE>
+                        <MINIPAGE name="Separator" width="1" length="max" bgColor="#000000" layoutDirection="leftToRight"/>
+                    </LAYOUTNODE>
+                    <rtl:match name="OnEveryRow" nameConstraint="OnEveryRow" minOccurs="0" maxOccurs="unbounded">
+                        <MINIPAGE name="Table Row" class="grwTableRow" width="min" length="max" layoutDirection="leftToRight">
+                            <WORDBOX name="Spacer_1" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
+                            <rtl:input-variable name="l_rec.customer_code" type="FGLString" expectedLocation="expectedHere"/>
+                            <WORDBOX name="l_rec.customer_code Value" class="grwStringValue" width="{max(width(&quot;{&quot;Code&quot;.translate()}&quot;),width(&quot;M&quot;)*5)}" floatingBehavior="enclosed" text="{{l_rec.customer_code}}"/>
+                            <rtl:input-variable name="l_rec.customer_name" type="FGLString" expectedLocation="expectedHere"/>
+                            <WORDBOX name="l_rec.customer_name Value" class="grwStringValue" width="{max(width(&quot;{&quot;Name&quot;.translate()}&quot;),width(&quot;M&quot;)*25)}" floatingBehavior="enclosed" text="{{l_rec.customer_name}}"/>
+                            <rtl:input-variable name="l_rec.email" type="FGLString" expectedLocation="expectedHere"/>
+                            <WORDWRAPBOX name="l_rec.email Value" class="grwTableStringColumnValue" width="width(&quot;M&quot;)*20" floatingBehavior="enclosed" text="{{l_rec.email}}"/>
+                            <rtl:input-variable name="l_rec.total_invoices" type="FGLNumeric" expectedLocation="expectedHere"/>
+                            <DECIMALFORMATBOX name="l_rec.total_invoices Value" class="grwTableNumericColumnValue" width="{max(width(&quot;{&quot;Total Invoices&quot;.translate()}&quot;),width(&quot;-000,000.00&quot;))}" anchorX="1" floatingBehavior="enclosed" textAlignment="right" format="---,---,---,--&amp;.&amp;&amp;" value="{{l_rec.total_invoices}}"/>
+                        </MINIPAGE>
+                    </rtl:match>
+                </MINIPAGE>
+            </rtl:match>
+        </PXML>
+    </rtl:stylesheet>
+</report:Report>

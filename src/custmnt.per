@@ -1,33 +1,83 @@
 
 LAYOUT (TEXT="Customer", STYLE="main2", IMAGE="fa-cog")
 HBOX
-GRID
-{
-[l001      ][f001          ]
-[l002      ][f002                          ]
-}
-END -- GRID
 VBOX
-GROUP pg2 ( STYLE="collapsed", TEXT="More 1" )
 GRID
 {
-Some more details
+<G ""                                        >
+ [l001      ][f001          ]
+ [l002      ][f002                          ]
+ [l003      ][f003                          ]
+ [l004      ][f004                          ]
+ [l005      ][f005                          ]
+<                                            >
+}
+END -- GRID
+GRID ( STYLE="actions" )
+{
+ [clear][save][close]
+}
+END -- GRID
+END -- VBOX
+
+VBOX
+GRID
+{
+<G pg2                                       >
+ [f006]
+<                                            >
+<G pg3                                       >
+ [f007]
+<                                            >
+<G pg4                                       >
+ [l008      ][f008]
+ [l009      ][f009         ]
+ [l010      ][f010         ]
+ [l011      ][f011         ]
+<                                            >
 }
 END -- GRID
 END -- GROUP
-GROUP pg3 ( STYLE="collapsed", TEXT="More 2" )
 GRID
 {
-Some more details
+ [sp2]
 }
 END -- GRID
-END -- GROUP
 END -- VBOX
 END -- HBOX
 
 ATTRIBUTES
+BUTTON clear : clear, STYLE="rounded";
+BUTTON save : save, STYLE="rounded green";
+BUTTON close : close, STYLE="rounded red";
+
+IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=X, AUTOSCALE, WIDTH=1000, SIZEPOLICY=FIXED,STYLE="noborder";
+
+GROUP pg2 : pg2, STYLE="collapsed", TEXT="Del Address", GRIDCHILDRENINPARENT;
+GROUP pg3 : pg3, STYLE="collapsed", TEXT="Inv Address", GRIDCHILDRENINPARENT;
+GROUP pg4 : pg4, STYLE="collapsed", TEXT="Financial", GRIDCHILDRENINPARENT;
+
 LABEL l001 : lcode, TEXT="Code:", JUSTIFY=RIGHT;
 LABEL l002 : lname, TEXT="Name:", JUSTIFY=RIGHT;
+LABEL l003 : lcont, TEXT="Contact:", JUSTIFY=RIGHT;
+LABEL l004 : lmail, TEXT="Email:", JUSTIFY=RIGHT;
+LABEL l005 : lwebp, TEXT="Web Access:", JUSTIFY=RIGHT;
 
-f001 = FORMONLY.code, TITLE="Code";
-f002 = FORMONLY.name, TITLE="Name";
+LABEL l008 : ldisc, TEXT="Discount Code:", JUSTIFY=RIGHT;
+LABEL l009 : lcrlt, TEXT="Credit Limit:", JUSTIFY=RIGHT;
+LABEL l010 : ltoti, TEXT="Total Invoices:", JUSTIFY=RIGHT;
+LABEL l011 : louta, TEXT="Outstanding Due:", JUSTIFY=RIGHT;
+
+f001 = FORMONLY.customer_code;
+f002 = FORMONLY.customer_name;
+f003 = FORMONLY.contact_name;
+f004 = FORMONLY.EMAIL;
+f005 = FORMONLY.web_passwd;
+
+f006 = FORMONLY.del_addr;
+f007 = FORMONLY.inv_addr;
+
+f008 = FORMONLY.disc_code;
+f009 = FORMONLY.credit_limit;
+f010 = FORMONLY.total_invoices;
+f011 = FORMONLY.outstanding_amount;
