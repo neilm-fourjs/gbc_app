@@ -127,7 +127,7 @@
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory destinationDirectory="$(RootDir)/gbc" label="gbc" sourceDirectory="$(ProjectDir)/gbc"/>
       <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
-      <Directory includedFiles="*.4st,*.4ad,*.4sm" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
+      <Directory includedFiles="*.4st,*.4ad,*.4sm,*.4rp" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
   </Group>
