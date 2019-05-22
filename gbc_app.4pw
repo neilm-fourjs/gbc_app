@@ -106,10 +106,12 @@
       <File filePath="src/lib/g2_lib.4gl"/>
       <File filePath="src/lib/g2_logging.4gl"/>
     </Library>
-    <Library binaryName="Library_Reporting" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting"/>
+    <Library binaryName="Library_Reporting" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting">
+      <File filePath="src/lib/g2_grw.4gl"/>
+    </Library>
   </Group>
   <Group id="963122402" label="Packages" language="Genero">
-    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
+    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830,105677186" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="gbc_app"/>
       <DynamicProperty name="packageLabel" value="gbc_app"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>

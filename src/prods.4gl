@@ -1,6 +1,7 @@
-IMPORT os
+
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
+IMPORT FGL g2_grw
 IMPORT FGL combos
 
 SCHEMA njm_demo310
@@ -82,22 +83,22 @@ FUNCTION getData(l_where STRING)
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 FUNCTION rpt_func1()
-	DEFINE l_sax om.SaxDocumentHandler
-	DEFINE x SMALLINT
-
-	IF NOT fgl_report_loadCurrentSettings( os.path.join(fgl_getEnv("REPORTDIR"),"prodlist1.4rp") ) THEN
-		CALL fgl_winMessage("Error","fgl_report_loadCurrentSettings failed!","exclamation")
+	DEFINE l_rpt greRpt
+	DEFINE x, l_max INTEGER
+	LET l_rpt.pageWidth = 132
+	IF NOT l_rpt.init( "prodlist1", TRUE, "PDF" ) THEN
+		CALL g2_lib.g2_winMessage("Error","Report Initialization failed!","exclamation")
 		RETURN
 	END IF
-	CALL fgl_report_selectDevice("PDF")
-	CALL fgl_report_selectPreview(TRUE)
-	LET l_sax = fgl_report_commitCurrentSettings()
-
-	START REPORT rpt1 TO XML HANDLER l_sax
-	FOR x = 1 TO m_scrArr.getLength()
+	LET l_max = m_scrArr.getLength()
+	CALL l_rpt.progress(0, l_max, 2)
+	START REPORT rpt1 TO XML HANDLER l_rpt.handle
+	FOR x = 1 TO l_max
+		CALL l_rpt.progress(x, l_max, 2)
 		OUTPUT TO REPORT rpt1( m_scrArr[x].* )
 	END FOR
 	FINISH REPORT rpt1
+	CALL l_rpt.finish()
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 REPORT rpt1( l_rec t_scrRec )
