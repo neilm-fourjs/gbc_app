@@ -105,6 +105,8 @@
       <File filePath="src/lib/g2_debug.inc"/>
       <File filePath="src/lib/g2_lib.4gl"/>
       <File filePath="src/lib/g2_logging.4gl"/>
+      <File filePath="src/lib/g2_sql.4gl"/>
+      <File filePath="src/lib/g2_ui.4gl"/>
     </Library>
     <Library binaryName="Library_Reporting" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting">
       <File filePath="src/lib/g2_grw.4gl"/>
