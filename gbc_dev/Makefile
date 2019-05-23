@@ -6,7 +6,13 @@ include makefile.inc
 BASE=$(shell pwd)
 dirs=gbc-app
 
-all: build/gbc-current subdirs
+all: distbin build build/gbc-current subdirs
+
+distbin:
+	mkdir distbin
+
+build:
+	mkdir build
 
 # Setup the GBC build env
 build/gbc-current: 
