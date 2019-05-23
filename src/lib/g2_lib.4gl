@@ -169,9 +169,13 @@ FUNCTION g2_winQuestion(
   IF NOT l_toks.hasMoreTokens() THEN
     RETURN NULL
   END IF
+
   WHILE l_toks.hasMoreTokens()
     LET l_opt[l_opt.getLength() + 1] = l_toks.nextToken()
   END WHILE
+	FOR x = l_opt.getLength()+1 TO 10
+		LET l_opt[x] = "__"||x
+	END FOR
 
   -- Handle the case when there is no current window
   LET l_dum = FALSE
@@ -183,10 +187,9 @@ FUNCTION g2_winQuestion(
 
   MENU l_title ATTRIBUTE(STYLE = "dialog", COMMENT = l_message, IMAGE = l_icon)
     BEFORE MENU
-      HIDE OPTION ALL
-      FOR x = 1 TO l_opt.getLength()
+      FOR x = 1 TO 10
+				CALL DIALOG.setActionHidden(l_opt[x].toLowerCase(), IIF(l_opt[x].subString(1,2) = "__",TRUE,FALSE))
         IF l_opt[x] IS NOT NULL THEN
-          SHOW OPTION l_opt[x]
           IF l_ans.equalsIgnoreCase(l_opt[x]) THEN
             NEXT OPTION l_opt[x]
           END IF
