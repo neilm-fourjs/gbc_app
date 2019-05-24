@@ -1,7 +1,5 @@
 # GBC Demo Application
-A Genero Demo GBC Application using Genero 3.20
-
-This was written a demo application for a custom GBC.
+This was written as a demo application for a custom GBC - not as production quality code.
 
 *Disclaimer - It's a demo! - it's not fully functional and purely example code!*
 
@@ -24,7 +22,7 @@ NOTE: The GBC customization was done using the 1.00.53 release.
 
 
 ## Building
-This demo was written and tested on Linux and built using GeneroStudio 3.20 and the Makefile is used to setup additional folders and to build the GBC.
+This was written and tested on Linux and built using GeneroStudio 3.20, the Makefile is used to setup additional folders and to build the GBC. It assumes you have the GBC project zip downloaded in a folder pointed to by GBCPROJECTDIR.
 
 
 ## Database
