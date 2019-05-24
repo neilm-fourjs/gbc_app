@@ -74,6 +74,7 @@
     <Library binaryName="resources" id="-231492752" label="resources">
       <File filePath="etc/default.4ad"/>
       <File filePath="etc/default.4st"/>
+      <File filePath="etc/profile"/>
     </Library>
   </Group>
   <Group id="-1052244224" label="GBC_DEV" language="Genero">
@@ -100,6 +101,9 @@
     </Library>
     <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
       <File filePath="src/lib/combos.4gl"/>
+      <File filePath="src/lib/g2_about.4gl"/>
+      <File filePath="src/lib/g2_appInfo.4gl"/>
+      <File filePath="src/lib/g2_aui.4gl"/>
       <File filePath="src/lib/g2_db.4gl"/>
       <File filePath="src/lib/g2_debug.4gl"/>
       <File filePath="src/lib/g2_debug.inc"/>
@@ -117,23 +121,25 @@
       <DynamicProperty name="packageId" value="gbc_app"/>
       <DynamicProperty name="packageLabel" value="gbc_app"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
+      <Directory destinationDirectory="$(RootDir)/db" label="db" recursive="false" sourceDirectory="$(ProjectDir)/db"/>
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
-      <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4sm,*.4ad,*.4rp" label="Resources" recursive="false" sourceDirectory="$(ProjectDir)/etc"/>
+      <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4sm,*.4ad,*.4rp,profile" label="Resources" recursive="false" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
     <Package binaryName="gbc_app320_gbc" id="-1397376768" label="gbc_app320_gbc" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="myapp"/>
       <DynamicProperty name="packageLabel" value="MyApp"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
+      <Directory destinationDirectory="$(RootDir/db" label="db" recursive="false" sourceDirectory="$(ProjectDir)/db"/>
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory destinationDirectory="$(RootDir)/gbc" label="gbc" sourceDirectory="$(ProjectDir)/gbc"/>
       <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
-      <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4ad,*.4sm,*.4rp" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
+      <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4ad,*.4sm,*.4rp,profile" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
   </Group>
-  <Group environment="value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">
+  <Group environment="value:FGLPROFILE=../etc/profile,value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">
     <Application binaryName="custmnt" commandLineArguments="S C0039" dependencies="14000,1986" id="263428051" label="custmnt">
       <File filePath="src/custmnt.4gl"/>
       <File filePath="src/custmnt.per"/>

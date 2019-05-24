@@ -10,6 +10,7 @@ NOTE: The GBC customization was done using the 1.00.53 release.
 
 ## Folders
 * Screenshots : The screenshots for this README
+* db : My sqlite demo database
 * dbexport : An Informix dbexport of my current demo database
 * etc : 4st / 4ad / 4rp / 4db  etc
 * gas : XCF file for deployment
@@ -28,7 +29,7 @@ This was written and tested on Linux and built using GeneroStudio 3.20, the Make
 ## Database
 This demo uses my njm_demo310 database as created by the mk_db program here: https://github.com/neilm-fourjs/njms_demos310/tree/master/src/db
 
-I've only tested this application against Informix and PostgreSQL.
+I've only tested this application against Informix, PostgreSQL and SQLite.
 
 
 ## Running
@@ -38,6 +39,8 @@ NOTE: This is actually running on a Raspberry Pi using: rasbian / lighttpd / pos
 
 There is no login code in this demo so you can login using any user/pass values.
 If you want a login demo see https://github.com/neilm-fourjs/loginDemo
+
+To run locally with the included SQLite DB you'll need to change the etc/profile to load that database driver.
 
 
 ## Genero 3.20 Specific

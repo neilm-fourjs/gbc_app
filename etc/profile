@@ -1,0 +1,10 @@
+
+# Informix
+#dbi.default.driver = "dbmifx"
+
+# PostgreSQL
+dbi.default.driver = "dbmpgs"
+dbi.database.njm_demo310.ifxemul.datatype.serial.emulation = "native"
+
+# SQLite
+#dbi.default.driver = "dbmsqt"
