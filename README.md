@@ -5,6 +5,10 @@ This was written a demo application for a custom GBC.
 
 *Disclaimer - It's a demo! - it's not fully functional and purely example code!*
 
+NOTE: This was written using the EAP3 vesion of Genero 3.20 - I will updating it for newer releases as and when I can.
+
+NOTE: The GBC customization was done using the 1.00.53 release.
+
 
 ## Folders
 * Screenshots : The screenshots for this README
