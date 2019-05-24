@@ -41,6 +41,8 @@ This demo uses my njm_demo310 database as created by the mk_db program here: htt
 
 I've only tested this application against Informix, PostgreSQL and SQLite.
 
+To run locally with the included SQLite DB you'll need to change the etc/profile to load that database driver.
+
 
 ## Running
 At the time of writing this, I have a deployed version of the demo that can be run from here: https://generodemos.dynu.net/f/ua/r/gbc_app
@@ -49,8 +51,6 @@ NOTE: This is actually running on a Raspberry Pi using: rasbian / lighttpd / pos
 
 There is no login code in this demo so you can login using any user/pass values.
 If you want a login demo see https://github.com/neilm-fourjs/loginDemo
-
-To run locally with the included SQLite DB you'll need to change the etc/profile to load that database driver.
 
 
 ## Genero 3.20 Specific
