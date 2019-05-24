@@ -3,6 +3,8 @@ A Genero Demo GBC Application using Genero 3.20
 
 This was written a demo application for a custom GBC.
 
+*Disclaimer - It's a demo! - it's not fully functional and purely example code!*
+
 
 ## Folders
 * Screenshots : The screenshots for this README
@@ -23,12 +25,15 @@ This demo was written and tested on Linux and built using GeneroStudio 3.20 and 
 
 ## Database
 This demo uses my njm_demo310 database as created by the mk_db program here: https://github.com/neilm-fourjs/njms_demos310/tree/master/src/db
-I've tested this application against Informix and PostgreSQL
+
+I've only tested this application against Informix and PostgreSQL.
 
 
 ## Running
 At the time of writing this, I have a deployed version of the demo that can be run from here: https://generodemos.dynu.net/f/ua/r/gbc_app
+
 NOTE: This is actually running on a Raspberry Pi using: rasbian / lighttpd / postgresSQL
+
 There is no login code in this demo so you can login using any user/pass values.
 If you want a login demo see https://github.com/neilm-fourjs/loginDemo
 
