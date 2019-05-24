@@ -59,8 +59,7 @@ FUNCTION g2_getFormNode(l_nam STRING) RETURNS om.DomNode
     LET n = ui.Interface.getRootNode()
     LET nl = n.selectByPath("//Form[@name='" || l_nam.trim() || "']")
     IF nl.getLength() < 1 THEN
-      CALL g2_errMsg(
-          __FILE__, __LINE__, "g2_getFormNode: Form not found '" || l_nam.trim() || "'!")
+      CALL g2_errMsg(__FILE__, __LINE__, "g2_getFormNode: Form not found '" || l_nam.trim() || "'!")
       RETURN NULL
     ELSE
       LET n = nl.item(1)
@@ -99,7 +98,8 @@ FUNCTION g2_genForm(l_nam STRING) RETURNS om.DomNode
 
   LET l_win = ui.Window.getCurrent()
   IF l_win IS NULL THEN
-    CALL g2_lib.g2_errMsg(__FILE__, __LINE__, SFMT(% "genForm: failed to get Window '%1'", "CURRENT"))
+    CALL g2_lib.g2_errMsg(
+        __FILE__, __LINE__, SFMT(% "genForm: failed to get Window '%1'", "CURRENT"))
     RETURN l_n
   END IF
 
@@ -117,7 +117,7 @@ END FUNCTION
 #+
 #+ @param msg   = String: Message text
 #+ @return none
-FUNCTION g2_notify( l_msg STRING ) RETURNS()
+FUNCTION g2_notify(l_msg STRING) RETURNS()
   DEFINE frm, g om.domNode
 
   IF l_msg IS NULL THEN
@@ -543,9 +543,7 @@ END FUNCTION
 #+ @param j Justify : NULL, center or right
 #+ @param s Style.
 #+ @return nothing
-FUNCTION g2_addLabel(
-    l om.DomNode, x SMALLINT, y SMALLINT, txt STRING, j STRING, s STRING)
-    RETURNS()
+FUNCTION g2_addLabel(l om.DomNode, x SMALLINT, y SMALLINT, txt STRING, j STRING, s STRING) RETURNS()
 
   LET l = l.createChild("Label")
   CALL l.setAttribute("posX", x)

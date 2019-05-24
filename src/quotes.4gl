@@ -1,4 +1,3 @@
-
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL combos
@@ -67,7 +66,10 @@ MAIN
       AFTER ROW
         LET m_scrArr[arr_curr()].currrow = ""
       ON ACTION SELECT
-        RUN "fglrun quotemnt.42r " || g2_lib.m_mdi || " " || m_arr[arr_curr()].quote_number WITHOUT WAITING
+        RUN "fglrun quotemnt.42r "
+            || g2_lib.m_mdi
+            || " "
+            || m_arr[arr_curr()].quote_number WITHOUT WAITING
     END DISPLAY
     BEFORE DIALOG
       CALL DIALOG.setCellAttributes(m_arrCol)
@@ -93,7 +95,7 @@ FUNCTION getData(l_where STRING, l_orderBy STRING)
   IF l_where IS NULL THEN
     LET l_where = "1=1"
   END IF
-  LET l_stmt = "SELECT * FROM quotes WHERE " || l_where || " ORDER BY "||l_orderBy
+  LET l_stmt = "SELECT * FROM quotes WHERE " || l_where || " ORDER BY " || l_orderBy
   DECLARE cstcur CURSOR FOR SELECT customer_name FROM customer WHERE customer_code = ?
 
   DISPLAY l_stmt

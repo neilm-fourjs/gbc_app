@@ -1,4 +1,3 @@
-
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL g2_grw
@@ -7,7 +6,7 @@ IMPORT FGL combos
 SCHEMA njm_demo310
 
 DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE customer.*
-TYPE t_scrRec  RECORD
+TYPE t_scrRec RECORD
   customer_code LIKE customer.customer_code,
   customer_name LIKE customer.customer_name,
   email LIKE customer.email,
@@ -43,7 +42,10 @@ MAIN
     END INPUT
     DISPLAY ARRAY m_scrArr TO list.*
       ON ACTION SELECT
-        RUN "fglrun custmnt.42r " || g2_lib.m_mdi || " " || m_arr[arr_curr()].customer_code WITHOUT WAITING
+        RUN "fglrun custmnt.42r "
+            || g2_lib.m_mdi
+            || " "
+            || m_arr[arr_curr()].customer_code WITHOUT WAITING
     END DISPLAY
     ON ACTION refresh
       CALL getData(NULL, "customer_code")
@@ -54,13 +56,13 @@ MAIN
     ON ACTION add
       LET l_rec.customer_code = "new"
       RUN "fglrun custmnt.42r " || g2_lib.m_mdi || " " || l_rec.customer_code WITHOUT WAITING
-		ON ACTION rpt
-			CALL rpt_func1()
+    ON ACTION rpt
+      CALL rpt_func1()
   END DIALOG
   CALL g2_lib.g2_exitProgram(0, "Finished")
 END MAIN
 ----------------------------------------------------------------------------------------------------
-FUNCTION getData(l_where STRING, l_orderBy STRING )
+FUNCTION getData(l_where STRING, l_orderBy STRING)
   DEFINE l_stmt STRING
   CALL m_scrArr.clear()
   CALL m_arr.clear()
@@ -81,27 +83,27 @@ FUNCTION getData(l_where STRING, l_orderBy STRING )
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 FUNCTION rpt_func1()
-	DEFINE l_rpt greRpt
-	DEFINE x, l_max INTEGER
-	LET l_rpt.pageWidth = 132
-	IF NOT l_rpt.init( "custlist1", TRUE, "PDF" ) THEN
-		CALL g2_lib.g2_winMessage("Error","Report Initialization failed!","exclamation")
-		RETURN
-	END IF
+  DEFINE l_rpt greRpt
+  DEFINE x, l_max INTEGER
+  LET l_rpt.pageWidth = 132
+  IF NOT l_rpt.init("custlist1", TRUE, "PDF") THEN
+    CALL g2_lib.g2_winMessage("Error", "Report Initialization failed!", "exclamation")
+    RETURN
+  END IF
 
-	LET l_max = m_scrArr.getLength()
-	CALL l_rpt.progress(0, l_max, 2)
-	START REPORT rpt1 TO XML HANDLER l_rpt.handle
-	FOR x = 1 TO l_max
-		CALL l_rpt.progress(x, l_max, 2)
-		OUTPUT TO REPORT rpt1( m_scrArr[x].* )
-	END FOR
-	FINISH REPORT rpt1
-	CALL l_rpt.finish()
+  LET l_max = m_scrArr.getLength()
+  CALL l_rpt.progress(0, l_max, 2)
+  START REPORT rpt1 TO XML HANDLER l_rpt.handle
+  FOR x = 1 TO l_max
+    CALL l_rpt.progress(x, l_max, 2)
+    OUTPUT TO REPORT rpt1(m_scrArr[x].*)
+  END FOR
+  FINISH REPORT rpt1
+  CALL l_rpt.finish()
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
-REPORT rpt1( l_rec t_scrRec )
-	FORMAT
-		ON EVERY ROW
-			PRINT l_rec.*
+REPORT rpt1(l_rec t_scrRec)
+  FORMAT
+    ON EVERY ROW
+      PRINT l_rec.*
 END REPORT

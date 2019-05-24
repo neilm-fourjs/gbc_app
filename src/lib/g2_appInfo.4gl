@@ -1,23 +1,23 @@
 # Simple class to handle Application information.
 PUBLIC TYPE appInfo RECORD
-	appName,
-	appBuild,
-	progname,
-	progDesc,
-	progVersion,
-	progAuth,
-	splashImage,
-	userName,
-	fe_typ,
-	fe_ver,
-	uni_typ,
-	uni_ver,
-	os,
-	cli_os,
-	cli_osver,
-	cli_res,
-	cli_dir,
-	cli_un
+  appName,
+          appBuild,
+          progname,
+          progDesc,
+          progVersion,
+          progAuth,
+          splashImage,
+          userName,
+          fe_typ,
+          fe_ver,
+          uni_typ,
+          uni_ver,
+          os,
+          cli_os,
+          cli_osver,
+          cli_res,
+          cli_dir,
+          cli_un
       STRING
 END RECORD
 
@@ -40,8 +40,8 @@ END FUNCTION
 FUNCTION (this appInfo) getClientInfo() RETURNS()
   LET this.fe_typ = UPSHIFT(ui.interface.getFrontEndName())
   LET this.fe_ver = ui.interface.getFrontEndVersion()
-	LET this.uni_typ =  ui.interface.getUniversalClientName()
-	LET this.uni_ver = ui.Interface.getUniversalClientVersion()
+  LET this.uni_typ = ui.interface.getUniversalClientName()
+  LET this.uni_ver = ui.Interface.getUniversalClientVersion()
   CALL ui.interface.frontcall("standard", "feinfo", ["ostype"], [this.cli_os])
   CALL ui.interface.frontcall("standard", "feinfo", ["osversion"], [this.cli_osver])
   CALL ui.interface.frontCall("standard", "feinfo", ["screenresolution"], [this.cli_res])
@@ -49,10 +49,12 @@ FUNCTION (this appInfo) getClientInfo() RETURNS()
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 FUNCTION (this appInfo) setUserName(l_user STRING) RETURNS()
-	IF l_user IS NULL THEN
-		LET this.userName = fgl_getEnv("USERNAME")
-		IF this.userName.getLength() < 2 THEN LET this.userName = fgl_getEnv("LOGNAME") END IF
-	ELSE
-		LET this.userName = l_user
-	END IF
+  IF l_user IS NULL THEN
+    LET this.userName = fgl_getEnv("USERNAME")
+    IF this.userName.getLength() < 2 THEN
+      LET this.userName = fgl_getEnv("LOGNAME")
+    END IF
+  ELSE
+    LET this.userName = l_user
+  END IF
 END FUNCTION

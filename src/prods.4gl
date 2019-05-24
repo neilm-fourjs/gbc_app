@@ -1,4 +1,3 @@
-
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL g2_grw
@@ -7,7 +6,7 @@ IMPORT FGL combos
 SCHEMA njm_demo310
 
 DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE stock.*
-TYPE t_scrRec  RECORD
+TYPE t_scrRec RECORD
   stock_code LIKE stock.stock_code,
   stock_cat LIKE stock.stock_cat,
   description LIKE stock.description,
@@ -44,7 +43,10 @@ MAIN
     END INPUT
     DISPLAY ARRAY m_scrArr TO list.*
       ON ACTION SELECT
-        RUN "fglrun prodmnt.42r " || g2_lib.m_mdi || " " || m_arr[arr_curr()].stock_code WITHOUT WAITING
+        RUN "fglrun prodmnt.42r "
+            || g2_lib.m_mdi
+            || " "
+            || m_arr[arr_curr()].stock_code WITHOUT WAITING
     END DISPLAY
     ON ACTION refresh
       CALL getData(NULL, "stock_code")
@@ -55,8 +57,8 @@ MAIN
     ON ACTION add
       LET l_rec.stock_code = "new"
       RUN "fglrun prodmnt.42r " || g2_lib.m_mdi || " " || l_rec.stock_code WITHOUT WAITING
-		ON ACTION rpt
-			CALL rpt_func1()
+    ON ACTION rpt
+      CALL rpt_func1()
   END DIALOG
   CALL g2_lib.g2_exitProgram(0, "Finished")
 END MAIN
@@ -68,7 +70,7 @@ FUNCTION getData(l_where STRING, l_orderBy STRING)
   IF l_where IS NULL THEN
     LET l_where = "1=1"
   END IF
-  LET l_stmt = "SELECT * FROM stock WHERE " || l_where || " ORDER BY "||l_orderBy
+  LET l_stmt = "SELECT * FROM stock WHERE " || l_where || " ORDER BY " || l_orderBy
   DISPLAY l_stmt
   PREPARE l_pre FROM l_stmt
   DECLARE l_cur CURSOR FOR l_pre
@@ -83,26 +85,26 @@ FUNCTION getData(l_where STRING, l_orderBy STRING)
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 FUNCTION rpt_func1()
-	DEFINE l_rpt greRpt
-	DEFINE x, l_max INTEGER
-	LET l_rpt.pageWidth = 132
-	IF NOT l_rpt.init( "prodlist1", TRUE, "PDF" ) THEN
-		CALL g2_lib.g2_winMessage("Error","Report Initialization failed!","exclamation")
-		RETURN
-	END IF
-	LET l_max = m_scrArr.getLength()
-	CALL l_rpt.progress(0, l_max, 2)
-	START REPORT rpt1 TO XML HANDLER l_rpt.handle
-	FOR x = 1 TO l_max
-		CALL l_rpt.progress(x, l_max, 2)
-		OUTPUT TO REPORT rpt1( m_scrArr[x].* )
-	END FOR
-	FINISH REPORT rpt1
-	CALL l_rpt.finish()
+  DEFINE l_rpt greRpt
+  DEFINE x, l_max INTEGER
+  LET l_rpt.pageWidth = 132
+  IF NOT l_rpt.init("prodlist1", TRUE, "PDF") THEN
+    CALL g2_lib.g2_winMessage("Error", "Report Initialization failed!", "exclamation")
+    RETURN
+  END IF
+  LET l_max = m_scrArr.getLength()
+  CALL l_rpt.progress(0, l_max, 2)
+  START REPORT rpt1 TO XML HANDLER l_rpt.handle
+  FOR x = 1 TO l_max
+    CALL l_rpt.progress(x, l_max, 2)
+    OUTPUT TO REPORT rpt1(m_scrArr[x].*)
+  END FOR
+  FINISH REPORT rpt1
+  CALL l_rpt.finish()
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
-REPORT rpt1( l_rec t_scrRec )
-	FORMAT
-		ON EVERY ROW
-			PRINT l_rec.*
+REPORT rpt1(l_rec t_scrRec)
+  FORMAT
+    ON EVERY ROW
+      PRINT l_rec.*
 END REPORT

@@ -37,9 +37,9 @@ FUNCTION g2_about(l_appInfo appInfo INOUT)
     LET l_fe_ver = "unknown"
   END IF
 
-	IF l_appInfo.userName IS NULL THEN
-		CALL l_appInfo.setUserName(NULL)
-	END IF
+  IF l_appInfo.userName IS NULL THEN
+    CALL l_appInfo.setUserName(NULL)
+  END IF
 
   OPEN WINDOW about AT 1, 1 WITH 1 ROWS, 1 COLUMNS ATTRIBUTE(STYLE = "naked")
   LET n = g2_getWinNode(NULL)
@@ -81,8 +81,7 @@ FUNCTION g2_about(l_appInfo appInfo INOUT)
 
   IF l_appInfo.appBuild IS NOT NULL THEN
     CALL g2_aui.g2_addLabel(g, 0, y, LSTR("Application"), "right", "black")
-    CALL g2_aui.g2_addLabel(
-        g, 10, y, l_appInfo.appName || " - " || l_appInfo.appBuild, NULL, NULL)
+    CALL g2_aui.g2_addLabel(g, 10, y, l_appInfo.appName || " - " || l_appInfo.appBuild, NULL, NULL)
     LET y = y + 1
   END IF
 
@@ -144,8 +143,7 @@ FUNCTION g2_about(l_appInfo appInfo INOUT)
   CALL w.setAttribute("gridWidth", 25)
 
   CALL g2_aui.g2_addLabel(g, 0, y, LSTR("Client OS") || ":", "right", "black")
-  CALL g2_aui.g2_addLabel(
-      g, 10, y, l_appInfo.cli_os || " / " || l_appInfo.cli_osver, NULL, "black")
+  CALL g2_aui.g2_addLabel(g, 10, y, l_appInfo.cli_os || " / " || l_appInfo.cli_osver, NULL, "black")
   LET y = y + 1
 
   CALL g2_aui.g2_addLabel(g, 0, y, LSTR("Clint OS User") || ":", "right", "black")
@@ -158,13 +156,11 @@ FUNCTION g2_about(l_appInfo appInfo INOUT)
   	END IF}
 
   CALL g2_aui.g2_addLabel(g, 0, y, LSTR("FrontEnd Version") || ":", "right", "black")
-  CALL g2_aui.g2_addLabel(
-      g, 10, y, l_appInfo.fe_typ || " " || l_appInfo.fe_ver, NULL, "black")
+  CALL g2_aui.g2_addLabel(g, 10, y, l_appInfo.fe_typ || " " || l_appInfo.fe_ver, NULL, "black")
   LET y = y + 1
 
   CALL g2_aui.g2_addLabel(g, 0, y, LSTR("Universal Renderer") || ":", "right", "black")
-  CALL g2_aui.g2_addLabel(
-      g, 10, y, l_appInfo.uni_typ || " " || l_appInfo.uni_ver, NULL, "black")
+  CALL g2_aui.g2_addLabel(g, 10, y, l_appInfo.uni_typ || " " || l_appInfo.uni_ver, NULL, "black")
   LET y = y + 1
   CALL g2_aui.g2_addLabel(g, 0, y, LSTR("FrontEnd Version-FEinfo") || ":", "right", "black")
   CALL g2_aui.g2_addLabel(g, 10, y, l_fe_typ || " " || l_fe_ver, NULL, "black")

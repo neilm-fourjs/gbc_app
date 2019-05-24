@@ -1,4 +1,3 @@
-
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL combos
