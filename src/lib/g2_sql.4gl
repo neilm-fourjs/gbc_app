@@ -186,6 +186,7 @@ END FUNCTION
 -- Update a row using the current data values
 FUNCTION (this sql) g2_SQLupdate() RETURNS BOOLEAN
   DEFINE l_sql, l_val, l_key STRING
+	DEFINE l_valNumeric DECIMAL(20,5)
 	DEFINE l_updsql base.SqlHandle
   DEFINE x SMALLINT
 	DEFINE l_para_no SMALLINT = 1
@@ -220,10 +221,15 @@ FUNCTION (this sql) g2_SQLupdate() RETURNS BOOLEAN
 -- Update the Parameters.
   FOR x = 1 TO this.fields.getLength()
 		LET l_val = this.fields[x].value
+		LET l_valNumeric = this.fields[x].value.trim()
 		IF this.fields[x].isKey THEN
 			LET l_key = this.fields[x].value.trimRight()
 		ELSE
-			CALL l_updsql.setParameter( this.fields[x].para_no, l_val )
+			IF this.fields[x].isNumeric THEN
+				CALL l_updsql.setParameter( this.fields[x].para_no, l_valNumeric )
+			ELSE
+				CALL l_updsql.setParameter( this.fields[x].para_no, l_val )
+			END IF
 		END IF
   END FOR
 	CALL l_updsql.setParameter( l_para_no, l_key )
@@ -249,6 +255,7 @@ END FUNCTION
 -- Insert a new row using the current data values
 FUNCTION (this sql) g2_SQLinsert() RETURNS BOOLEAN
   DEFINE l_sql, l_val STRING
+	DEFINE l_valNumeric DECIMAL(20,5)
 	DEFINE l_inssql base.SqlHandle
   DEFINE x SMALLINT
 	LET l_inssql = base.SqlHandle.create()
@@ -276,7 +283,12 @@ FUNCTION (this sql) g2_SQLinsert() RETURNS BOOLEAN
 -- Update the Parameters.
   FOR x = 1 TO this.fields.getLength()
 		LET l_val = this.fields[x].value
-		CALL l_inssql.setParameter( x, l_val )
+		LET l_valNumeric = this.fields[x].value.trim()
+		IF this.fields[x].isNumeric THEN
+			CALL l_inssql.setParameter( x, l_valNumeric )
+		ELSE
+			CALL l_inssql.setParameter( x, l_val )
+		END IF
   END FOR
 -- Excute the SQL
   TRY
