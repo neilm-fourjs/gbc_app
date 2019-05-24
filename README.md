@@ -23,7 +23,15 @@ NOTE: The GBC customization was done using the 1.00.53 release.
 
 
 ## Building
-This was written and tested on Linux and built using GeneroStudio 3.20, the Makefile is used to setup additional folders and to build the GBC. It assumes you have the GBC project zip downloaded in a folder pointed to by GBCPROJECTDIR.
+This was written and tested on Linux and built using GeneroStudio 3.20, the Makefile is used to setup additional folders and to build the GBC.
+* 1. The GST 3.20 installed licensed and the environment set eg: . envgenero
+* 2. The GBC prerequisites building ( grunt nodejs git ) plus: make & zip installed
+* 3. Set GBCPROJECTDIR=<folder containing fjs-gbc-1.00.53-build201905131540-project.zip>
+ 
+```
+$ git clone https://github.com/neilm-fourjs/gbc_app.git
+$ make
+```
 
 
 ## Database
