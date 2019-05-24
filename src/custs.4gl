@@ -28,7 +28,7 @@ MAIN
   OPEN FORM list FROM "custlist"
   DISPLAY FORM list
 
-  CALL getData(NULL)
+  CALL getData(NULL, "customer_code")
 
   DIALOG ATTRIBUTES(UNBUFFERED)
     INPUT l_search FROM search
@@ -36,7 +36,7 @@ MAIN
         IF l_search IS NOT NULL THEN
           LET l_where = g2_db.g2_chkSearch("customer", "customer_name", l_search)
           IF l_where IS NOT NULL THEN
-            CALL getData(l_where)
+            CALL getData(l_where, "customer_code")
           END IF
         END IF
         NEXT FIELD customer_code
@@ -46,7 +46,7 @@ MAIN
         RUN "fglrun custmnt.42r " || g2_lib.m_mdi || " " || m_arr[arr_curr()].customer_code WITHOUT WAITING
     END DISPLAY
     ON ACTION refresh
-      CALL getData(NULL)
+      CALL getData(NULL, "customer_code")
     ON ACTION advanced
       MESSAGE "Not yet!"
     ON ACTION close
@@ -60,14 +60,14 @@ MAIN
   CALL g2_lib.g2_exitProgram(0, "Finished")
 END MAIN
 ----------------------------------------------------------------------------------------------------
-FUNCTION getData(l_where STRING)
+FUNCTION getData(l_where STRING, l_orderBy STRING )
   DEFINE l_stmt STRING
   CALL m_scrArr.clear()
   CALL m_arr.clear()
   IF l_where IS NULL THEN
     LET l_where = "1=1"
   END IF
-  LET l_stmt = "SELECT * FROM customer WHERE " || l_where
+  LET l_stmt = "SELECT * FROM customer WHERE " || l_where || " ORDER BY " || l_orderBy
   DISPLAY l_stmt
   PREPARE l_pre FROM l_stmt
   DECLARE l_cur CURSOR FOR l_pre

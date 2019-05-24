@@ -44,13 +44,13 @@ FUNCTION before_input( l_new BOOLEAN, l_d ui.Dialog ) RETURNS ()
 	DEFINE l_key LIKE customer.customer_code
 	DEFINE x SMALLINT
 	IF l_new THEN
-		SELECT MAX( customer_code ) INTO l_key FROM customer
+		SELECT MAX( customer_code ) INTO l_key FROM customer -- doean't work in PostgreSQL ?
+		LET x = l_key[2,5]
+		LET x = x + 1
+		LET l_key[2,5] = x USING "&&&&"
+		CALL l_d.setFieldValue("customer_code", l_key)
+		CALL l_d.setFieldActive("customer_code", FALSE)
 	END IF
-	LET x = l_key[2,5]
-	LET x = x + 1
-	LET l_key[2,5] = x USING "&&&&"
-	CALL l_d.setFieldValue("customer_code", l_key)
-	CALL l_d.setFieldActive("customer_code", FALSE)
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 FUNCTION after_field( l_fldName STRING, l_fldValue STRING, l_d ui.Dialog ) RETURNS ()

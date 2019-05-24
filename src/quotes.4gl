@@ -48,7 +48,7 @@ MAIN
   OPEN FORM list FROM "quotelist"
   DISPLAY FORM list
 
-  CALL getData(NULL)
+  CALL getData(NULL, "quote_ref")
 
   DIALOG ATTRIBUTES(UNBUFFERED)
     INPUT l_search FROM search
@@ -56,7 +56,7 @@ MAIN
         IF l_search IS NOT NULL THEN
           LET l_where = g2_db.g2_chkSearch("quotes", "quote_ref", l_search)
           IF l_where IS NOT NULL THEN
-            CALL getData(l_where)
+            CALL getData(l_where, "quote_ref")
           END IF
         END IF
         NEXT FIELD quote_number
@@ -72,7 +72,7 @@ MAIN
     BEFORE DIALOG
       CALL DIALOG.setCellAttributes(m_arrCol)
     ON ACTION refresh
-      CALL getData(NULL)
+      CALL getData(NULL, "quote_ref")
     ON ACTION advanced
       MESSAGE "Not yet!"
     ON ACTION close
@@ -85,7 +85,7 @@ MAIN
   CALL g2_lib.g2_exitProgram(0, "Finished")
 END MAIN
 ----------------------------------------------------------------------------------------------------
-FUNCTION getData(l_where STRING)
+FUNCTION getData(l_where STRING, l_orderBy STRING)
   DEFINE l_stmt STRING
   DEFINE l_row SMALLINT
   DEFINE l_cust LIKE customer.customer_name
@@ -93,7 +93,7 @@ FUNCTION getData(l_where STRING)
   IF l_where IS NULL THEN
     LET l_where = "1=1"
   END IF
-  LET l_stmt = "SELECT * FROM quotes WHERE " || l_where
+  LET l_stmt = "SELECT * FROM quotes WHERE " || l_where || " ORDER BY "||l_orderBy
   DECLARE cstcur CURSOR FOR SELECT customer_name FROM customer WHERE customer_code = ?
 
   DISPLAY l_stmt
