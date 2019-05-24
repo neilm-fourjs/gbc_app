@@ -65,7 +65,7 @@ BUTTON clear : clear, STYLE="rounded";
 BUTTON save : save, STYLE="rounded green";
 BUTTON close : close, STYLE="rounded red";
 
-IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=X, AUTOSCALE, WIDTH=1000, SIZEPOLICY=FIXED,STYLE="noborder";
+IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=X, SIZEPOLICY=FIXED,STYLE="noborder";
 
 GROUP pg2 : pg2, STYLE="collapsed", TEXT="Price / Costs", GRIDCHILDRENINPARENT;
 GROUP pg3 : pg3, STYLE="collapsed", TEXT="Stock Levels", GRIDCHILDRENINPARENT;
@@ -97,9 +97,9 @@ f010 = FORMONLY.disc_code;
 LABEL l011 : lphys, TEXT="Physical", JUSTIFY=RIGHT;
 f011 = FORMONLY.physical_stock;
 LABEL l012 : lallo, TEXT="Allocated", JUSTIFY=RIGHT;
-f012 = FORMONLY.allocated_stock;
+f012 = FORMONLY.allocated_stock, NOENTRY;
 LABEL l013 : lfree, TEXT="Free", JUSTIFY=RIGHT;
-f013 = FORMONLY.free_stock;
+f013 = FORMONLY.free_stock, NOENTRY;
 
 TEXTEDIT f014 = FORMONLY.long_desc;
 

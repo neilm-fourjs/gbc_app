@@ -184,7 +184,7 @@ END FUNCTION
 -- Update a row using the current data values
 --
 -- NOTE: Need to find an alternative way to handle the SQL to stop sql-injection
-FUNCTION (this sql) g2_SQLupdate()
+FUNCTION (this sql) g2_SQLupdate() RETURNS BOOLEAN
   DEFINE l_sql, l_val, l_key STRING
   DEFINE x SMALLINT
   LET l_sql = "update " || this.table_name || " SET ("
@@ -227,13 +227,15 @@ FUNCTION (this sql) g2_SQLupdate()
     CALL this.g2_SQLgetRow(this.current_row, FALSE)
   ELSE
     CALL g2_lib.g2_errPopup(SFMT(% "Failed to update record!\n%1!", SQLERRMESSAGE))
+		RETURN FALSE
   END IF
+	RETURN TRUE
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 -- Insert a new row using the current data values
 --
 -- NOTE: Need to find an alternative way to handle the SQL to stop sql-injection
-FUNCTION (this sql) g2_SQLinsert()
+FUNCTION (this sql) g2_SQLinsert() RETURNS BOOLEAN
   DEFINE l_sql, l_val STRING
   DEFINE x SMALLINT
   LET l_sql = "insert into " || this.table_name || " ("
@@ -268,11 +270,13 @@ FUNCTION (this sql) g2_SQLinsert()
     CALL this.g2_SQLgetRow(SQL_LAST, FALSE)
   ELSE
     CALL g2_lib.g2_errPopup(SFMT(% "Failed to insert record!\n%1!", SQLERRMESSAGE))
+		RETURN FALSE
   END IF
+	RETURN TRUE
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 -- Delete a row for the current key field value
-FUNCTION (this sql) g2_SQLdelete()
+FUNCTION (this sql) g2_SQLdelete() RETURNS BOOLEAN
   DEFINE l_sql, l_val STRING
   LET l_val = this.handle.getResultValue(this.key_field_num)
   LET l_sql = "DELETE FROM " || this.table_name || " WHERE " || this.key_field || " = ?"
@@ -295,10 +299,13 @@ FUNCTION (this sql) g2_SQLdelete()
       CALL this.g2_SQLgetRow(this.current_row, FALSE)
     ELSE
       CALL g2_lib.g2_errPopup(SFMT(% "Failed to delete record!\n%1!", SQLERRMESSAGE))
+			RETURN FALSE
     END IF
   ELSE
     MESSAGE % "Delete aborted."
+		RETURN FALSE
   END IF
+	RETURN TRUE
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 -- Produce a simple json record for the fields

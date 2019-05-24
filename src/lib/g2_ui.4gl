@@ -1,19 +1,19 @@
 
 IMPORT FGL g2_sql
 
-TYPE t_inpt_func FUNCTION(l_new BOOLEAN)
-TYPE t_before_inp_func FUNCTION(l_new BOOLEAN, l_d ui.Dialog)
-TYPE t_after_inp_func FUNCTION(l_new BOOLEAN, l_d ui.Dialog) RETURNS BOOLEAN
-
+PUBLIC TYPE t_before_inp_func FUNCTION(l_new BOOLEAN, l_d ui.Dialog) RETURNS ()
+PUBLIC TYPE t_after_inp_func FUNCTION(l_new BOOLEAN, l_d ui.Dialog) RETURNS BOOLEAN
+PUBLIC TYPE t_after_fld_func FUNCTION(l_fldName STRING, l_fldValue STRING, l_d ui.Dialog) RETURNS ()
 PUBLIC TYPE ui RECORD
 	dia ui.Dialog,
 	before_inp_func t_before_inp_func,
 	after_inp_func t_after_inp_func,
-	inpt_func t_inpt_func
+	after_fld_func t_after_fld_func
 END RECORD
 --------------------------------------------------------------------------------
 FUNCTION (this ui) g2_UIinput(l_new BOOLEAN, l_sql g2_sql.sql, l_acceptAction STRING, l_exitOnAccept BOOLEAN)
   DEFINE x SMALLINT
+	DEFINE l_evt, l_fld STRING
 	IF l_acceptAction.getLength() < 1 THEN LET l_acceptAction = "accept" END IF
   CALL ui.Dialog.setDefaultUnbuffered(TRUE)
   LET this.dia = ui.Dialog.createInputByName(l_sql.fields)
@@ -37,7 +37,12 @@ FUNCTION (this ui) g2_UIinput(l_new BOOLEAN, l_sql g2_sql.sql, l_acceptAction ST
   CALL this.dia.addTrigger("ON ACTION "||l_acceptAction)
   LET int_flag = FALSE
   WHILE TRUE
-    CASE this.dia.nextEvent()
+		LET l_evt = this.dia.nextEvent()
+		IF l_evt.subString(1,11) = "AFTER FIELD" THEN
+			LET l_fld = l_evt.subString(13, l_evt.getLength())
+			LET l_evt = "AFTER FIELD"
+		END IF
+    CASE l_evt
       WHEN "BEFORE INPUT"
         IF this.before_inp_func IS NOT NULL THEN
           CALL this.before_inp_func(l_new, this.dia)
@@ -52,12 +57,21 @@ FUNCTION (this ui) g2_UIinput(l_new BOOLEAN, l_sql g2_sql.sql, l_acceptAction ST
 				IF NOT int_flag THEN
 					CALL l_sql.g2_SQLrec2Json()
 					IF l_new THEN
-						CALL l_sql.g2_SQLinsert()
+						IF l_sql.g2_SQLinsert() THEN
+							LET l_new = FALSE -- change to update mode now we have the row inserted
+						END IF
 					ELSE
-						CALL l_sql.g2_SQLupdate()
+						IF NOT l_sql.g2_SQLupdate() THEN
+							CONTINUE WHILE
+						END IF
 					END IF
 				END IF
         IF l_exitOnAccept THEN EXIT WHILE END IF
+
+      WHEN "AFTER FIELD"
+				IF this.after_fld_func IS NOT NULL THEN
+					CALL this.after_fld_func(l_fld, this.dia.getFieldValue(l_fld), this.dia)
+				END IF
 
       WHEN "ON ACTION close"
         LET int_flag = TRUE
