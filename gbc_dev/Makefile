@@ -16,7 +16,7 @@ build:
 
 # Setup the GBC build env
 build/gbc-current: 
-	./gbc-setup.sh
+	./gbc-setup.sh > gbc-setup.out
 
 subdirs: $(dirs)
 	@for dir in $^ ; do  \

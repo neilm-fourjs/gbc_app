@@ -15,11 +15,13 @@ $(GBCBASE)/build/gbc-$(PACKVER)/customization/$(CUSTOMNAME):
 
 # Build our custom gbc
 $(GBCBASE)/build/gbc-$(PACKVER)/dist/$(CUSTOMNAME): $(GBCBASE)/build/gbc-$(PACKVER) $(GBCBASE)/build/gbc-$(PACKVER)/customization/$(CUSTOMNAME)
-	cd $(GBCBASE)/build/gbc-$(PACKVER) && grunt $(CFG) --customization=customization/$(CUSTOMNAME) 
+	@echo "Building GBC ..."
+	@cd $(GBCBASE)/build/gbc-$(PACKVER) && grunt $(CFG) --customization=customization/$(CUSTOMNAME)  > $(CWD)/$(CUSTOMNAME).out 
+	@tail -10 $(CWD)/$(CUSTOMNAME).out
 
 # Package our custom gbc
 $(TARGET): $(GBCBASE)/build/gbc-$(PACKVER)/dist/$(CUSTOMNAME)
-	cd $(GBCBASE)/build/gbc-$(PACKVER)/dist/customization/$(CUSTOMNAME) && zip -r $@ * > $(CWD)/$(CUSTOMNAME).lst
+	@cd $(GBCBASE)/build/gbc-$(PACKVER)/dist/customization/$(CUSTOMNAME) && zip -r $@ * > $(CWD)/$(CUSTOMNAME).lst
 
 
 dev:
