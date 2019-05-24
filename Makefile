@@ -1,6 +1,8 @@
 
 ARCH=gbc_app320_gbc
 GASALIAS=g320
+GASCFG=$(FGLASDIR)/etc/as.xcf
+#GASCFG=$(FGLASDIR)/etc/isv_as320.xcf
 
 all: gbc gar distbin/.deployed
 
@@ -21,13 +23,13 @@ gbc: gbc_dev/build gbc_dev/build/gbc-current/dist/customization/gbc-app
 distbin/.deployed: gar deploy
 
 undeploy: 
-	cd distbin && gasadmin gar --disable-archive $(ARCH) | true
-	cd distbin && gasadmin gar --undeploy-archive $(ARCH).gar
+	cd distbin && gasadmin gar -f $(GASCFG) --disable-archive $(ARCH) | true
+	cd distbin && gasadmin gar -f $(GASCFG) --undeploy-archive $(ARCH).gar
 	rm -f distbin/.deployed
 
 deploy: 
-	cd distbin && gasadmin gar --deploy-archive $(ARCH).gar
-	cd distbin && gasadmin gar --enable-archive $(ARCH)
+	cd distbin && gasadmin gar -f $(GASCFG) --deploy-archive $(ARCH).gar
+	cd distbin && gasadmin gar -f $(GASCFG) --enable-archive $(ARCH)
 	echo "deployed" > distbin/.deployed
 
 redeploy: undeploy deploy
