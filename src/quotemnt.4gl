@@ -61,7 +61,7 @@ FUNCTION showDets(l_rec RECORD LIKE quotes.*)
     LET l_dets[l_row].unit_rrp = l_qdet.unit_rrp
   END FOREACH
 
-  CALL ui.Window.getCurrent().setText(SFMT("Quote:%1", l_rec.quote_number))
+  CALL ui.Window.getCurrent().setText(SFMT("Quote:%1", l_rec.quote_ref))
   LET l_rec2.* = l_rec.*
 
   LET int_flag = FALSE

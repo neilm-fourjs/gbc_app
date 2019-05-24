@@ -23,6 +23,7 @@ MAIN
 
   LET l_key = ARG_VAL(2)
   IF l_key = "new" OR l_key IS NULL THEN LET l_new = TRUE END IF
+	CALL ui.window.getCurrent().setText(SFMT("Prod:%1",l_key))
   IF l_new THEN
 		CALL m_sql.g2_SQLinit(l_table,"*",l_keyField, "1=2")
 	ELSE
