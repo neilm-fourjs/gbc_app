@@ -13,7 +13,8 @@ TYPE t_fields RECORD
 	colLength SMALLINT,
   isNumeric BOOLEAN,
 	isKey	BOOLEAN,
-  value STRING
+  value STRING,
+	para_no SMALLINT
 END RECORD
 
 PUBLIC TYPE sql RECORD
@@ -68,6 +69,7 @@ FUNCTION (this sql) g2_SQLcursor()
   FOR x = 1 TO this.handle.getResultCount()
     LET this.fields[x].colName = this.handle.getResultName(x)
     LET this.fields[x].colType = this.handle.getResultType(x)
+		LET this.fields[x].isKey = FALSE
     IF this.fields[x].colname.trim() = this.key_field.trim() THEN
 			LET this.fields[x].isKey = TRUE
       LET this.key_field_num = x
@@ -182,11 +184,14 @@ FUNCTION (this sql) g2_SQLgetRow(l_row INTEGER, l_msg BOOLEAN)
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 -- Update a row using the current data values
---
--- NOTE: Need to find an alternative way to handle the SQL to stop sql-injection
 FUNCTION (this sql) g2_SQLupdate() RETURNS BOOLEAN
   DEFINE l_sql, l_val, l_key STRING
+	DEFINE l_updsql base.SqlHandle
   DEFINE x SMALLINT
+	DEFINE l_para_no SMALLINT = 1
+	LET l_updsql = base.SqlHandle.create()
+
+-- Build the SQL
   LET l_sql = "update " || this.table_name || " SET ("
   FOR x = 1 TO this.fields.getLength()
     IF x != this.key_field_num THEN
@@ -198,25 +203,34 @@ FUNCTION (this sql) g2_SQLupdate() RETURNS BOOLEAN
   END FOR
   LET l_sql = l_sql.append(") = (")
   FOR x = 1 TO this.fields.getLength()
-		IF this.fields[x].isNumeric THEN
-			LET l_val = this.fields[x].value
-		ELSE
-			LET l_val = SFMT("'%1'",this.fields[x].value.trimRight())
-		END IF
-		IF this.fields[x].isKey THEN
-			LET l_key = this.fields[x].value.trimRight()
-		ELSE
-      LET l_sql = l_sql.append(l_val)
-      IF x != this.fields.getLength() THEN
-        LET l_sql = l_sql.append(",")
-      END IF
+		IF NOT this.fields[x].isKey THEN
+			LET this.fields[x].para_no = l_para_no
+			LET l_para_no = l_para_no + 1
+			IF x != this.fields.getLength() THEN
+				LET l_sql = l_sql.append("?,")
+			ELSE
+				LET l_sql = l_sql.append("?")
+			END IF
 		END IF
   END FOR
   LET l_sql = l_sql.append(") where " || this.key_field || " = ?")
 	DISPLAY "SQL:",l_sql, " Key:",l_key
+	CALL l_updsql.prepare(l_sql)
+
+-- Update the Parameters.
+  FOR x = 1 TO this.fields.getLength()
+		LET l_val = this.fields[x].value
+		IF this.fields[x].isKey THEN
+			LET l_key = this.fields[x].value.trimRight()
+		ELSE
+			CALL l_updsql.setParameter( this.fields[x].para_no, l_val )
+		END IF
+  END FOR
+	CALL l_updsql.setParameter( l_para_no, l_key )
+
+-- Excute the SQL
   TRY
-    PREPARE upd_stmt FROM l_sql
-    EXECUTE upd_stmt USING l_key
+		CALL l_updsql.execute()
     MESSAGE "Record Updated"
 		DISPLAY "Record Updated, status:",STATUS
   CATCH
@@ -233,11 +247,13 @@ FUNCTION (this sql) g2_SQLupdate() RETURNS BOOLEAN
 END FUNCTION
 ----------------------------------------------------------------------------------------------------
 -- Insert a new row using the current data values
---
--- NOTE: Need to find an alternative way to handle the SQL to stop sql-injection
 FUNCTION (this sql) g2_SQLinsert() RETURNS BOOLEAN
   DEFINE l_sql, l_val STRING
+	DEFINE l_inssql base.SqlHandle
   DEFINE x SMALLINT
+	LET l_inssql = base.SqlHandle.create()
+
+-- Build the SQL
   LET l_sql = "insert into " || this.table_name || " ("
   FOR x = 1 TO this.fields.getLength()
     LET l_sql = l_sql.append(this.fields[x].colname)
@@ -245,22 +261,26 @@ FUNCTION (this sql) g2_SQLinsert() RETURNS BOOLEAN
       LET l_sql = l_sql.append(",")
     END IF
   END FOR
-  LET l_sql = l_sql.append(") values(")
+  LET l_sql = l_sql.append(") values (")
   FOR x = 1 TO this.fields.getLength()
-		IF this.fields[x].isNumeric THEN
-			LET l_val = this.fields[x].value
-		ELSE
-			LET l_val = SFMT("'%1'",this.fields[x].value)
-		END IF
-		LET l_sql = l_sql.append(l_val)
 		IF x != this.fields.getLength() THEN
-			LET l_sql = l_sql.append(",")
+			LET l_sql = l_sql.append("?,")
+		ELSE
+			LET l_sql = l_sql.append("?")
 		END IF
-  END FOR
+	END FOR
   LET l_sql = l_sql.append(")")
+	DISPLAY "SQL:",l_sql
+	CALL l_inssql.prepare(l_sql)
+
+-- Update the Parameters.
+  FOR x = 1 TO this.fields.getLength()
+		LET l_val = this.fields[x].value
+		CALL l_inssql.setParameter( x, l_val )
+  END FOR
+-- Excute the SQL
   TRY
-    PREPARE ins_stmt FROM l_sql
-    EXECUTE ins_stmt
+		CALL l_inssql.execute()
     MESSAGE "Record Inserted."
   CATCH
     ERROR "Insert Failed!"
