@@ -27,6 +27,7 @@ END RECORD
 #+
 #+ @param l_dir Directory to log to - can be NULL to use $LOGDIR
 #+ @param l_name File name - can be NULL to default
+#+ @param l_ext File extension - can be NULL to default ( .log )
 #+ @param l_useDate string "true" / "false" include the date in the log name
 FUNCTION (this logger) init(l_dir STRING, l_name STRING, l_ext STRING, l_useDate STRING) RETURNS()
   CALL this.setLogDir(l_dir)
