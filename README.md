@@ -30,6 +30,8 @@ This was written and tested on Linux and built using GeneroStudio 3.20, the Make
  
 ```
 $ git clone https://github.com/neilm-fourjs/gbc_app.git
+$ cd gbc_app
+$ make
 $ make
 ```
 
