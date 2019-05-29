@@ -25,7 +25,7 @@ BODY {
 }
 
 .mt-field:focus {
-	border-color: #66afe9;
+	border-color: $njm-current-field-focus-border-glow;
 	outline-offset: -2px;
 }
 
@@ -93,6 +93,9 @@ BODY {
 }
 
 .gbc_GroupTitleWidget {
-	background-color: $theme-primary-faded-background-color;
+	background-color: $theme-header-color;
 }
 
+.gbc_FormWidget {
+	margin-top: 4px;
+}

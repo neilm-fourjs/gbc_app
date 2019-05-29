@@ -22,11 +22,11 @@
      <StyleAttribute name="fontWeight" value="bold" />
   </Style>
   <Style name=".green">
-     <StyleAttribute name="backgroundColor" value="#5cb85c" />
+     <!--StyleAttribute name="backgroundColor" value="#5cb85c" /-->
      <StyleAttribute name="fontWeight" value="bold" />
   </Style>
   <Style name=".red">
-     <StyleAttribute name="backgroundColor" value="red" />
+     <!--StyleAttribute name="backgroundColor" value="#d85c5c" /-->
      <StyleAttribute name="fontWeight" value="bold" />
   </Style>
   <Style name=".titl">

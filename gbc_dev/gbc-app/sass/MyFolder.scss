@@ -20,15 +20,9 @@
 	padding: 0px;
 }
 
-/*
-.mt-tab-titles [__tabbedcontainerwidget] {
-	border-bottom: 1px solid $theme-primary-emphasis-background-color;
-}
-*/
-
 .mt-tab-titles-container[__FolderWidget=top] .mt-tab-title.mt-tab-current {
 	background-color: $theme-primary-color;
-	border-bottom: $theme-primary-color;
+	border-bottom: solid 1px $theme-primary-color;
 	color: $palette-text-secondary;
 	fill: $palette-text-secondary;
 }
@@ -37,6 +31,7 @@
 	background-color: $theme-primary-faded-background-color;
 	border-radius: 8px 8px 0px 0px;
 	border: solid 1px $theme-primary-faded-background-color;
+	border-bottom: solid 1px $theme-primary-emphasis-background-color;
 	color: $palette-text-secondary;
 	fill: $palette-text-secondary;
 }

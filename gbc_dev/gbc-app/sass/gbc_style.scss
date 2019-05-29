@@ -22,19 +22,16 @@
 	font-size: 16px;
 	padding: 0 30px;
 	line-height: 55px;
-	background-color: #f7931e !important;
-}
-.gbc_style_loginbut:not(.disabled):hover {
-	background-color: #e7830e;
+	background-color: $njm-login-button-background !important;
 }
 
 .gbc_style_green {
-	background-color: #5cb85c !important;
+	background-color: $njm-green-button-background !important;
 	color: $theme-primary-color !important;
 }
 
 .gbc_style_red {
-	background-color: red !important;
+	background-color: $njm-red-button-background !important;
 	color: $theme-primary-color !important;
 }
 
@@ -61,10 +58,12 @@
 	background-position: center !important;
 }
 
+/*
 // add a border to the form
 .gbc_style_formborder {
 	margin: 10px;
 	box-shadow: 4px 4px 6px $theme-primary-emphasis-background-color;
 	border-radius: 2.4px;
 }
+*/
 

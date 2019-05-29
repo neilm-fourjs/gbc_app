@@ -12,6 +12,7 @@
 IMPORT os
 IMPORT util
 IMPORT FGL g2_logging
+
 &include "g2_debug.inc"
 
 PUBLIC DEFINE g2_log g2_logging.logger
@@ -20,25 +21,24 @@ PUBLIC DEFINE m_mdi CHAR(1)
 PUBLIC DEFINE m_isUniversal BOOLEAN
 PUBLIC DEFINE m_isGDC BOOLEAN
 
-FUNCTION g2_init(l_mdi CHAR(1), l_styles STRING)
-  CALL g2_log.init(NULL, NULL, "log", "TRUE")
-  CALL g2_err.init(NULL, NULL, "err", "TRUE")
-  DISPLAY "StartLog ", g2_err.fullLogPath
+FUNCTION g2_init(l_mdi CHAR(1), l_cfgname STRING)
+	DEFINE l_ucn STRING
+	CALL g2_log.init(NULL, NULL, "log", "TRUE")
+	CALL g2_log.init(NULL, NULL, "err", "TRUE")
+
   CALL STARTLOG(g2_err.fullLogPath)
   WHENEVER ANY ERROR CALL g2_error
 
-  LET gl_dbgLev = 2
+	LET m_isGDC = FALSE
+	LET m_isUniversal = TRUE
+	LET l_ucn = ui.Interface.getUniversalClientName()
+	IF l_ucn.getLength() < 3 THEN LET l_ucn = "?" END IF
+	IF ui.Interface.getFrontEndName() = "GDC" THEN LET m_isGDC = TRUE END IF
+	IF l_ucn != "GBC" THEN LET m_isUniversal = FALSE END IF
 
-  LET m_isGDC = FALSE
-  LET m_isUniversal = FALSE
-  IF ui.Interface.getFrontEndName() = "GDC" THEN
-    LET m_isGDC = TRUE
-  END IF
-  IF ui.Interface.getUniversalClientName() = "GBC" THEN
-    LET m_isUniversal = TRUE
-  END IF
-
-  CALL g2_loadStyles(l_styles)
+  CALL g2_loadStyles(l_cfgname)
+	CALL g2_loadToolBar(l_cfgname)
+	CALL g2_loadActions(l_cfgname)
   CALL g2_mdisdi(l_mdi)
 END FUNCTION
 --------------------------------------------------------------------------------
@@ -48,11 +48,11 @@ END FUNCTION
 #+ S = Not MDI
 #+ @param l_mdi_sdi S/C/M = default is 'S'
 FUNCTION g2_mdisdi(l_mdi_sdi CHAR(1))
-  DEFINE l_container, l_desc STRING
+	DEFINE l_container, l_desc STRING
   IF l_mdi_sdi IS NULL OR l_mdi_sdi = " " THEN
     LET l_mdi_sdi = "S"
   END IF
-  LET m_mdi = l_mdi_sdi
+	LET m_mdi = l_mdi_sdi
 
   LET l_container = fgl_getEnv("FJS_MDICONT")
   IF l_container IS NULL OR l_container = " " THEN
@@ -72,30 +72,76 @@ FUNCTION g2_mdisdi(l_mdi_sdi CHAR(1))
       CALL ui.Interface.setText(l_desc)
       CALL ui.Interface.setType("container")
       CALL ui.Interface.setName(l_container)
-    OTHERWISE
-      GL_DBGMSG(2, "gl_init: Not MDI")
+		OTHERWISE
+			GL_DBGMSG(2, "gl_init: Not MDI")
   END CASE
 END FUNCTION
 --------------------------------------------------------------------------------
 #+ Load the style file depending on the client
-FUNCTION g2_loadStyles(l_sty STRING) RETURNS()
-  DEFINE l_fe STRING
-
-  IF l_sty IS NULL THEN
-    LET l_sty = "default"
-  END IF
-  IF m_isGDC THEN
-    LET l_fe = "GDC"
-  END IF
-  IF m_isUniversal THEN
-    LET l_fe = "GBC"
-  END IF
-
-  TRY
-    CALL ui.interface.loadStyles(l_sty || "_" || l_fe)
-  CATCH
-    CALL ui.interface.loadStyles(l_sty)
-  END TRY
+FUNCTION g2_loadStyles(l_stName STRING) RETURNS()
+  DEFINE l_fe, l_name STRING
+	IF l_stName IS NULL THEN LET l_stName = "default" END IF
+	LET l_fe = "GBC"
+  IF m_isGDC THEN LET l_fe = "GDC" END IF
+  IF m_isUniversal THEN LET l_fe = "GBC" END IF
+	LET l_name = l_stName||"_"||l_fe
+	TRY
+ 		CALL ui.interface.loadStyles(l_name)
+	CATCH
+ 		LET l_name = l_stName
+	END TRY
+	TRY
+ 		CALL ui.interface.loadStyles(l_name)
+	CATCH
+ 		LET l_name = "FAILED!"
+	END TRY
+  GL_DBGMSG(0, SFMT("g2_loadStyles: file=%1 ", l_name ))
+END FUNCTION
+--------------------------------------------------------------------------------
+#+ Load the Action Defaults file depending on the client
+FUNCTION g2_loadActions(l_adName STRING) RETURNS()
+	IF l_adName IS NULL THEN LET l_adName = "default" END IF
+	TRY
+		CALL ui.Interface.loadActionDefaults( l_adName )
+	CATCH
+		LET l_adName = "default"
+	END TRY
+	TRY
+		CALL ui.Interface.loadActionDefaults( l_adName )
+	CATCH
+		LET l_adName = "FAILED!"
+	END TRY
+  GL_DBGMSG(0, SFMT("g2_loadActions: file=%1 ", l_adName ))
+END FUNCTION
+--------------------------------------------------------------------------------
+#+ Load the ToolBar file depending on the client
+FUNCTION g2_loadToolBar(l_tbName STRING) RETURNS()
+	IF l_tbName IS NULL THEN LET l_tbName = "default" END IF
+	TRY
+		CALL ui.Interface.loadToolBar( l_tbName )
+	CATCH
+		LET l_tbName = "FAILED!"
+	END TRY
+  GL_DBGMSG(0, SFMT("g2_loadToolBar: file=%1 ", l_tbName ))
+END FUNCTION
+--------------------------------------------------------------------------------
+#+ Load the TopMenu file depending on the client
+FUNCTION g2_loadTopMenu(l_tmName STRING) RETURNS()
+	DEFINE l_w ui.Window
+	DEFINE l_f ui.Form
+	LET l_w = ui.Window.getCurrent()
+	IF l_w IS NOT NULL THEN	LET l_f = l_w.getForm() END IF
+	IF l_tmName IS NULL THEN LET l_tmName = "default" END IF
+	TRY
+		IF l_f IS NOT NULL THEN
+			CALL l_f.loadTopMenu( l_tmName )
+		ELSE
+			CALL ui.Interface.loadTopMenu( l_tmName )
+		END IF
+	CATCH
+		LET l_tmName = "FAILED!"
+	END TRY
+  GL_DBGMSG(0, SFMT("g2_loadTopMenu: file=%1 ", l_tmName ))
 END FUNCTION
 --------------------------------------------------------------------------------
 #+ Generic Windows message Dialog.  NOTE: This handles messages when there is
@@ -114,15 +160,10 @@ FUNCTION g2_winMessage(l_title STRING, l_message STRING, l_icon STRING) RETURNS(
     LET l_message = "Message was NULL!!\n" || base.Application.getStackTrace()
   END IF
 
-  GL_DBGMSG(2, "gl_winMessage: " || l_message)
-  IF fgl_getEnv("FGLGUI") = "0" THEN
-    DISPLAY l_message
-    RETURN
-  END IF
-
   LET l_win = ui.window.getcurrent()
   IF l_win IS NULL THEN -- Needs a current window or dialog doesn't work!!
     OPEN WINDOW dummy AT 1, 1 WITH 1 ROWS, 1 COLUMNS
+		CALL ui.Window.getCurrent().setText(" ") -- clear default window title to avoid 'dummy' showing in gbc.
   END IF
   IF l_icon = "exclamation" THEN
     ERROR ""
@@ -169,13 +210,12 @@ FUNCTION g2_winQuestion(
   IF NOT l_toks.hasMoreTokens() THEN
     RETURN NULL
   END IF
-
   WHILE l_toks.hasMoreTokens()
     LET l_opt[l_opt.getLength() + 1] = l_toks.nextToken()
   END WHILE
-  FOR x = l_opt.getLength() + 1 TO 10
-    LET l_opt[x] = "__" || x
-  END FOR
+	FOR x = l_opt.getLength()+1 TO 10
+		LET l_opt[x] = "__"||x
+	END FOR
 
   -- Handle the case when there is no current window
   LET l_dum = FALSE
@@ -188,8 +228,7 @@ FUNCTION g2_winQuestion(
   MENU l_title ATTRIBUTE(STYLE = "dialog", COMMENT = l_message, IMAGE = l_icon)
     BEFORE MENU
       FOR x = 1 TO 10
-        CALL DIALOG.setActionHidden(
-            l_opt[x].toLowerCase(), IIF(l_opt[x].subString(1, 2) = "__", TRUE, FALSE))
+				CALL DIALOG.setActionHidden(l_opt[x].toLowerCase(), IIF(l_opt[x].subString(1,2) = "__",TRUE,FALSE))
         IF l_opt[x] IS NOT NULL THEN
           IF l_ans.equalsIgnoreCase(l_opt[x]) THEN
             NEXT OPTION l_opt[x]
@@ -222,6 +261,14 @@ FUNCTION g2_winQuestion(
   END IF
   RETURN l_result
 END FUNCTION
+--------------------------------------------------------------------------------
+#+ Simple message with ui refresh
+#+
+#+ @return Nothing
+FUNCTION g2_message(l_msg STRING) --{{{
+  MESSAGE NVL(l_msg,"NULL")
+	CALL ui.Interface.refresh()
+END FUNCTION --}}}
 --------------------------------------------------------------------------------
 #+ Simple error message
 #+
@@ -282,18 +329,16 @@ END FUNCTION
 --------------------------------------------------------------------------------
 #+ Check the client for it's vesion
 #+
-FUNCTION g2_chkClientVer(l_ver STRING, l_feature STRING) RETURNS BOOLEAN
+FUNCTION g2_chkClientVer(l_cli STRING, l_ver STRING, l_feature STRING) RETURNS BOOLEAN
   DEFINE l_fe_major DECIMAL(4, 2)
   DEFINE l_fe_minor SMALLINT
   DEFINE l_ck_major DECIMAL(4, 2)
   DEFINE l_ck_minor SMALLINT
 
   -- if client doesn't match just return true
-  IF NOT m_isGDC THEN
-    RETURN TRUE
-  END IF
+  IF NOT m_isGDC THEN RETURN TRUE END IF
 
-  CALL g2_getVer(ui.Interface.getFrontEndVersion()) RETURNING l_fe_major, l_fe_minor
+  CALL g2_getVer( ui.Interface.getFrontEndVersion() ) RETURNING l_fe_major, l_fe_minor
   CALL g2_getVer(l_ver) RETURNING l_ck_major, l_ck_minor
 
   IF l_fe_major < l_ck_major OR (l_fe_major = l_ck_major AND l_fe_minor < l_ck_minor) THEN

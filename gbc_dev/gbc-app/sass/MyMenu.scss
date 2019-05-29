@@ -1,20 +1,40 @@
 
-.gbc_MenuWidgetScrollContainer {
+.gbc_MenuWidget > * {
+	margin: 0px !important;
+}
+
+.gbc_WindowMenuContainerBottom > .gbc_MenuWidget {
+	border-top: 1px solid $theme-primary-emphasis-background-color;
+}
+
+.gbc_WindowMenuContainerTop > .gbc_MenuWidget {
+	border-bottom: 1px solid $theme-primary-emphasis-background-color;
+}
+
+.gbc_WindowMenuContainerRight > .gbc_MenuWidget {
+	border-left: 1px solid $theme-primary-emphasis-background-color;
+}
+
+.gbc_MenuWidget {
+	color: $palette-text-secondary;
+	fill: $palette-text-secondary;
+	background-color: $theme-header-color;
+}
+
+/* Left Hand Menu to make startMenu theme */
+
+.gbc_WindowMenuContainerLeft > .gbc_MenuWidget > .gbc_MenuWidgetScrollContainer {
 	color: $theme-primary-color;
 	fill: $theme-primary-color;
 	background-color: $theme-primary-background-color;
 }
 
-.gbc_MenuWidget > * {
-	margin: 0px !important;
-}
-
-.gbc_MenuWidget > .gbc_MenuWidgetScrollContainer .containerElement > * {
+.gbc_WindowMenuContainerLeft > .gbc_MenuWidget > .gbc_MenuWidgetScrollContainer .containerElement > * {
 	padding: 12px 15px;
 	border-bottom: 2px solid $theme-primary-emphasis-background-color;
 }
 
-.gbc_MenuWidget > .gbc_MenuWidgetTitle {
+.gbc_WindowMenuContainerLeft > .gbc_MenuWidget > .gbc_MenuWidgetTitle {
 	margin-top: 0px !important;
 	background-color: $theme-primary-background-color;
 	color: $theme-primary-color;
@@ -23,4 +43,5 @@
 	width: 100%;
 	border-bottom: 1px solid $theme-primary-emphasis-background-color;
 }
+
 
