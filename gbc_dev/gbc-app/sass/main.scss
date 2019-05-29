@@ -57,7 +57,8 @@ BODY {
 	box-shadow: none;
 	background-color: inherit;
 	color: inherit;
-	border: 1px dashed inherit;
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid $theme-primary-emphasis-background-color;
 }	
 
 

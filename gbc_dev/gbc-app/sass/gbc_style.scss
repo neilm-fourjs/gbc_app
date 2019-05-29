@@ -35,6 +35,10 @@
 	color: $theme-primary-color !important;
 }
 
+.gbc_style_rounded > .mt-button {
+	border: 0px;
+}
+
 .gbc_style_rounded {
 	border: 1px solid $mt-button-primary-background-color;
 	border-radius: 4px;
