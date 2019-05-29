@@ -9,11 +9,18 @@
 	padding: 0px !important;
 }
 
+.gbc_style_link > .mt-button {
+	border: 0px;
+	color: $njm-login-button-background !important;
+}
 .gbc_style_link {
 	background-color: inherit !important;
 	color: $mt-button-primary-background-color !important;
 }
 
+.gbc_style_loginbut > .mt-button {
+	border: 0px;
+}
 .gbc_style_loginbut {
 	border-radius: 27px;
 	border-style: none;
@@ -38,7 +45,6 @@
 .gbc_style_rounded > .mt-button {
 	border: 0px;
 }
-
 .gbc_style_rounded {
 	border: 1px solid $mt-button-primary-background-color;
 	border-radius: 4px;
