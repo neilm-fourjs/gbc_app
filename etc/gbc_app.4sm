@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ANSI_X3.4-1968"?>
 <StartMenu>
-  <StartMenuGroup text="Applications:">
+  <StartMenuGroup text="Programs:">
     <StartMenuCommand image="fa-industry" text="Products" exec="fglrun prods C"/>
     <StartMenuCommand image="fa-bookmark" text="Quotes" exec="fglrun quotes C"/>
     <StartMenuCommand image="fa-cog" text="Customers" exec="fglrun custs C"/>

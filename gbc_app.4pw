@@ -87,6 +87,7 @@
         <File filePath="gbc_dev/gbc-app/sass/customization.scss"/>
         <File filePath="gbc_dev/gbc-app/sass/gbc_style.scss"/>
         <File filePath="gbc_dev/gbc-app/sass/main.scss"/>
+        <File filePath="gbc_dev/gbc-app/sass/MyFolder.scss"/>
         <File filePath="gbc_dev/gbc-app/sass/MyMenu.scss"/>
         <File filePath="gbc_dev/gbc-app/sass/MySideBar.scss"/>
         <File filePath="gbc_dev/gbc-app/sass/MyTable.scss"/>
@@ -99,20 +100,22 @@
     <Library binaryName="Databases" id="1986" label="Databases">
       <File filePath="etc/njm_demo310.4db"/>
     </Library>
-    <Library binaryName="Library" dependencies="1986" id="14000" label="Library">
+    <Library binaryName="Library_Application" dependencies="1986" id="827674510" label="Library_Application">
       <File filePath="src/lib/combos.4gl"/>
+    </Library>
+    <Library binaryName="Library_General" id="14000" label="Library_General">
+      <File filePath="src/lib/g2_debug.4gl"/>
+      <File filePath="src/lib/g2_debug.inc"/>
       <File filePath="src/lib/g2_about.4gl"/>
       <File filePath="src/lib/g2_appInfo.4gl"/>
       <File filePath="src/lib/g2_aui.4gl"/>
       <File filePath="src/lib/g2_db.4gl"/>
-      <File filePath="src/lib/g2_debug.4gl"/>
-      <File filePath="src/lib/g2_debug.inc"/>
       <File filePath="src/lib/g2_lib.4gl"/>
       <File filePath="src/lib/g2_logging.4gl"/>
       <File filePath="src/lib/g2_sql.4gl"/>
       <File filePath="src/lib/g2_ui.4gl"/>
     </Library>
-    <Library binaryName="Library_Reporting" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting">
+    <Library binaryName="Library_Reporting" dependencies="14000" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting">
       <File filePath="src/lib/g2_grw.4gl"/>
     </Library>
   </Group>
@@ -140,7 +143,7 @@
     </Package>
   </Group>
   <Group environment="value:FGLPROFILE=../etc/profile,value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">
-    <Application binaryName="custmnt" commandLineArguments="S C0039" dependencies="14000,1986" id="263428051" label="custmnt">
+    <Application binaryName="custmnt" commandLineArguments="S C0039" dependencies="14000,1986,827674510" id="263428051" label="custmnt">
       <File filePath="src/custmnt.4gl"/>
       <File filePath="src/custmnt.per"/>
     </Application>
@@ -155,7 +158,7 @@
       <File filePath="src/gbc_app.per"/>
       <File filePath="src/login.per"/>
     </Application>
-    <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000" id="-1155118210" label="prodmnt">
+    <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000,827674510" id="-1155118210" label="prodmnt">
       <File filePath="src/prodmnt.4gl"/>
       <File filePath="src/prodmnt.per"/>
     </Application>
@@ -164,11 +167,11 @@
       <File filePath="etc/prodlist1.4rp"/>
       <File compilerOptions="--build-rdd" filePath="src/prods.4gl"/>
     </Application>
-    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752,779586860" id="1135886830" label="quotemnt">
+    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752,779586860,827674510" id="1135886830" label="quotemnt">
       <File filePath="src/quotemnt.4gl"/>
       <File filePath="src/quotemnt.per"/>
     </Application>
-    <Application binaryName="quotes" commandLineArguments="S" dependencies="1986,14000,-231492752,779586860" id="-2046411878" label="quotes">
+    <Application binaryName="quotes" commandLineArguments="S" dependencies="1986,14000,-231492752,779586860,827674510" id="-2046411878" label="quotes">
       <File filePath="src/quotelist.per"/>
       <File filePath="src/quotes.4gl"/>
     </Application>
