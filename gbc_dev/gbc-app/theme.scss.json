@@ -27,5 +27,7 @@
 	"njm-current-field-focus-border-glow": "#66afe9",
 	"njm-login-button-background": "#f7931e",
 	"njm-green-button-background": "#5cb85c",
-	"njm-red-button-background": "#d85c5c"
+	"njm-red-button-background": "#d85c5c",
+	"njm-default-button-background": "$theme-primary-background-color",
+	"njm-default-button-background-hover": "$palette-primary-600"
 }
