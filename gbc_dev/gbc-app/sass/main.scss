@@ -20,6 +20,13 @@ BODY {
 	border-radius: 4px;
 	box-shadow: none !important;
 	border: 1px solid $theme-primary-emphasis-background-color;
+	padding: 6px 12px;
+	outline: 0;
+}
+
+.mt-field:focus {
+	border-color: #66afe9;
+	outline-offset: -2px;
 }
 
 .mt-field.gbc_Focus {
@@ -53,15 +60,6 @@ BODY {
 	border: 1px dashed inherit;
 }	
 
-.mt-field {
-	padding: 6px 12px;
-	outline: 0;
-}
-
-.mt-field:focus {
-	border-color: #66afe9;
-	outline-offset: -2px;
-}
 
 [__ButtonWidget].mt-button .textimage > .gbc_imageContainer > .gbc_ImageWidget {
 	fill: inherit;
@@ -80,51 +78,21 @@ BODY {
 	font-weight: 700;
 }
 
+.gbc_ButtonWidget.gbc_Focus > .mt-button
+{
+	background-color: inherit;
+}
 
 /* Combobox Caret */
 [__ComboBoxWidget].toggle {
 	font-size: 1.5em;
 }
 
-.gbc_FolderWidget {
-	padding: 0px;
-}
-.mt-tab-items[__FolderWidget] {
-	padding: 0px;
-}
 .gbc_UserInterfaceWidget .gbc_chromeBarContainer:not(:empty) {
 	border-bottom: none;
 }
 
-.mt-tab-titles {
-	border-bottom: 1px solid $theme-primary-emphasis-background-color;
-}
-
 .gbc_GroupTitleWidget {
 	background-color: $theme-primary-faded-background-color;
-}
-
-.mt-tab-titles-container[__FolderWidget=top] .mt-tab-title.mt-tab-current {
-	background-color: $theme-primary-faded-background-color;
-	color: black;
-	border-bottom: solid 2px $theme-primary-faded-background-color;
-	fill: black;
-}
-
-.gbc_ButtonWidget.gbc_Focus > .mt-button
-{
-	background-color: inherit;
-}
-.mt-tab-titles-container[__FolderWidget=top] .mt-tab-title {
-	border-radius: 8px 8px 0px 0px;
-	border: solid 1px $theme-primary-faded-background-color;
-	fill: $theme-primary-color;
-}
-
-.mt-tab-titles-bar[__FolderWidget] {
-	line-height: 30px;
-	padding: 0px;
-	background-color: $theme-primary-emphasis-background-color;
-	color: $theme-primary-color;
 }
 
