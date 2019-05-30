@@ -136,6 +136,7 @@
       <File filePath="src/custmnt.per"/>
     </Application>
     <Application binaryName="custs" dependencies="-1472689036_-2003847556,-1472689036_14000,1986" id="-1603745864" label="custs">
+      <File filePath="src/custlist.per"/>
       <File filePath="src/custs.4gl"/>
     </Application>
     <Application binaryName="gbc_app" dependencies="14000,1986,779586860,-1472689036_14000" id="18736" label="gbc_app">
