@@ -30,8 +30,9 @@ This was written and tested on Linux and built using GeneroStudio 3.20, the Make
 * 2. The GBC prerequisites building ( grunt nodejs git ) plus: make & zip installed
 * 3. Set GBCPROJECTDIR=<folder containing fjs-gbc-1.00.53-build201905131540-project.zip>
  
+*IMPORTANT* Make sure you use the --recursive flag when you clone this repo, eg: On Linux
 ```
-$ git clone https://github.com/neilm-fourjs/gbc_app.git
+$ git clone --recursive https://github.com/neilm-fourjs/gbc_app.git
 $ cd gbc_app
 $ make
 $ make
