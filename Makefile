@@ -4,9 +4,9 @@ ARCH=gbc_app320_gbc
 GASALIAS=g320
 GASCFG=$(FGLASDIR)/etc/as.xcf
 #GASCFG=$(FGLASDIR)/etc/isv_as320.xcf
-export FGLLDPATH=../g2_lib/bin
+export FGLLDPATH=../g2_lib/bin:$(GREDIR)/lib
 
-all: gbc gar distbin/.deployed
+all: gbc gbc-build gar distbin/.deployed
 
 gar:
 	gsmake gbc_app.4pw
@@ -16,7 +16,13 @@ clean:
 	find . -name \*.gar -delete
 
 gbc: 
-	cd gbc_mdi && ln -s $(GBCPROJDIR) && make
+	ln -s $(GBCPROJDIR)/dist/customization/gbc-mdi gbc
+
+gbc_mdi/gbc-current:
+	cd gbc_mdi && ln -s $(GBCPROJDIR) && ./gbc-setup.sh
+
+gbc-build: gbc_mdi/gbc-current
+	cd gbc_mdi && make
 
 distbin/.deployed: gar deploy
 

@@ -14,12 +14,14 @@ NOTE: The GBC customization was done using the 1.00.53 release.
 * dbexport : An Informix dbexport of my current demo database
 * etc : 4st / 4ad / 4rp / 4db  etc
 * gas : XCF file for deployment
-* gbc_dev : Makefile and gbc_setup script
-* gbc_dev/gbc-app : The files for the custom GBC
 * gst_gas : An XCF for when running via GST
 * pics : Logo's
 * src : Source code for the applications
 * src/lib : Library source code
+
+## This demo uses imported git repos for common library code and GBC customizations
+* git submodule add https://github.com/neilm-fourjs/g2_lib.git g2_lib
+* git submodule add https://github.com/neilm-fourjs/gbc_mdi.git gbc_mdi
 
 
 ## Building
@@ -101,8 +103,4 @@ PUBLIC DEFINE g2_err g2_logging.logger
 ![ss9](https://github.com/neilm-fourjs/gbc_app/raw/master/Screenshots/ss-9.png "SS9")
 ![ss10](https://github.com/neilm-fourjs/gbc_app/raw/master/Screenshots/ss-10.png "SS10")
 
-
-## This demo uses imported git repos for common library code and GBC customizations
-* git submodule add https://github.com/neilm-fourjs/g2_lib.git g2_lib
-* git submodule add https://github.com/neilm-fourjs/gbc_mdi.git gbc_mdi
 
