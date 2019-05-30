@@ -77,101 +77,87 @@
       <File filePath="etc/profile"/>
     </Library>
   </Group>
-  <Group id="-1052244224" label="GBC_DEV" language="Genero">
-    <Library binaryName="gbc-app" excludeFromBuild="true" id="1218790164" label="gbc-app">
+  <Group id="-1052244224" label="GBC" language="Genero">
+    <Library binaryName="gbc-mdi" excludeFromBuild="true" id="1218790164" label="gbc-mdi">
       <VirtualFolder label="js" language="Genero">
-        <File filePath="gbc_dev/gbc-app/js/ApplicationHostSidebarWidget.tpl.html"/>
-        <File filePath="gbc_dev/gbc-app/js/StartMenuGroupWidget.js"/>
+        <File filePath="gbc_mdi/gbc-mdi/js/ApplicationHostSidebarWidget.tpl.html"/>
+        <File filePath="gbc_mdi/gbc-mdi/js/StartMenuGroupWidget.js"/>
       </VirtualFolder>
       <VirtualFolder label="sass" language="Genero">
-        <File filePath="gbc_dev/gbc-app/sass/customization.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/gbc_style.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/main.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/MyFolder.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/MyMenu.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/MySideBar.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/MyTable.scss"/>
-        <File filePath="gbc_dev/gbc-app/sass/MyWindow.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/customization.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/gbc_style.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/main.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/MyFolder.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/MyMenu.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/MySideBar.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/MyTable.scss"/>
+        <File filePath="gbc_mdi/gbc-mdi/sass/MyWindow.scss"/>
       </VirtualFolder>
-      <File filePath="gbc_dev/gbc-app/theme.scss.json"/>
+      <File filePath="gbc_mdi/gbc-mdi/theme.scss.json"/>
     </Library>
   </Group>
   <Group id="254662168" label="Libraries" language="Genero">
     <Library binaryName="Databases" id="1986" label="Databases">
       <File filePath="etc/njm_demo310.4db"/>
     </Library>
+    <ExtProject filePath="g2_lib/g2_lib.4pw" id="-1472689036"/>
     <Library binaryName="Library_Application" dependencies="1986" id="827674510" label="Library_Application">
       <File filePath="src/lib/combos.4gl"/>
     </Library>
-    <Library binaryName="Library_General" id="14000" label="Library_General">
-      <File filePath="src/lib/g2_debug.4gl"/>
-      <File filePath="src/lib/g2_debug.inc"/>
-      <File filePath="src/lib/g2_about.4gl"/>
-      <File filePath="src/lib/g2_appInfo.4gl"/>
-      <File filePath="src/lib/g2_aui.4gl"/>
-      <File filePath="src/lib/g2_db.4gl"/>
-      <File filePath="src/lib/g2_lib.4gl"/>
-      <File filePath="src/lib/g2_logging.4gl"/>
-      <File filePath="src/lib/g2_sql.4gl"/>
-      <File filePath="src/lib/g2_ui.4gl"/>
-    </Library>
-    <Library binaryName="Library_Reporting" dependencies="14000" externalDependencies="libgre.42x" id="105677186" label="Library_Reporting">
-      <File filePath="src/lib/g2_grw.4gl"/>
-    </Library>
   </Group>
   <Group id="963122402" label="Packages" language="Genero">
-    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830,105677186" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
+    <Package binaryName="gbc_app320" dependencies="601137216,18736,-131770706,14000,1986,-231492752,1227693160,-2046411878,-1155118210,1135886830,105677186,-1603745864,827674510,-1472689036_-2003847556,263428051,-1472689036_14000" description="GBC Poc" id="102504040" label="gbc_app320" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="gbc_app"/>
       <DynamicProperty name="packageLabel" value="gbc_app"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
       <Directory destinationDirectory="$(RootDir)/db" label="db" recursive="false" sourceDirectory="$(ProjectDir)/db"/>
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
+      <Directory label="LibBin" sourceDirectory="$(ProjectDir)/g2_lib/bin"/>
       <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
       <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4sm,*.4ad,*.4rp,profile" label="Resources" recursive="false" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
-    <Package binaryName="gbc_app320_gbc" id="-1397376768" label="gbc_app320_gbc" platform="Genero Application Server">
+    <Package binaryName="gbc_app320_gbc" dependencies="1986,-1603745864,18736,1135886830,827674510,263428051,-231492752,-1155118210,601137216,-1472689036_14000,-131770706" id="-1397376768" label="gbc_app320_gbc" platform="Genero Application Server">
       <DynamicProperty name="packageId" value="myapp"/>
       <DynamicProperty name="packageLabel" value="MyApp"/>
       <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
       <Directory destinationDirectory="$(RootDir/db" label="db" recursive="false" sourceDirectory="$(ProjectDir)/db"/>
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory destinationDirectory="$(RootDir)/gbc" label="gbc" sourceDirectory="$(ProjectDir)/gbc"/>
+      <Directory label="LibBin" sourceDirectory="$(ProjectDir)/g2_lib/bin"/>
       <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
       <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4ad,*.4sm,*.4rp,profile" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
       <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
   </Group>
   <Group environment="value:FGLPROFILE=../etc/profile,value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">
-    <Application binaryName="custmnt" commandLineArguments="S C0039" dependencies="14000,1986,827674510" id="263428051" label="custmnt">
+    <Application binaryName="custmnt" commandLineArguments="S C0039" dependencies="14000,1986,827674510,-1472689036_14000" id="263428051" label="custmnt">
       <File filePath="src/custmnt.4gl"/>
       <File filePath="src/custmnt.per"/>
     </Application>
-    <Application binaryName="custs" dependencies="1986,14000,105677186" id="1227693160" label="custs">
-      <File filePath="src/custlist.per"/>
-      <File filePath="etc/custlist1.4rp"/>
-      <File compilerOptions="--build-rdd" filePath="src/custs.4gl"/>
+    <Application binaryName="custs" dependencies="-1472689036_-2003847556,-1472689036_14000,1986" id="-1603745864" label="custs">
+      <File filePath="src/custs.4gl"/>
     </Application>
-    <Application binaryName="gbc_app" dependencies="14000,1986,779586860" id="18736" label="gbc_app">
+    <Application binaryName="gbc_app" dependencies="14000,1986,779586860,-1472689036_14000" id="18736" label="gbc_app">
       <File filePath="src/gbc_app.4gl"/>
       <File filePath="etc/gbc_app.4sm"/>
       <File filePath="src/gbc_app.per"/>
       <File filePath="src/login.per"/>
     </Application>
-    <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000,827674510" id="-1155118210" label="prodmnt">
+    <Application binaryName="prodmnt" commandLineArguments="S GM04" dependencies="1986,-231492752,14000,827674510,-1472689036_14000" id="-1155118210" label="prodmnt">
       <File filePath="src/prodmnt.4gl"/>
       <File filePath="src/prodmnt.per"/>
     </Application>
-    <Application binaryName="prods" commandLineArguments="S" dependencies="1986,14000,105677186" id="-131770706" label="prods">
+    <Application binaryName="prods" commandLineArguments="S" dependencies="1986,14000,105677186,-1472689036_-2003847556,-1472689036_14000" id="-131770706" label="prods">
       <File filePath="src/prodlist.per"/>
       <File filePath="etc/prodlist1.4rp"/>
       <File compilerOptions="--build-rdd" filePath="src/prods.4gl"/>
     </Application>
-    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752,779586860,827674510" id="1135886830" label="quotemnt">
+    <Application binaryName="quotemnt" commandLineArguments="S 1" dependencies="14000,1986,-231492752,779586860,827674510,-1472689036_14000" id="1135886830" label="quotemnt">
       <File filePath="src/quotemnt.4gl"/>
       <File filePath="src/quotemnt.per"/>
     </Application>
-    <Application binaryName="quotes" commandLineArguments="S" dependencies="1986,14000,-231492752,779586860,827674510" id="-2046411878" label="quotes">
+    <Application binaryName="quotes" commandLineArguments="S" dependencies="1986,14000,-231492752,779586860,827674510,-1472689036_14000" id="-2046411878" label="quotes">
       <File filePath="src/quotelist.per"/>
       <File filePath="src/quotes.4gl"/>
     </Application>

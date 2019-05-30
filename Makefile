@@ -1,8 +1,10 @@
 
+GBCPROJDIR=/opt/fourjs/gbc-current
 ARCH=gbc_app320_gbc
 GASALIAS=g320
 GASCFG=$(FGLASDIR)/etc/as.xcf
 #GASCFG=$(FGLASDIR)/etc/isv_as320.xcf
+export FGLLDPATH=../g2_lib/bin
 
 all: gbc gar distbin/.deployed
 
@@ -13,12 +15,8 @@ clean:
 	find . -name \*.42? -delete
 	find . -name \*.gar -delete
 
-gbc_dev/build:
-	mkdir $@
-	cd gbc_dev && make
-
-gbc: gbc_dev/build gbc_dev/build/gbc-current/dist/customization/gbc-app
-	ln -s gbc_dev/build/gbc-current/dist/customization/gbc-app gbc
+gbc: 
+	cd gbc_mdi && ln -s $(GBCPROJDIR) && make
 
 distbin/.deployed: gar deploy
 

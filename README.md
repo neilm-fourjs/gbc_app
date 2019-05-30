@@ -102,3 +102,7 @@ PUBLIC DEFINE g2_err g2_logging.logger
 ![ss10](https://github.com/neilm-fourjs/gbc_app/raw/master/Screenshots/ss-10.png "SS10")
 
 
+## This demo uses imported git repos for common library code and GBC customizations
+* git submodule add https://github.com/neilm-fourjs/g2_lib.git g2_lib
+* git submodule add https://github.com/neilm-fourjs/gbc_mdi.git gbc_mdi
+
