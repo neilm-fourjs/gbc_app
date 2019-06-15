@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Project defaultApplication="18736" gstVersion="31403" version="3.3">
+<Project defaultApplication="18736" gstVersion="31404" version="3.3">
   <Settings>
     <DynamicProperties version="2">
       <DynamicProperty description="Accent color (Android 5.0 and later)" initialValue="#9575CD" isDefaultInherited="false" isHidden="false" label="Accent color" name="gma-accent-color" readOnly="false" type="COLOR"/>
@@ -113,21 +113,8 @@
       <Directory destinationDirectory="$(RootDir)/db" label="db" recursive="false" sourceDirectory="$(ProjectDir)/db"/>
       <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
       <Directory label="LibBin" sourceDirectory="$(ProjectDir)/g2_lib/bin"/>
-      <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
+      <Directory label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
       <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4sm,*.4ad,*.4rp,profile" label="Resources" recursive="false" sourceDirectory="$(ProjectDir)/etc"/>
-      <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
-    </Package>
-    <Package binaryName="gbc_app320_gbc" dependencies="1986,-1603745864,18736,1135886830,827674510,263428051,-231492752,-1155118210,601137216,-1472689036_14000,-131770706" id="-1397376768" label="gbc_app320_gbc" platform="Genero Application Server">
-      <DynamicProperty name="packageId" value="myapp"/>
-      <DynamicProperty name="packageLabel" value="MyApp"/>
-      <Directory excludedFiles="Test.42r" includedFiles="*.42m,*.42r,*.42f" label="Binaries" sourceDirectory="$(ProjectDir)/bin"/>
-      <Directory destinationDirectory="$(RootDir/db" label="db" recursive="false" sourceDirectory="$(ProjectDir)/db"/>
-      <Directory includedFiles="*.xcf" label="gas" sourceDirectory="$(ProjectDir)/gas"/>
-      <Directory destinationDirectory="$(RootDir)/gbc" label="gbc" sourceDirectory="$(ProjectDir)/gbc"/>
-      <Directory label="LibBin" sourceDirectory="$(ProjectDir)/g2_lib/bin"/>
-      <Directory includedFiles="*.png" label="Pics" sourceDirectory="$(ProjectDir)/pics"/>
-      <Directory destinationDirectory="$(RootDir)/etc" includedFiles="*.4st,*.4ad,*.4sm,*.4rp,profile" label="Resources" sourceDirectory="$(ProjectDir)/etc"/>
-      <Directory destinationDirectory="$(RootDir)/webcomponents" label="Webcomponents" sourceDirectory="$(ProjectDir)/webcomponents"/>
     </Package>
   </Group>
   <Group environment="value:FGLPROFILE=../etc/profile,value:REPORTDIR=../etc,value:FGLGBCDIR=../gbc,value:FGLIMAGEPATH=$(ProjectDir)/pics:$(FGLDIR)/lib/image2font.txt" id="75644415" label="Programs" language="Genero">

@@ -24,10 +24,20 @@ VBOX
 GRID
 {
 <G pg2                                       >
- [f006]
+ [a101                                      ]
+ [a102                                      ]
+ [a103                                      ]
+ [a104                                      ]
+ [a105                                      ]
+ [a106    ][a107                      ][f006]
 <                                            >
 <G pg3                                       >
- [f007]
+ [a201                                      ]
+ [a202                                      ]
+ [a203                                      ]
+ [a204                                      ]
+ [a205                                      ]
+ [a206    ][a207                      ][f007]
 <                                            >
 <G pg4                                       >
  [l008      ][f008]
@@ -51,7 +61,7 @@ BUTTON clear : clear, STYLE="rounded";
 BUTTON save : save, STYLE="rounded green";
 BUTTON close : close, STYLE="rounded red";
 
-IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=X,SIZEPOLICY=FIXED,STYLE="noborder";
+IMAGE sp2 : spacer, IMAGE="fa-fw", STRETCH=X, SIZEPOLICY=FIXED,STYLE="noborder";
 
 GROUP pg2 : pg2, STYLE="collapsed", TEXT="Del Address", GRIDCHILDRENINPARENT;
 GROUP pg3 : pg3, STYLE="collapsed", TEXT="Inv Address", GRIDCHILDRENINPARENT;
@@ -71,11 +81,25 @@ LABEL l011 : louta, TEXT="Outstanding Due:", JUSTIFY=RIGHT;
 f001 = FORMONLY.customer_code;
 f002 = FORMONLY.customer_name;
 f003 = FORMONLY.contact_name;
-f004 = FORMONLY.EMAIL;
+f004 = FORMONLY.email;
 f005 = FORMONLY.web_passwd;
 
-f006 = FORMONLY.del_addr;
-f007 = FORMONLY.inv_addr;
+f006 = FORMONLY.del_addr, NOENTRY;
+a101 = FORMONLY.del_add_line1;
+a102 = FORMONLY.del_add_line2;
+a103 = FORMONLY.del_add_line3;
+a104 = FORMONLY.del_add_line4;
+a105 = FORMONLY.del_add_line5;
+a106 = FORMONLY.del_postal_code;
+COMBOBOX a107 = FORMONLY.del_country_code, INITIALIZER=cb_countries;
+f007 = FORMONLY.inv_addr, NOENTRY;
+a201 = FORMONLY.inv_add_line1;
+a202 = FORMONLY.inv_add_line2;
+a203 = FORMONLY.inv_add_line3;
+a204 = FORMONLY.inv_add_line4;
+a205 = FORMONLY.inv_add_line5;
+a206 = FORMONLY.inv_postal_code;
+COMBOBOX a207 = FORMONLY.inv_country_code, INITIALIZER=cb_countries;
 
 f008 = FORMONLY.disc_code;
 f009 = FORMONLY.credit_limit;

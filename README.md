@@ -24,6 +24,10 @@ NOTE: The GBC customization was done using the 1.00.53 release.
 * git submodule add https://github.com/neilm-fourjs/gbc_mdi.git gbc_mdi
 
 
+*If libraries change do:* git submodule foreach git pull origin master
+
+
+
 ## Building
 This was written and tested on Linux and built using GeneroStudio 3.20, the Makefile is used to setup additional folders.
 * Required: GST 3.20 installed licensed and the environment set eg: . envgenero
