@@ -1,8 +1,9 @@
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL combos
+IMPORT FGL confirm
 
-SCHEMA njm_demo310
+&include "schema.inc"
 
 MAIN
   DEFINE l_db g2_db.dbInfo
@@ -72,9 +73,11 @@ FUNCTION showDets(l_rec RECORD LIKE quotes.*)
     END INPUT
     DISPLAY ARRAY l_dets TO qdets.*
     END DISPLAY
-    ON ACTION close
-      LET int_flag = TRUE
-      EXIT DIALOG
+    ON ACTION CLOSE
+      IF confirm.confirm("Are you sure you want to cancel this?") THEN
+        LET int_flag = TRUE
+        EXIT DIALOG
+      END IF
   END DIALOG
 
 END FUNCTION

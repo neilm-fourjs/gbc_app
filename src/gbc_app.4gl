@@ -40,7 +40,7 @@ END MAIN
 ----------------------------------------------------------------------------------------------------
 FUNCTION login()
   DEFINE l_un, l_pw STRING
-  OPEN WINDOW login WITH FORM "login"
+  OPEN WINDOW login WITH FORM "gbc_login"
   INPUT l_un, l_pw FROM username, password
     ON ACTION forgot
       MESSAGE "Oh Dear!"

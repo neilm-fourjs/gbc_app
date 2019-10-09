@@ -1,8 +1,9 @@
 IMPORT FGL g2_lib
 IMPORT FGL g2_db
 IMPORT FGL combos
+IMPORT FGL confirm
 
-SCHEMA njm_demo310
+&include "schema.inc"
 
 DEFINE m_arr DYNAMIC ARRAY OF RECORD LIKE quotes.*
 DEFINE m_scrArr DYNAMIC ARRAY OF RECORD
@@ -33,15 +34,13 @@ DEFINE m_arrCol DYNAMIC ARRAY OF RECORD
   col11 STRING
 END RECORD
 MAIN
+  DEFINE l_db g2_db.dbInfo
   DEFINE l_rec RECORD LIKE quotes.*
   DEFINE l_search STRING
   DEFINE l_where STRING
-  DEFINE l_db g2_db.dbInfo
-  CALL l_db.g2_connect(NULL)
 
   CALL g2_lib.g2_init(ARG_VAL(1), NULL)
   CALL l_db.g2_connect(NULL)
-
   CALL combos.dummy() -- required to make the linker not exclude the combos library!
 
   OPEN FORM list FROM "quotelist"
@@ -78,7 +77,10 @@ MAIN
     ON ACTION advanced
       MESSAGE "Not yet!"
     ON ACTION close
-      EXIT DIALOG
+      IF confirm.confirm("Are you sure you want to exit this program?") THEN
+        LET int_flag = TRUE
+        EXIT DIALOG
+      END IF
     ON ACTION add
       LET l_rec.quote_number = 0
       RUN "fglrun quotemnt.42r " || g2_lib.m_mdi || " " || l_rec.quote_number WITHOUT WAITING

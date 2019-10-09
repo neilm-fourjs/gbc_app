@@ -4,7 +4,8 @@ IMPORT FGL g2_sql
 IMPORT FGL g2_ui
 IMPORT FGL combos
 
-SCHEMA njm_demo310
+&include "schema.inc"
+
 DEFINE m_sql g2_sql.sql
 DEFINE m_ui g2_ui.g2_ui
 DEFINE m_cst RECORD LIKE customer.*

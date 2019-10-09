@@ -4,3 +4,5 @@
 --fo-label-indent=1
 --fo-pack=1
 --fo-lowercase-keywords=0
+--fo-use-tab=1
+--fo-tab-width=2

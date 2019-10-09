@@ -8,16 +8,11 @@ export FGLLDPATH=../g2_lib/bin:$(GREDIR)/lib
 
 all: gbc gbc_mdi/distbin/gbc-mdi.zip gar distbin/.deployed
 
-lib:
-	cd g2_lib && gsmake g2_lib.4pw
-
-gar: lib
+gar:
 	gsmake gbc_app.4pw
 
 clean:
-	find . -name \*.42? -delete
-	find . -name \*.gar -delete
-	find . -name \*.zip -delete
+	gsmake -c gbc_app.4pw
 
 gbc: 
 	ln -s $(GBCPROJDIR)/dist/customization/gbc-mdi gbc
