@@ -73,6 +73,9 @@
       <File filePath="etc/default.4st"/>
     </Library>
   </Group>
+  <Group id="-673909904" label="DB" language="Genero">
+    <ExtProject filePath="../njm_demo_db/njm_demo_db.4pw" id="-1469374308"/>
+  </Group>
   <Group id="-1052244224" label="GBC" language="Genero">
     <Library binaryName="gbc-mdi" excludeFromBuild="true" id="1218790164" label="gbc-mdi">
       <VirtualFolder label="js" language="Genero">
@@ -92,9 +95,8 @@
       <File filePath="gbc_mdi/gbc-mdi/theme.scss.json"/>
     </Library>
   </Group>
-  <Group id="254662168" label="Libraries" language="Genero">
+  <Group id="254662168" label="Libraries" language="Genero" targetDirectory="$(ProjectDir)/../njm_app_bin">
     <ExtProject filePath="../g2_lib/g2_lib.4pw" id="-1668893154"/>
-    <ExtProject filePath="../njm_demo_db/njm_demo_db.4pw" id="-1469374308"/>
     <Library binaryName="web_app_lib" dependencies="1986,-1469374308_1986" id="827674510" label="web_app_lib">
       <File filePath="src/lib/combos.4gl"/>
       <File filePath="src/lib/confirm.4gl"/>
