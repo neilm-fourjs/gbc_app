@@ -1,9 +1,15 @@
 
+BIN=../njm_app_bin
+PROG=gbc_app
 GBCPROJDIR=/opt/fourjs/gbc-current
 ARCH=gbc_app320_gbc
 GASALIAS=g320
 GASCFG=$(FGLASDIR)/etc/as.xcf
 #GASCFG=$(FGLASDIR)/etc/isv_as320.xcf
+
+export CUSTOM_DB=../custom_db.json
+export DBNAME=njm_demo_db
+export FGLRESOURCEPATH=$(PWD)/etc
 export FGLLDPATH=../g2_lib/bin:$(GREDIR)/lib
 
 all: gbc gbc_mdi/distbin/gbc-mdi.zip gar distbin/.deployed
@@ -38,4 +44,7 @@ deploy:
 redeploy: undeploy deploy
 
 run:
+	cd $(BIN) && fglrun $(PROG)
+
+rungas:
 	xdg-open http://localhost/$(GASALIAS)/ua/r/gbc_app
