@@ -12,9 +12,7 @@ export DBNAME=njm_demo_db
 export FGLRESOURCEPATH=$(PWD)/etc
 export FGLLDPATH=../g2_lib/bin:$(GREDIR)/lib
 
-all: gar gbc gbc_mdi/distbin/gbc-mdi.zip distbin/.deployed
-
-gar:
+all: src/*.4gl src/*.per src/lib/*.4gl
 	gsmake gbc_app.4pw
 
 clean:
